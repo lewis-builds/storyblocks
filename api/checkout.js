@@ -72,6 +72,11 @@ export default async function handler(req, res) {
     return res.status(200).json({ url: session.url });
   } catch (err) {
     console.error('checkout: Stripe session creation failed', err);
-    return res.status(500).json({ error: 'Could not start checkout. Please try again.' });
+    // TEMP DIAGNOSTIC — surfaces Stripe's exact error so we can pinpoint the
+    // config problem. Remove the `debug` field once checkout works.
+    return res.status(500).json({
+      error: 'Could not start checkout. Please try again.',
+      debug: { type: err.type, code: err.code, param: err.param, message: err.message },
+    });
   }
 }
