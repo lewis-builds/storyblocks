@@ -4,13 +4,14 @@ import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// STEP 3 of DEPLOY.md: replace these four placeholders with YOUR price IDs
-// (Stripe dashboard → Product catalogue → click a product → copy the "price_…" id)
+// Stripe Price IDs, one per SKU. These are TEST-mode prices — pair them with a
+// sk_test_… key in Vercel. To go live: create the products in live mode, swap in
+// the live price_… IDs here, and switch STRIPE_SECRET_KEY to your sk_live_… key.
 const CATALOGUE = {
-  'standard-1': { price: 'price_PASTE_ME_standard_single' },
-  'standard-2': { price: 'price_PASTE_ME_standard_2pack' },
-  'gold-1':     { price: 'price_PASTE_ME_gold_single' },
-  'gold-2':     { price: 'price_PASTE_ME_gold_2pack' },
+  'standard-1': { price: 'price_1TtFRLCRJw0npfUmtjvsxRIf' },
+  'standard-2': { price: 'price_1TtFRYCRJw0npfUmCDCrRVdd' },
+  'gold-1':     { price: 'price_1TtFRkCRJw0npfUmcOPyd7wF' },
+  'gold-2':     { price: 'price_1TtFRtCRJw0npfUmdGdLExsW' },
 };
 
 export default async function handler(req, res) {
