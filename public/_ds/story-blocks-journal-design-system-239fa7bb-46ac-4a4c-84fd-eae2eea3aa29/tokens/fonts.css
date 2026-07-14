@@ -1,0 +1,9 @@
+/* Story Blocks Journal — Webfonts
+   NOTE: The real Story Blocks wordmark is custom hand-lettering.
+   These Google Fonts are the nearest available substitutes:
+   - Fredoka  → chunky rounded display (headlines, the wordmark feel)
+   - Gochi Hand → felt-tip marker labels (sticker text, kicker labels)
+   - Nunito   → rounded humanist body + UI text
+   Loaded from the Google Fonts CDN so consuming projects pick them up online. */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gochi+Hand&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');

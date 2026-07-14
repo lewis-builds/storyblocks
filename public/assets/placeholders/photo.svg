@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" role="img" aria-label="Photo coming soon">
+  <defs>
+    <style>
+      .cap { font-family: 'Nunito', system-ui, -apple-system, sans-serif; font-weight: 800; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="480" height="360" fill="#DBF0F8"/>
+  <!-- dashed frame -->
+  <rect x="26" y="26" width="428" height="308" rx="18" fill="none" stroke="#231F20" stroke-opacity="0.30" stroke-width="3" stroke-dasharray="10 10"/>
+  <!-- picture icon: mountains + sun -->
+  <g transform="translate(240 150)" stroke="#231F20" stroke-opacity="0.55" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-70" y="-52" width="140" height="104" rx="12"/>
+    <circle cx="-32" cy="-20" r="12" fill="#FDCD2A" stroke="none"/>
+    <path d="M-70 34 L-24 -8 L6 22 L34 -10 L70 26"/>
+  </g>
+  <!-- caption -->
+  <text class="cap" x="240" y="270" font-size="22" fill="#231F20" text-anchor="middle">Photo coming soon</text>
+</svg>

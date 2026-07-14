@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+.vercel
+.env
+.env.*
+
+# Local-only design-tool artefacts (not needed to build or deploy the site)
+uploads/
+/.thumbnail
+/_ds/

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Blocks for Schools - Blocks Publishing</title>
+
+<meta name="description" content="Blocks Publishing gives free boxes of Story Blocks Journals, stickers and reward charts to UK schools. Know a school that would love a box of story sparks? Nominate them.">
+<link rel="canonical" href="https://blockspublishing.com/schools.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#FDCD2A">
+<link rel="icon" href="/assets/logo.png">
+<link rel="apple-touch-icon" href="/assets/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Story Blocks Journal">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://blockspublishing.com/schools.html">
+<meta property="og:title" content="Story Blocks for Schools - free journals for UK schools">
+<meta property="og:description" content="Blocks Publishing gives free boxes of journals, stickers and reward charts to UK schools. Nominate a school that would love a box of story sparks.">
+<meta property="og:image" content="https://blockspublishing.com/assets/storyblocks-book.png">
+<meta property="og:image:alt" content="The Story Blocks Journal - a daily writing journal for children.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Story Blocks for Schools">
+<meta name="twitter:description" content="Free boxes of journals, stickers and reward charts for UK schools. Nominate a school.">
+<meta name="twitter:image" content="https://blockspublishing.com/assets/storyblocks-book.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebPage", "@id": "https://blockspublishing.com/schools.html#webpage", "url": "https://blockspublishing.com/schools.html", "name": "Story Blocks for Schools", "description": "Blocks Publishing gives free boxes of journals, stickers and reward charts to UK schools.", "inLanguage": "en-GB", "isPartOf": { "@id": "https://blockspublishing.com/#website" } },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://blockspublishing.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Schools", "item": "https://blockspublishing.com/schools.html" }
+    ] }
+  ]
+}
+</script>
+
+<!-- Story Blocks design system (fonts, tokens, component bundle) -->
+<link rel="stylesheet" href="/_ds/story-blocks-journal-design-system-239fa7bb-46ac-4a4c-84fd-eae2eea3aa29/styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gochi+Hand&family=Nunito:wght@400;600;700;800&display=swap">
+<script src="/_ds/story-blocks-journal-design-system-239fa7bb-46ac-4a4c-84fd-eae2eea3aa29/_ds_bundle.js"></script>
+
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--sb-ink);
+    background: var(--sb-cream);
+  }
+  h1, h2, h3 { margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  .sb-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .sb-marker { font-family: var(--font-marker); }
+  .sb-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
+
+  @keyframes sb-float { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-9px) rotate(var(--r,0deg)); } }
+  .sb-float { animation: sb-float 4.5s ease-in-out infinite; }
+
+  a[href^="#"] { text-decoration: none; }
+
+  /* snapshot photo slots */
+  .snap { background: #fff; border: 3px solid var(--sb-ink); border-radius: 14px;
+    box-shadow: var(--shadow-pop); padding: 12px 12px 14px; }
+  .snap figcaption { font-family: var(--font-marker); font-size: 1.1rem; text-align: center; margin-top: 10px; }
+
+  @media (max-width: 820px) { .sb-deco { display: none; } }
+
+  /* ---- responsive ---- */
+  @media (max-width: 1024px) {
+    .sb-schools-hero { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .sb-story { grid-template-columns: 1fr !important; }
+    .sb-steps { grid-template-columns: 1fr !important; }
+    .sb-snaps { grid-template-columns: 1fr 1fr !important; }
+    .sb-nominate { grid-template-columns: 1fr !important; }
+    footer .sb-wrap { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 620px) {
+    .sb-nav { display: none !important; }
+    .sb-snaps { grid-template-columns: 1fr !important; }
+    footer .sb-wrap { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="module" src="/src/schools.jsx"></script>
+</body>
+</html>

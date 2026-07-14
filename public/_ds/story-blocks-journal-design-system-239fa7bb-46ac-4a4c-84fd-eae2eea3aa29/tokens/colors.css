@@ -1,0 +1,59 @@
+/* Story Blocks Journal — Color tokens
+   Sampled directly from the brand assets (logo, book cover, block characters, app screens). */
+
+:root {
+  /* ---- Core brand ---- */
+  --sb-yellow:   #FDCD2A;  /* marigold — the logo body, primary buttons, hero */
+  --sb-yellow-deep: #F0B800; /* pressed / shadow tone for yellow */
+  --sb-lemon:    #F4E24E;  /* soft lemon — large fills, book cover, page washes */
+  --sb-ink:      #231F20;  /* near-black — every outline, all body text */
+
+  /* ---- Block character palette (the six friends) ---- */
+  --sb-green:    #BDDC94;  /* Pip — pistachio */
+  --sb-sky:      #AADFF1;  /* Sky — light blue */
+  --sb-pink:     #F59DB2;  /* Rosa — bubblegum */
+  --sb-peach:    #F9A67D;  /* Nib — peach / orange */
+  --sb-purple:   #AFB6DC;  /* Muse — periwinkle */
+  --sb-blue:     #4368B0;  /* Bo — royal blue (also links & accents) */
+
+  /* pressed / deeper tones for the character colors */
+  --sb-green-deep:  #A6CC77;
+  --sb-sky-deep:    #8ECFE8;
+  --sb-pink-deep:   #EF83A0;
+  --sb-peach-deep:  #F58E5E;
+  --sb-purple-deep: #979FCF;
+  --sb-blue-deep:   #35528C;
+
+  /* ---- Soft background washes (tinted paper) ---- */
+  --sb-wash-lemon:  #FBF3C4;
+  --sb-wash-green:  #E5EECC;
+  --sb-wash-sky:    #DBF0F8;
+  --sb-wash-pink:   #FCE4EA;
+  --sb-wash-peach:  #FDE6D9;
+  --sb-wash-purple: #E7E9F4;
+
+  /* ---- Neutrals ---- */
+  --sb-paper:    #FFFFFF;  /* card + sheet surfaces */
+  --sb-cream:    #FFFDF5;  /* off-white page */
+  --sb-line:     #231F20;  /* hand-drawn outline = ink */
+  --sb-muted:    #6E6A63;  /* secondary / caption text */
+  --sb-faint:    #B7B2A8;  /* placeholder / disabled text */
+
+  /* ---- Semantic aliases ---- */
+  --surface-page:      var(--sb-cream);
+  --surface-card:      var(--sb-paper);
+  --surface-accent:    var(--sb-yellow);
+  --text-heading:      var(--sb-ink);
+  --text-body:         var(--sb-ink);
+  --text-muted:        var(--sb-muted);
+  --text-placeholder:  var(--sb-faint);
+  --text-on-accent:    var(--sb-ink);   /* ink reads on every brand fill */
+  --link:              var(--sb-blue);
+  --outline:           var(--sb-ink);
+  --focus-ring:        var(--sb-blue);
+
+  --success: var(--sb-green-deep);
+  --info:    var(--sb-sky-deep);
+  --warn:    var(--sb-peach-deep);
+  --danger:  #E5566B;
+}

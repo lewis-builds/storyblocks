@@ -1,0 +1,50 @@
+/* Story Blocks Journal — Spacing, radius, border, shadow, motion tokens
+   The brand look = thick ink outlines + hard offset "sticker" shadows + generous rounding. */
+
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --sp-1:  0.25rem;  /*  4 */
+  --sp-2:  0.5rem;   /*  8 */
+  --sp-3:  0.75rem;  /* 12 */
+  --sp-4:  1rem;     /* 16 */
+  --sp-5:  1.5rem;   /* 24 */
+  --sp-6:  2rem;     /* 32 */
+  --sp-7:  3rem;     /* 48 */
+  --sp-8:  4rem;     /* 64 */
+
+  /* ---- Corner radii (soft, hand-drawn rounding) ---- */
+  --radius-sm:   10px;
+  --radius-md:   16px;   /* buttons, inputs */
+  --radius-lg:   22px;   /* cards */
+  --radius-xl:   30px;   /* sheets, big panels */
+  --radius-pill: 999px;
+  --radius-blob: 46% 54% 52% 48% / 55% 47% 53% 45%; /* organic sticker blob */
+
+  /* ---- Ink outlines (the defining brand stroke) ---- */
+  --bw-hair:   2px;
+  --bw:        3px;    /* default outline */
+  --bw-bold:   4px;    /* buttons, feature cards */
+  --border-ink:      var(--bw) solid var(--sb-ink);
+  --border-ink-bold: var(--bw-bold) solid var(--sb-ink);
+
+  /* ---- Hard offset "sticker" shadows (no blur — the signature) ---- */
+  --shadow-pop-sm: 2px 2px 0 0 var(--sb-ink);
+  --shadow-pop:    4px 4px 0 0 var(--sb-ink);
+  --shadow-pop-lg: 6px 6px 0 0 var(--sb-ink);
+  /* soft ambient (used sparingly, e.g. floating stickers over photos) */
+  --shadow-soft:   0 8px 24px rgba(35,31,32,0.14);
+
+  /* ---- Motion (bouncy & friendly) ---- */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);    /* @kind other */
+  --dur-fast:    120ms; /* @kind other */
+  --dur:         200ms; /* @kind other */
+  --dur-slow:    360ms; /* @kind other */
+
+  /* press interaction: nudge toward the shadow + shrink shadow */
+  --press-shift: 3px; /* @kind spacing */
+
+  /* ---- Layout ---- */
+  --content-max: 1120px; /* @kind spacing */
+  --reading-max: 640px;  /* @kind spacing */
+}
