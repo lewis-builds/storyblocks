@@ -63,7 +63,6 @@ export default async function handler(req, res) {
         },
       }}],
 
-      consent_collection: { promotions: 'auto' }, // Parent Companion opt-in checkbox
       allow_promotion_codes: true,
       success_url: `${siteUrl}/thanks.html`,
       cancel_url: `${siteUrl}/index.html`,
@@ -72,11 +71,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ url: session.url });
   } catch (err) {
     console.error('checkout: Stripe session creation failed', err);
-    // TEMP DIAGNOSTIC — surfaces Stripe's exact error so we can pinpoint the
-    // config problem. Remove the `debug` field once checkout works.
-    return res.status(500).json({
-      error: 'Could not start checkout. Please try again.',
-      debug: { type: err.type, code: err.code, param: err.param, message: err.message },
-    });
+    return res.status(500).json({ error: 'Could not start checkout. Please try again.' });
   }
 }
