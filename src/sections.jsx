@@ -592,38 +592,37 @@ function SiteHeader({ active, count, onBasket }) {
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)' }}>
       <style>{HEADER_CSS}</style>
-      <div className="sb-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, height: 78 }}>
-        <a href="index.html" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
+      <div className="sb-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 16, height: 78 }}>
+        <a href="index.html" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none', justifySelf: 'start' }}>
           <img src={asset('assets/blocks-publishing-logo.png')} alt="Blocks Publishing" style={{ height: 46, width: 'auto' }} />
         </a>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
-          <nav className="sb-nav" style={{ display: 'flex', gap: 26 }}>
-            {NAV_LINKS.map(([l, h, key]) => (
-              <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-yellow)' : '3px solid transparent' }}>{l}</a>
-            ))}
-          </nav>
+        {/* nav — centered */}
+        <nav className="sb-nav" style={{ display: 'flex', gap: 26, justifySelf: 'center' }}>
+          {NAV_LINKS.map(([l, h, key]) => (
+            <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-yellow)' : '3px solid transparent' }}>{l}</a>
+          ))}
+        </nav>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {/* cart — always present */}
-            <button aria-label={'Basket' + (shownCount > 0 ? ` (${shownCount} item${shownCount > 1 ? 's' : ''})` : '')} onClick={openBasket}
-              style={{ position: 'relative', width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
-              <Icon name="bag" size={22} sw={2.4} />
-              {shownCount > 0 && (
-                <span style={{ position: 'absolute', top: -9, right: -9, minWidth: 24, height: 24, padding: '0 6px', borderRadius: 999, background: 'var(--sb-pink)', border: '2.5px solid var(--sb-ink)', color: 'var(--sb-ink)', fontWeight: 800, fontSize: '.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{shownCount}</span>
-              )}
-            </button>
+        {/* cart + hamburger — anchored right */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifySelf: 'end' }}>
+          <button aria-label={'Basket' + (shownCount > 0 ? ` (${shownCount} item${shownCount > 1 ? 's' : ''})` : '')} onClick={openBasket}
+            style={{ position: 'relative', width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
+            <Icon name="bag" size={22} sw={2.4} />
+            {shownCount > 0 && (
+              <span style={{ position: 'absolute', top: -9, right: -9, minWidth: 24, height: 24, padding: '0 6px', borderRadius: 999, background: 'var(--sb-pink)', border: '2.5px solid var(--sb-ink)', color: 'var(--sb-ink)', fontWeight: 800, fontSize: '.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{shownCount}</span>
+            )}
+          </button>
 
-            {/* hamburger — mobile only */}
-            <button className="sb-hamburger" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((o) => !o)}
-              style={{ width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: menuOpen ? 'var(--sb-yellow)' : 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sb-ink)" strokeWidth="3" strokeLinecap="round">
-                {menuOpen
-                  ? <React.Fragment><path d="M6 6l12 12" /><path d="M18 6L6 18" /></React.Fragment>
-                  : <React.Fragment><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></React.Fragment>}
-              </svg>
-            </button>
-          </div>
+          {/* hamburger — mobile only */}
+          <button className="sb-hamburger" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((o) => !o)}
+            style={{ width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: menuOpen ? 'var(--sb-yellow)' : 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sb-ink)" strokeWidth="3" strokeLinecap="round">
+              {menuOpen
+                ? <React.Fragment><path d="M6 6l12 12" /><path d="M18 6L6 18" /></React.Fragment>
+                : <React.Fragment><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></React.Fragment>}
+            </svg>
+          </button>
         </div>
       </div>
 

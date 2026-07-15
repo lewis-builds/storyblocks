@@ -15,7 +15,7 @@ const { Button: SBButton, Card: SBCard, Badge: SBBadge, Tabs: SBTabs, Toast: SBT
 function BundlePicker({ unit, qty, setQty }) {
   const rows = [
     { n: 1, note: 'Just for them' },
-    { n: 2, note: 'Great for siblings', tag: 'Best value' },
+    { n: 2, note: 'Great for siblings' },
   ];
   return (
     <div style={{ display: 'grid', gap: 10, marginTop: 18 }} role="radiogroup" aria-label="How many journals">
