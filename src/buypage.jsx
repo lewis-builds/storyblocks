@@ -258,6 +258,11 @@ function App() {
     try { localStorage.setItem('sb_basket_v2', JSON.stringify(basket)); } catch (err) {}
   }, [basket]);
 
+  // Arriving from another page's cart icon (index.html#basket) opens the drawer.
+  React.useEffect(() => {
+    if (window.location.hash === '#basket') setDrawerOpen(true);
+  }, []);
+
   const count = Object.values(basket).reduce((n, q) => n + q, 0); // products, not books - a 2-pack counts as 1
 
   const showToast = React.useCallback((msg) => {

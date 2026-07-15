@@ -18,7 +18,7 @@ function Stat({ big, tint = 'sky', children }) {
 
 function Why() {
   return (
-    <PageShell active={null} wash="sky" kicker="Why Story Blocks exists"
+    <PageShell active="why" wash="sky" kicker="Why Story Blocks exists"
       title="Why children have stopped writing for fun - and how we bring it back"
       intro="Kids have stopped reading and writing for the joy of it - enjoyment of both is near record lows. We're a small family publisher on a mission to bring it back, five minutes of storytelling at a time.">
 

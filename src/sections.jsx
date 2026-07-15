@@ -545,34 +545,94 @@ function SiteFooter() {
 }
 
 /* ---------------- Shared site header - same nav on every page ---------------- */
+/* Responsive header CSS, injected by SiteHeader so every page gets the same
+   behaviour without duplicating rules across each page's <style> block. */
+const HEADER_CSS = `
+.sb-hamburger { display: none; }
+.sb-mobile-menu { display: none; }
+@media (max-width: 720px) {
+  .sb-nav { display: none !important; }
+  .sb-hamburger { display: inline-flex !important; }
+  .sb-mobile-menu { display: none; flex-direction: column; padding: 6px 24px 16px;
+    background: var(--sb-cream); border-top: 2px solid rgba(35,31,32,.12); }
+  .sb-mobile-menu.is-open { display: flex; }
+}
+.sb-mobile-menu a { padding: 13px 4px; font-weight: 800; font-size: 1.1rem; color: var(--sb-ink);
+  text-decoration: none; border-bottom: 2px solid rgba(35,31,32,.08); }
+.sb-mobile-menu a:last-child { border-bottom: 0; }
+.sb-mobile-menu a.is-active { color: var(--sb-blue); }
+`;
+
+const NAV_LINKS = [
+  ['The journal', 'index.html', 'journal'],
+  ['Our mission', 'why.html', 'why'],
+  ['Schools', 'schools.html', 'schools'],
+  ['Free resources', 'resources.html', 'resources'],
+];
+
 function SiteHeader({ active, count, onBasket }) {
-  const links = [
-    ['The journal', 'index.html', 'journal'],
-    ['Schools', 'schools.html', 'schools'],
-    ['Free resources', 'resources.html', 'resources'],
-  ];
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [localCount, setLocalCount] = React.useState(0);
+
+  // On pages without a live basket (everything but the buy page), read the
+  // saved basket so the cart badge still shows the right number.
+  React.useEffect(() => {
+    if (count != null) return;
+    try {
+      const b = JSON.parse(localStorage.getItem('sb_basket_v2')) || {};
+      setLocalCount(Object.values(b).reduce((n, q) => n + (q || 0), 0));
+    } catch (err) {}
+  }, [count]);
+
+  const shownCount = count != null ? count : localCount;
+  // Buy page passes a drawer opener; elsewhere the cart takes you to the buy
+  // page, which opens the basket drawer on arrival (see the #basket handler).
+  const openBasket = onBasket || (() => { window.location.href = 'index.html#basket'; });
+
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)' }}>
-      <div className="sb-wrap" style={{ display: 'flex', alignItems: 'center', gap: 20, height: 74 }}>
+      <style>{HEADER_CSS}</style>
+      <div className="sb-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, height: 78 }}>
         <a href="index.html" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src={asset('assets/blocks-publishing-logo.png')} alt="Blocks Publishing" style={{ height: 34, width: 'auto' }} />
+          <img src={asset('assets/blocks-publishing-logo.png')} alt="Blocks Publishing" style={{ height: 46, width: 'auto' }} />
         </a>
-        <nav className="sb-nav" style={{ display: 'flex', gap: 26, marginLeft: 'auto' }}>
-          {links.map(([l, h, key]) => (
-            <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-yellow)' : '3px solid transparent' }}>{l}</a>
-          ))}
-        </nav>
-        {onBasket ? (
-          <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
-            <button aria-label="Basket" onClick={onBasket} style={{ position: 'relative', width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
+          <nav className="sb-nav" style={{ display: 'flex', gap: 26 }}>
+            {NAV_LINKS.map(([l, h, key]) => (
+              <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-yellow)' : '3px solid transparent' }}>{l}</a>
+            ))}
+          </nav>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            {/* cart — always present */}
+            <button aria-label={'Basket' + (shownCount > 0 ? ` (${shownCount} item${shownCount > 1 ? 's' : ''})` : '')} onClick={openBasket}
+              style={{ position: 'relative', width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
               <Icon name="bag" size={22} sw={2.4} />
-              {count > 0 && (
-                <span style={{ position: 'absolute', top: -9, right: -9, minWidth: 24, height: 24, padding: '0 6px', borderRadius: 999, background: 'var(--sb-pink)', border: '2.5px solid var(--sb-ink)', color: 'var(--sb-ink)', fontWeight: 800, fontSize: '.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{count}</span>
+              {shownCount > 0 && (
+                <span style={{ position: 'absolute', top: -9, right: -9, minWidth: 24, height: 24, padding: '0 6px', borderRadius: 999, background: 'var(--sb-pink)', border: '2.5px solid var(--sb-ink)', color: 'var(--sb-ink)', fontWeight: 800, fontSize: '.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{shownCount}</span>
               )}
             </button>
+
+            {/* hamburger — mobile only */}
+            <button className="sb-hamburger" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((o) => !o)}
+              style={{ width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: menuOpen ? 'var(--sb-yellow)' : 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sb-ink)" strokeWidth="3" strokeLinecap="round">
+                {menuOpen
+                  ? <React.Fragment><path d="M6 6l12 12" /><path d="M18 6L6 18" /></React.Fragment>
+                  : <React.Fragment><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></React.Fragment>}
+              </svg>
+            </button>
           </div>
-        ) : <span className="sb-nav-spacer" style={{ marginLeft: 'auto' }}></span>}
+        </div>
       </div>
+
+      {/* mobile dropdown menu */}
+      <nav className={'sb-mobile-menu' + (menuOpen ? ' is-open' : '')} aria-label="Site menu">
+        {NAV_LINKS.map(([l, h, key]) => (
+          <a key={key} href={h} className={key === active ? 'is-active' : ''}>{l}</a>
+        ))}
+      </nav>
     </header>
   );
 }
