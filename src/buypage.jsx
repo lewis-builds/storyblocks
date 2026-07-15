@@ -148,9 +148,8 @@ function Hero({ edition, setEdition, qty, setQty, onAdd, added }) {
           <div className="sb-purchase">
             {/* purchase card */}
             <div id="purchase-card" style={{ background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 22 }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
                 <SBTabs tabs={[{ value: 'standard', label: 'Standard' }, { value: 'gold', label: 'Gold Edition' }]} value={edition} onChange={setEdition} color="yellow" />
-                <SBBadge variant="paper" tilt={false}>{ed.ribbon}</SBBadge>
               </div>
 
             <p style={{ marginTop: 16, fontSize: '1.02rem', lineHeight: 1.45, fontWeight: 600, color: 'var(--sb-ink)' }}>{ed.tagline}</p>
@@ -194,7 +193,7 @@ function MobileBuySheet({ edition, setEdition, qty, setQty, onAdd, added }) {
       {/* row 1: edition tabs + expand toggle */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <SBTabs tabs={[{ value: 'standard', label: 'Standard' }, { value: 'gold', label: 'Gold' }]} value={edition} onChange={setEdition} color="yellow" />
+          <SBTabs tabs={[{ value: 'standard', label: 'Standard' }, { value: 'gold', label: 'Gold Edition' }]} value={edition} onChange={setEdition} color="yellow" />
         </div>
         <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label={open ? 'Hide options' : 'Show bundles and details'}
           style={{ flexShrink: 0, width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: open ? 'var(--sb-yellow)' : 'var(--sb-paper)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '2px 2px 0 0 var(--sb-ink)', padding: 0 }}>

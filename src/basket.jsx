@@ -35,6 +35,18 @@ function BasketDrawer({ open, onClose, basket, setBasket, onToast }) {
     onToast('Swapped for the 2-pack - saving applied!');
   };
 
+  /* one single of an edition → gentle nudge to add a second (sibling / gift),
+     which turns it into the discounted 2-pack. */
+  const addSecondAsPack = (sku) => {
+    const s = SKUS[sku];
+    setBasket((b) => ({
+      ...b,
+      [sku]: Math.max(0, (b[sku] || 0) - 1),
+      [s.packSku]: Math.min(9, (b[s.packSku] || 0) + 1),
+    }));
+    onToast('Lovely - a second copy added, and the 2-pack saves you 10%!');
+  };
+
   const checkout = async () => {
     setBusy(true);
     try {
@@ -104,6 +116,13 @@ function BasketDrawer({ open, onClose, basket, setBasket, onToast }) {
                         style={{ width: '100%', marginTop: 12, textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, background: 'var(--sb-wash-lemon)', border: '2.5px dashed var(--sb-ink)', borderRadius: 12, padding: '9px 12px', font: 'inherit', fontWeight: 800, fontSize: '.88rem', color: 'var(--sb-ink)', cursor: 'pointer' }}>
                         <span className="sb-marker" style={{ fontSize: '1.05rem', color: 'var(--sb-blue)' }}>Psst…</span>
                         Save {gbp(packSaving)} by switching to the 2-pack - tap to swap
+                      </button>
+                    )}
+                    {s.packSku && q === 1 && (
+                      <button onClick={() => addSecondAsPack(sku)}
+                        style={{ width: '100%', marginTop: 12, textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, background: 'var(--sb-wash-sky)', border: '2.5px dashed var(--sb-ink)', borderRadius: 12, padding: '9px 12px', font: 'inherit', fontWeight: 800, fontSize: '.88rem', color: 'var(--sb-ink)', cursor: 'pointer' }}>
+                        <span className="sb-marker" style={{ fontSize: '1.05rem', color: 'var(--sb-blue)', flexShrink: 0 }}>Got a sibling?</span>
+                        Add a second copy for just {gbp(SKUS[s.packSku].price - s.price)} (save {gbp(s.price * 2 - SKUS[s.packSku].price)}) - tap to add
                       </button>
                     )}
                   </div>
