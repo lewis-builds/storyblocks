@@ -22,6 +22,7 @@ export default defineConfig({
         privacy: resolve(__dirname, 'privacy.html'),
         gift: resolve(__dirname, 'gift.html'),
         wholesale: resolve(__dirname, 'wholesale.html'),
+        why: resolve(__dirname, 'why.html'),
       },
     },
   },

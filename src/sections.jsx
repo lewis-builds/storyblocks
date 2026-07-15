@@ -352,6 +352,42 @@ function HowItWorks() {
   );
 }
 
+/* ============================ WHY IT MATTERS (the "why now" beat) ============================ */
+/* Warm, single-stat problem section. One figure, hope, and a quiet click-through
+   to the dedicated /why page — the depth and citations live there, not here. */
+function ProblemSection() {
+  return (
+    <section style={{ background: 'var(--sb-wash-peach)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+      <div className="sb-wrap">
+        <div className="sb-problem" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,0.85fr) minmax(0,1.15fr)', gap: 52, alignItems: 'center' }}>
+          {/* the one stat, as big type */}
+          <div style={{ position: 'relative', textAlign: 'center' }}>
+            <div className="sb-display" style={{ fontSize: 'clamp(4.5rem, 15vw, 8.5rem)', lineHeight: 0.9, color: 'var(--sb-blue)', letterSpacing: '-0.02em' }}>1 in 4</div>
+            <p style={{ margin: '16px auto 0', maxWidth: 320, fontWeight: 700, color: 'var(--sb-ink)', fontSize: '1rem', lineHeight: 1.5 }}>
+              Only around 1 in 4 children now enjoy writing in their free time - near a 15-year low.
+            </p>
+            <p className="sb-marker" style={{ marginTop: 8, color: 'var(--sb-muted)', fontSize: '1.05rem' }}>National Literacy Trust</p>
+            <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB50.png')} alt="" style={{ position: 'absolute', width: 88, right: '2%', bottom: -18, ['--r']: '-5deg', pointerEvents: 'none' }} />
+          </div>
+
+          {/* the turn to hope */}
+          <div>
+            <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)' }}>Why we made this</div>
+            <h2 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 4vw, 2.7rem)', lineHeight: 1.06, marginTop: 6 }}>Kids have stopped writing for the joy of it. We're bringing it back.</h2>
+            <p style={{ marginTop: 16, fontSize: '1.16rem', lineHeight: 1.6, maxWidth: 540 }}>
+              Writing for pleasure has nearly halved in fifteen years - squeezed out by screens, schedules and school pressure. Story Blocks exists to bring it back: five minutes of storytelling a day, away from screens, until writing stops being a chore and starts being <em>theirs</em>.
+            </p>
+            <a href="why.html" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 22, fontWeight: 800, fontSize: '1.08rem', color: 'var(--sb-ink)', textDecoration: 'none' }}>
+              <span style={{ borderBottom: '3px solid var(--sb-yellow)', paddingBottom: 2 }}>Read why this matters</span>
+              <span aria-hidden="true" style={{ color: 'var(--sb-blue)' }}>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ============================ REVIEWS ============================ */
 function Stars({ n = 5 }) {
   return (
@@ -468,6 +504,7 @@ const FOOTER_LINKS = {
   'Contact us': 'contact.html',
   'FAQs': 'faqs.html',
   'About us': 'about.html',
+  'Why Story Blocks': 'why.html',
   'Free books for schools': 'schools.html',
   'Wholesale': 'wholesale.html',
   'Reviews': 'index.html#reviews',
@@ -477,7 +514,7 @@ function SiteFooter() {
   const cols = [
     { h: 'The journal', links: ['What’s inside', 'How it works', 'Gold Edition', 'Gift a journal'] },
     { h: 'Support', links: ['Delivery & returns', 'The Parent Companion', 'Contact us', 'FAQs'] },
-    { h: 'Blocks Publishing', links: ['About us', 'Free books for schools', 'Wholesale', 'Reviews', 'Privacy'] },
+    { h: 'Blocks Publishing', links: ['About us', 'Why Story Blocks', 'Free books for schools', 'Wholesale', 'Reviews', 'Privacy'] },
   ];
   return (
     <footer style={{ background: 'var(--sb-ink)', color: '#fff', paddingTop: 56 }}>
@@ -540,4 +577,4 @@ function SiteHeader({ active, count, onBasket }) {
   );
 }
 
-export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, Reviews, ParentCompanion, WhyBlocks, SiteFooter, SiteHeader, Stars };
+export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, ProblemSection, Reviews, ParentCompanion, WhyBlocks, SiteFooter, SiteHeader, Stars };
