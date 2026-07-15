@@ -592,20 +592,20 @@ function SiteHeader({ active, count, onBasket }) {
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)' }}>
       <style>{HEADER_CSS}</style>
-      <div className="sb-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 16, height: 78 }}>
-        <a href="index.html" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none', justifySelf: 'start' }}>
+      <div className="sb-wrap" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, height: 78 }}>
+        <a href="index.html" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src={asset('assets/blocks-publishing-logo.png')} alt="Blocks Publishing" style={{ height: 46, width: 'auto' }} />
         </a>
 
-        {/* nav — centered */}
-        <nav className="sb-nav" style={{ display: 'flex', gap: 26, justifySelf: 'center' }}>
+        {/* nav — absolutely centered so it never shifts the logo or cart */}
+        <nav className="sb-nav" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: 26 }}>
           {NAV_LINKS.map(([l, h, key]) => (
             <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-yellow)' : '3px solid transparent' }}>{l}</a>
           ))}
         </nav>
 
-        {/* cart + hamburger — anchored right */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifySelf: 'end' }}>
+        {/* cart + hamburger — always at the far right via space-between */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button aria-label={'Basket' + (shownCount > 0 ? ` (${shownCount} item${shownCount > 1 ? 's' : ''})` : '')} onClick={openBasket}
             style={{ position: 'relative', width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
             <Icon name="bag" size={22} sw={2.4} />
