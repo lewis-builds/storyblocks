@@ -22,8 +22,8 @@ function Privacy() {
           you buy a journal.</li>
         <li><strong>Payment details</strong> - card payments are processed securely by Stripe. We never
           see or store your full card number.</li>
-        <li><strong>Email sign-ups</strong> - the email address you give us for the Parent Companion,
-          the free resources pack, or general updates.</li>
+        <li><strong>Email sign-ups</strong> - the email address you give us for the free resources
+          pack or general updates.</li>
         <li><strong>Messages</strong> - anything you send us via email or a form.</li>
       </ul>
 
@@ -31,7 +31,7 @@ function Privacy() {
       <ul>
         <li>To <strong>fulfil your order</strong> and provide customer support - on the basis of
           performing our contract with you.</li>
-        <li>To <strong>send the Parent Companion and updates</strong> you asked for - on the basis of
+        <li>To <strong>send the resources and updates</strong> you asked for - on the basis of
           your consent, which you can withdraw at any time.</li>
         <li>To <strong>run and improve our shop</strong> and keep it secure - on the basis of our
           legitimate interests.</li>
@@ -60,7 +60,7 @@ function Privacy() {
 
       <h2>Children's privacy</h2>
       <p>The Story Blocks Journal is bought and managed by grown-ups. We don't knowingly collect
-        personal data from children, and the Parent Companion is written for the adult in charge.</p>
+        personal data from children, and the Parents' Corner is written for the adult in charge.</p>
 
       <h2>Changes</h2>
       <p>We may update this policy from time to time; the date at the top shows the latest version.</p>

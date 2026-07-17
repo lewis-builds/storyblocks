@@ -87,8 +87,9 @@ and runs the little program in `/api` that talks to Stripe.
    - After launch, submit `https://blockspublishing.com/sitemap.xml` in Google
      Search Console, and check the Product/FAQ markup with Google's Rich Results
      Test (search.google.com/test/rich-results).
-4. Optional, recommended later: a Stripe webhook for order records + the Parent
-   Companion mailing list — the recipe is in `api/checkout.example.js`.
+4. Optional, recommended later: a Stripe webhook for order records + emailing
+   buyers their Parents' Corner access code — the recipe is in
+   `api/checkout.example.js`.
 
 ---
 

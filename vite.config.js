@@ -23,6 +23,7 @@ export default defineConfig({
         gift: resolve(__dirname, 'gift.html'),
         wholesale: resolve(__dirname, 'wholesale.html'),
         why: resolve(__dirname, 'why.html'),
+        parents: resolve(__dirname, 'parents.html'),
       },
     },
   },

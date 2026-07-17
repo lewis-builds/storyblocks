@@ -19,15 +19,15 @@ const FAQS = [
   },
   {
     q: "What's the difference between the Standard and Gold editions?",
-    a: 'The writing inside is identical. The Gold Edition adds a gold-foil hardback cover, a keepsake gift box and a bonus collector sticker set - it’s the one people buy as a present.',
+    a: 'The writing inside is identical. The Gold Edition adds a gold-foil cover and a bonus collector sticker set - it’s the one people buy as a present.',
   },
   {
     q: 'What are the stickers and reward chart for?',
     a: 'Finish a story, tick the chart, peel off a sticker. Every journal includes a free full sticker sheet and reward chart - little wins that build a daily writing streak and make finishing feel like the best part.',
   },
   {
-    q: 'What is the Parent Companion?',
-    a: 'A gentle weekly email for parents, included free with every journal. It explains what your child is writing about each week and gives you simple ways to encourage them without hovering. One short email a week, and you can unsubscribe any time.',
+    q: 'What is the Parents’ Corner?',
+    a: 'A free online area for grown-ups, included with every journal. It’s full of printable story starters, extra reward charts and short, practical guides on helping a reluctant writer - what to say, what not to say, and how to keep the habit going. Buy the journal from our website and you’ll get an access code to unlock it.',
   },
   {
     q: 'How much is delivery and how long does it take?',

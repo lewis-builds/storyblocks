@@ -56,8 +56,8 @@ export default async function handler(req, res) {
       },
     }}],
 
-    // Parent Companion opt-in — shown as a consent checkbox on the Stripe page.
-    consent_collection: { promotions: 'auto' },
+    // NOTE: consent_collection.promotions is NOT available for UK accounts —
+    // Stripe rejects the whole session if you set it.
 
     allow_promotion_codes: true,
     success_url: `${process.env.SITE_URL}/thanks?session_id={CHECKOUT_SESSION_ID}`,
@@ -87,8 +87,7 @@ export async function webhookHandler(req, res) {
     // 1. Record the order (session.id, session.amount_total, line items via
     //    stripe.checkout.sessions.listLineItems(session.id)).
     // 2. Email the confirmation / dispatch note.
-    // 3. Add to the Parent Companion list IF they consented:
-    //    session.consent?.promotions === 'opt_in'
+    // 3. Email the buyer their Parents' Corner access code:
     //    → session.customer_details.email
   }
 

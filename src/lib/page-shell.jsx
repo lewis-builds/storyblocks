@@ -3,7 +3,7 @@
 import React from 'react';
 import { SiteHeader, SiteFooter } from '../sections.jsx';
 
-export function PageShell({ active = null, wash = 'sky', kicker, title, intro, children }) {
+export function PageShell({ active = null, wash = 'sky', kicker, title, intro, heroChildren, children }) {
   return (
     <React.Fragment>
       <SiteHeader active={active} />
@@ -13,6 +13,7 @@ export function PageShell({ active = null, wash = 'sky', kicker, title, intro, c
             {kicker && <div className="sb-marker page-kicker">{kicker}</div>}
             <h1 className="sb-display page-title">{title}</h1>
             {intro && <p className="page-intro">{intro}</p>}
+            {heroChildren}
           </div>
         </section>
         <section className="page-body">

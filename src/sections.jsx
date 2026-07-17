@@ -72,7 +72,7 @@ function TrustStrip() {
     { icon: 'truck', label: 'Free UK delivery' },
     { icon: 'sparkles', label: 'Improves writing skills' },
     { icon: 'award', label: 'Free stickers + reward chart' },
-    { icon: 'mail', label: 'Parent Companion included' },
+    { icon: 'book', label: 'Free parent guides & printables' },
   ];
   return (
     <div style={{ background: 'var(--sb-ink)' }}>
@@ -167,61 +167,6 @@ function StarterSpreadRow({ r, i }) {
   );
 }
 
-/* phone-framed peek at the Parent Companion email (row 04) */
-function CompanionPhone() {
-  const days = [
-    ['Mon', 'green', 'Whisper · Door · Secret'],
-    ['Tue', 'peach', 'A key that fits no lock'],
-    ['Wed', 'sky', 'You can hear the cat thinking'],
-    ['Thu', 'pink', '“The sandwich knew it was now or never.”'],
-  ];
-  return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <div aria-label="The Parent Companion weekly email, shown on a phone" style={{ width: 300, background: 'var(--sb-ink)', borderRadius: 40, padding: 10, boxShadow: 'var(--shadow-pop-lg)', transform: 'rotate(-1.5deg)' }}>
-        <div style={{ background: 'var(--sb-cream)', borderRadius: 32, overflow: 'hidden' }}>
-          {/* status bar */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 18px 4px', fontWeight: 800, fontSize: '.72rem' }}>
-            <span>9:41</span>
-            <span style={{ width: 74, height: 18, borderRadius: 999, background: 'var(--sb-ink)' }}></span>
-            <span>■■■</span>
-          </div>
-          {/* mail header */}
-          <div style={{ padding: '8px 16px 10px', borderBottom: '2.5px solid var(--sb-ink)' }}>
-            <div style={{ fontWeight: 800, fontSize: '.78rem', color: 'var(--sb-muted)' }}>Story Blocks</div>
-            <div style={{ fontWeight: 800, fontSize: '.85rem', lineHeight: 1.25 }}>This week: secret doors, talking cats…</div>
-          </div>
-          <div style={{ padding: '12px 12px 16px' }}>
-            {/* issue card */}
-            <div style={{ background: 'var(--sb-yellow)', border: '2.5px solid var(--sb-ink)', borderRadius: 14, boxShadow: '3px 3px 0 0 var(--sb-ink)', textAlign: 'center', padding: '12px 10px' }}>
-              <div className="sb-marker" style={{ fontSize: '.95rem' }}>The Parent Companion</div>
-              <div className="sb-display" style={{ fontSize: '1.02rem', lineHeight: 1.1, marginTop: 2 }}>What they're writing this week</div>
-              <div style={{ fontWeight: 800, fontSize: '.66rem', marginTop: 5 }}>Issue 3 · w/b Monday 13 July</div>
-            </div>
-            {/* week list */}
-            <div style={{ background: '#fff', border: '2.5px solid var(--sb-ink)', borderRadius: 12, marginTop: 12, overflow: 'hidden' }}>
-              {days.map(([d, tint, theme], k) => (
-                <div key={d} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '7px 10px', borderBottom: k < days.length - 1 ? '1.5px solid rgba(35,31,32,.12)' : 'none' }}>
-                  <span style={{ fontWeight: 800, fontSize: '.66rem', color: 'var(--sb-muted)', width: 26, flexShrink: 0 }}>{d}</span>
-                  <span style={{ flexShrink: 0, width: 9, height: 9, borderRadius: 999, background: `var(--sb-${tint})`, border: '1.5px solid var(--sb-ink)' }}></span>
-                  <span style={{ fontWeight: 700, fontSize: '.72rem', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{theme}</span>
-                </div>
-              ))}
-            </div>
-            {/* nudge */}
-            <div style={{ display: 'flex', gap: 9, alignItems: 'flex-start', background: 'var(--sb-wash-sky)', border: '2.5px solid var(--sb-ink)', borderRadius: 12, padding: '10px 11px', marginTop: 12 }}>
-              <img src={asset(CHAR_BASE + '/SB50.png')} alt="" style={{ width: 40, flexShrink: 0 }} />
-              <div>
-                <div className="sb-marker" style={{ fontSize: '.9rem' }}>Read it aloud, badly.</div>
-                <div style={{ fontWeight: 700, fontSize: '.7rem', lineHeight: 1.4, marginTop: 2 }}>Funny voices do more for confidence than any correction ever will.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ============================ WHAT'S INSIDE ============================ */
 function WhatsInside() {
   const rows = [
@@ -278,16 +223,14 @@ function WhatsInside() {
                 </article>
               ) : (
               <article className={'sb-inside-row' + (r.flip ? ' sb-inside-row--flip' : '')}>
-                <figure className={'sb-inside-media' + (r.phone ? '' : ' snap')} style={{ margin: 0, position: 'relative', transform: r.phone ? 'none' : `rotate(${r.flip ? 1.5 : -1.5}deg)` }}>
-                  {r.phone ? (
-                    <CompanionPhone />
-                  ) : r.photo ? (
+                <figure className="sb-inside-media snap" style={{ margin: 0, position: 'relative', transform: `rotate(${r.flip ? 1.5 : -1.5}deg)` }}>
+                  {r.photo ? (
                     <img src={asset(r.photo.src)} alt={r.photo.alt} style={{ display: 'block', width: '100%', height: 'var(--inside-photo-h, 420px)', objectFit: 'cover', borderRadius: 8 }} />
                   ) : (
                     <image-slot id={r.slot.id} src="/assets/placeholders/photo.svg" style={{ width: '100%', height: 'var(--inside-photo-h, 420px)', display: 'block' }} shape="rounded" radius="8"
                       placeholder="Drop a page photo"></image-slot>
                   )}
-                  {!r.phone && <figcaption>{r.photo ? r.photo.caption : r.slot.caption}</figcaption>}
+                  <figcaption>{r.photo ? r.photo.caption : r.slot.caption}</figcaption>
                   {r.photo && r.photo.char && (
                     <img src={asset(CHAR_BASE + '/' + r.photo.char + '.png')} alt="" className="sb-float" style={{ '--r': '6deg', position: 'absolute', width: 104, right: -18, bottom: -30, pointerEvents: 'none' }} />
                   )}
@@ -404,7 +347,7 @@ function Reviews() {
   const quotes = [
     { tint: 'purple', tilt: -1.5, text: 'The first thing she reaches for after school now is the journal, not the tablet. I genuinely didn’t think that was possible.', name: 'Priya', meta: 'mum of two, Bristol' },
     { tint: 'sky', tilt: 1.2, text: 'Three words and he’s off. The stories he comes up with make us properly laugh at the dinner table.', name: 'Tom', meta: 'dad of one, Leeds' },
-    { tint: 'peach', tilt: -1, text: 'Lovely quality, and the Parent Companion emails tell me exactly how to encourage her without hovering.', name: 'Hannah', meta: 'parent, Glasgow' },
+    { tint: 'peach', tilt: -1, text: 'Lovely quality, and the parent guides tell me exactly how to encourage her without hovering.', name: 'Hannah', meta: 'parent, Glasgow' },
   ];
   return (
     <section id="reviews" style={{ background: 'var(--sb-wash-lemon)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
@@ -446,28 +389,52 @@ function Reviews() {
   );
 }
 
-/* ============================ PARENT COMPANION ============================ */
-function ParentCompanion() {
+/* ============================ PARENTS' CORNER ============================ */
+/* Little stack of resource cards - stands in for the online library. */
+function CornerCards() {
+  const cards = [
+    ['Printable story starters', 'lemon', 'book', -2.5],
+    ['Extra reward charts', 'sky', 'award', 1.5],
+    ['Guides for grown-ups', 'pink', 'heart', -1],
+  ];
+  return (
+    <div style={{ display: 'grid', gap: 12, width: 'min(300px, 100%)' }}>
+      {cards.map(([label, tint, icon, tilt]) => (
+        <div key={label} style={{ background: `var(--sb-wash-${tint})`, border: '3px solid var(--sb-ink)', borderRadius: 16, boxShadow: 'var(--shadow-pop)', padding: '15px 18px', transform: `rotate(${tilt}deg)`, display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: 10, background: 'var(--sb-paper)', border: '2.5px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name={icon} size={18} sw={2.6} />
+          </span>
+          <span style={{ fontWeight: 800 }}>{label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ParentsCorner() {
   return (
     <section style={{ padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <div className="sb-companion" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,.85fr) minmax(0,1.15fr)', gap: 40, alignItems: 'center', background: 'var(--sb-wash-purple)', border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '40px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
-            <CompanionPhone />
-            <span className="sb-marker" style={{ position: 'absolute', top: 4, right: 0, background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 999, padding: '6px 14px', fontSize: '1.15rem', transform: 'rotate(6deg)', boxShadow: 'var(--shadow-pop-sm)', zIndex: 2 }}>Included 💛</span>
+            <CornerCards />
+            <span className="sb-marker" style={{ position: 'absolute', top: -18, right: -6, background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 999, padding: '6px 14px', fontSize: '1.15rem', transform: 'rotate(6deg)', boxShadow: 'var(--shadow-pop-sm)', zIndex: 2 }}>Included 💛</span>
           </div>
           <div>
             <Badge variant="purple">For the grown-ups</Badge>
             <h2 className="sb-display" style={{ fontSize: 'clamp(1.8rem,3.4vw,2.5rem)', marginTop: 14, lineHeight: 1.08 }}>You’re part of the story too</h2>
-            <p style={{ marginTop: 14, fontSize: '1.15rem', lineHeight: 1.55 }}>Every journal comes with <strong>The Parent Companion</strong> - a gentle weekly email with a simple way to praise their writing, a conversation starter for the week’s prompts, and quiet encouragement for the days motivation dips.</p>
+            <p style={{ marginTop: 14, fontSize: '1.15rem', lineHeight: 1.55 }}>Every journal unlocks the <strong>Parents’ Corner</strong> - our free online library of printables and short, practical guides to help you cheer a young writer on without hovering.</p>
             <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0 0', display: 'grid', gap: 12 }}>
-              {['One short, warm email a week - never spammy', 'Ideas to celebrate their stories, not correct them', 'Unsubscribe any time; the journal is yours forever'].map((t) => (
+              {['Printable story starters and extra reward charts', 'Short guides - what to say, and what not to say', 'Free forever, with the code that comes with your journal'].map((t) => (
                 <li key={t} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontWeight: 600, fontSize: '1.05rem' }}>
                   <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: 999, background: 'var(--sb-green)', border: '2.5px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="check" size={16} sw={3} /></span>
                   {t}
                 </li>
               ))}
             </ul>
+            <div style={{ marginTop: 24 }}>
+              <Button as="a" href="parents.html" iconRight="→">See the Parents’ Corner</Button>
+            </div>
           </div>
         </div>
       </div>
@@ -500,7 +467,7 @@ const FOOTER_LINKS = {
   'Gold Edition': 'index.html',
   'Gift a journal': 'gift.html',
   'Delivery & returns': 'delivery.html',
-  'The Parent Companion': '/parent-companion-email.html',
+  'Parents’ Corner': 'parents.html',
   'Contact us': 'contact.html',
   'FAQs': 'faqs.html',
   'About us': 'about.html',
@@ -513,7 +480,7 @@ const FOOTER_LINKS = {
 function SiteFooter() {
   const cols = [
     { h: 'The journal', links: ['What’s inside', 'How it works', 'Gold Edition', 'Gift a journal'] },
-    { h: 'Support', links: ['Delivery & returns', 'The Parent Companion', 'Contact us', 'FAQs'] },
+    { h: 'Support', links: ['Delivery & returns', 'Parents’ Corner', 'Contact us', 'FAQs'] },
     { h: 'Blocks Publishing', links: ['About us', 'Why Story Blocks', 'Free books for schools', 'Wholesale', 'Reviews', 'Privacy'] },
   ];
   return (
@@ -568,6 +535,7 @@ const NAV_LINKS = [
   ['Our mission', 'why.html', 'why'],
   ['Schools', 'schools.html', 'schools'],
   ['Free resources', 'resources.html', 'resources'],
+  ['Parents', 'parents.html', 'parents'],
 ];
 
 function SiteHeader({ active, count, onBasket }) {
@@ -636,4 +604,4 @@ function SiteHeader({ active, count, onBasket }) {
   );
 }
 
-export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, ProblemSection, Reviews, ParentCompanion, WhyBlocks, SiteFooter, SiteHeader, Stars };
+export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, ProblemSection, Reviews, ParentsCorner, WhyBlocks, SiteFooter, SiteHeader, Stars };

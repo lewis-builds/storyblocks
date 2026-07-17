@@ -24,7 +24,7 @@ export const EDITIONS = {
     includes: [
       '70+ daily story starters + writing tips',
       'Free sticker sheet & reward chart',
-      'The Parent Companion weekly email - included',
+      'Free Parents’ Corner access - guides & printables',
     ],
   },
   gold: {
@@ -34,10 +34,10 @@ export const EDITIONS = {
     cover: 'assets/storyblocks-gold-book.png',
     ribbon: 'The gift edition',
     ribbonTint: 'yellow',
-    tagline: 'Everything in Standard, dressed up in gold foil and a keepsake gift box.',
+    tagline: 'Everything in Standard, dressed up in gold foil.',
     includes: [
       'Everything in the Standard Edition',
-      'Gold-foil hardback cover + keepsake gift box',
+      'Gold-foil cover',
       'Bonus collector sticker set',
     ],
   },

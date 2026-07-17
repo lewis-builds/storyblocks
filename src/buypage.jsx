@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { asset, CHAR_BASE, EDITIONS, SKUS, priceFor, gbp } from './lib/core.js';
 import {
   SiteHeader, TrustStrip, WhatsInside, HowItWorks, ProblemSection, Reviews,
-  ParentCompanion, WhyBlocks, SiteFooter, Icon,
+  ParentsCorner, WhyBlocks, SiteFooter, Icon,
 } from './sections.jsx';
 import { BasketDrawer } from './basket.jsx';
 
@@ -298,7 +298,7 @@ function App() {
       <HowItWorks />
       <ProblemSection />
       <Reviews />
-      <ParentCompanion />
+      <ParentsCorner />
       <WhyBlocks />
       <SiteFooter />
 
