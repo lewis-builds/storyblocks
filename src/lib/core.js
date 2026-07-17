@@ -34,10 +34,11 @@ export const EDITIONS = {
     cover: 'assets/storyblocks-gold-book.png',
     ribbon: 'The gift edition',
     ribbonTint: 'yellow',
-    tagline: 'Everything in Standard, dressed up in gold foil.',
+    tagline: 'Everything in Standard, dressed up in gold foil - plus milestone coins to award.',
     includes: [
       'Everything in the Standard Edition',
       'Gold-foil cover',
+      'Wooden collector milestone coins',
     ],
   },
 };
