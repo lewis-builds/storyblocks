@@ -10,8 +10,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const CATALOGUE = {
   'standard-1': { price: 'price_1TtFRLCRJw0npfUmtjvsxRIf' },
   'standard-2': { price: 'price_1TtFRYCRJw0npfUmCDCrRVdd' },
-  'gold-1':     { price: 'price_1TtFRkCRJw0npfUmcOPyd7wF' },
-  'gold-2':     { price: 'price_1TtFRtCRJw0npfUmdGdLExsW' },
+  'gold-1':     { price: 'price_1Tu9KvCRJw0npfUmngGQtAPQ' },
+  'gold-2':     { price: 'price_1Tu9L3CRJw0npfUmi73MvBqe' },
 };
 
 export default async function handler(req, res) {

@@ -56,8 +56,8 @@ and runs the little program in `/api` that talks to Stripe.
 2. **Product catalogue → Add product**, four times:
    - Story Blocks Journal — £19.99
    - Story Blocks Journal — 2-pack — £35.98
-   - Gold Edition — £29.99
-   - Gold Edition — 2-pack — £53.98
+   - Gold Edition — £24.99
+   - Gold Edition — 2-pack — £44.98
 3. Click into each product and copy its **price id** (looks like `price_1Abc…`).
 4. On GitHub, open `api/checkout.js`, click the ✏️ pencil, and paste each price id
    over its matching `price_PASTE_ME_…` placeholder:

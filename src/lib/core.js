@@ -30,7 +30,7 @@ export const EDITIONS = {
   gold: {
     key: 'gold',
     name: 'Gold Edition',
-    priceNum: 29.99,
+    priceNum: 24.99,
     cover: 'assets/storyblocks-gold-book.png',
     ribbon: 'The gift edition',
     ribbonTint: 'yellow',
@@ -55,8 +55,8 @@ export const TIERS = [
 export const SKUS = {
   'standard-1': { name: 'Story Blocks Journal', books: 1, price: 19.99, fullPrice: 19.99, cover: 'assets/storyblocks-book.png', packSku: 'standard-2' },
   'standard-2': { name: 'Story Blocks Journal - 2-pack', books: 2, price: 35.98, fullPrice: 39.98, cover: 'assets/storyblocks-book.png' },
-  'gold-1': { name: 'Gold Edition', books: 1, price: 29.99, fullPrice: 29.99, cover: 'assets/storyblocks-gold-book.png', packSku: 'gold-2' },
-  'gold-2': { name: 'Gold Edition - 2-pack', books: 2, price: 53.98, fullPrice: 59.98, cover: 'assets/storyblocks-gold-book.png' },
+  'gold-1': { name: 'Gold Edition', books: 1, price: 24.99, fullPrice: 24.99, cover: 'assets/storyblocks-gold-book.png', packSku: 'gold-2' },
+  'gold-2': { name: 'Gold Edition - 2-pack', books: 2, price: 44.98, fullPrice: 49.98, cover: 'assets/storyblocks-gold-book.png' },
 };
 
 export function priceFor(unit, qty) {
