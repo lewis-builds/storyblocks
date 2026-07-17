@@ -9,7 +9,7 @@ const { Button } = window.StoryBlocksJournalDesignSystem_239fa7;
 
 function Gift() {
   const steps = [
-    { char: 'SB10', tint: 'var(--sb-wash-lemon)', title: 'Pick the edition', body: 'The Standard journal makes a lovely gift; the Gold Edition adds a gold-foil cover and bonus collector stickers - made for giving.' },
+    { char: 'SB10', tint: 'var(--sb-wash-lemon)', title: 'Pick the edition', body: 'The Standard journal makes a lovely gift; the Gold Edition adds a gold-foil cover - made for giving.' },
     { char: 'SB33', tint: 'var(--sb-wash-sky)', title: 'Send it their way', body: 'Have it delivered to you to wrap, or straight to them. Free UK mainland postage either way.' },
     { char: 'SB44', tint: 'var(--sb-wash-pink)', title: 'Watch them start', body: 'Three words and a friendly question, and they’re off. The free Parents’ Corner helps the grown-ups cheer them on.' },
   ];
@@ -24,7 +24,7 @@ function Gift() {
           <ul>
             <li><strong>Not another screen.</strong> Ten quiet minutes of storytelling, not scrolling.</li>
             <li><strong>Made to keep.</strong> Printed and bound in Britain - a keepsake by the time it's full.</li>
-            <li><strong>The Gold Edition</strong> adds a gold-foil cover and a bonus collector sticker set.</li>
+            <li><strong>The Gold Edition</strong> adds a gold-foil cover - the one people buy as a present.</li>
             <li><strong>Grown-ups included.</strong> Every journal comes with free <a href="parents.html">Parents’ Corner</a> access - printables and guides to help them cheer the writing on.</li>
           </ul>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 22 }}>

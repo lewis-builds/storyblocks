@@ -38,7 +38,6 @@ export const EDITIONS = {
     includes: [
       'Everything in the Standard Edition',
       'Gold-foil cover',
-      'Bonus collector sticker set',
     ],
   },
 };

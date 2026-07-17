@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     q: "What's the difference between the Standard and Gold editions?",
-    a: 'The writing inside is identical. The Gold Edition adds a gold-foil cover and a bonus collector sticker set - it’s the one people buy as a present.',
+    a: 'The writing inside is identical. The Gold Edition adds a gold-foil cover - it’s the one people buy as a present.',
   },
   {
     q: 'What are the stickers and reward chart for?',
