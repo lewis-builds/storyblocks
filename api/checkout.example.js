@@ -61,7 +61,7 @@ export default async function handler(req, res) {
 
     allow_promotion_codes: true,
     success_url: `${process.env.SITE_URL}/thanks?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.SITE_URL}/index.html`,
+    cancel_url: `${process.env.SITE_URL}/`,
   });
 
   return res.status(200).json({ url: session.url });

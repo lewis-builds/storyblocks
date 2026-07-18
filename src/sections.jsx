@@ -187,7 +187,7 @@ function WhatsInside() {
       q: 'What are the stickers and reward chart for?',
       a: <React.Fragment>Finish a story, tick the chart, peel off a sticker. Every journal includes a <strong>free full sticker sheet and reward chart</strong> - little wins that build a daily writing streak and make finishing feel like the best part.</React.Fragment>,
       slot: { id: 'inside-stickers', caption: 'The sticker sheet - in every box', src: 'assets/sticker-sheet.jpg' },
-      spread: true,
+      sticker: true,
       flip: true,
       char: 'SB44',
     },
@@ -202,6 +202,21 @@ function WhatsInside() {
             <Reveal key={r.q} className="sb-inside-row-wrap">
               {r.types ? (
                 <StarterSpreadRow r={r} i={i} />
+              ) : r.sticker ? (
+                <article className={'sb-inside-row' + (r.flip ? ' sb-inside-row--flip' : '')}>
+                  <figure className="sb-inside-media snap" style={{ margin: 0, position: 'relative', transform: `rotate(${r.flip ? 1.5 : -1.5}deg)` }}>
+                    <img src={asset(r.slot.src)} alt="The full Story Blocks sticker sheet, covered in cheerful block-character stickers" style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 8 }} />
+                    <figcaption>{r.slot.caption}</figcaption>
+                    {r.char && (
+                      <img src={asset(CHAR_BASE + '/' + r.char + '.png')} alt="" className="sb-float sb-deco" style={{ '--r': '6deg', position: 'absolute', width: 104, right: -18, bottom: -30, pointerEvents: 'none' }} />
+                    )}
+                  </figure>
+                  <div>
+                    <span className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
+                    <h3 className="sb-display" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)', lineHeight: 1.1, marginTop: 8 }}>{r.q}</h3>
+                    <p style={{ marginTop: 16, fontSize: '1.16rem', lineHeight: 1.65, maxWidth: 480 }}>{r.a}</p>
+                  </div>
+                </article>
               ) : r.spread ? (
                 <article className={'sb-spread' + (r.flip ? ' sb-spread--alt' : '')}>
                   <div className="sb-spread__book">
@@ -320,7 +335,7 @@ function ProblemSection() {
             <p style={{ marginTop: 16, fontSize: '1.16rem', lineHeight: 1.6, maxWidth: 540 }}>
               Writing for pleasure has nearly halved in fifteen years - squeezed out by screens, schedules and school pressure. Story Blocks exists to bring it back: five minutes of storytelling a day, away from screens, until writing stops being a chore and starts being <em>theirs</em>.
             </p>
-            <a href="why.html" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 22, fontWeight: 800, fontSize: '1.08rem', color: 'var(--sb-ink)', textDecoration: 'none' }}>
+            <a href="/why" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 22, fontWeight: 800, fontSize: '1.08rem', color: 'var(--sb-ink)', textDecoration: 'none' }}>
               <span style={{ borderBottom: '3px solid var(--sb-yellow)', paddingBottom: 2 }}>Read why this matters</span>
               <span aria-hidden="true" style={{ color: 'var(--sb-blue)' }}>→</span>
             </a>
@@ -433,7 +448,7 @@ function ParentsCorner() {
               ))}
             </ul>
             <div style={{ marginTop: 24 }}>
-              <Button as="a" href="parents.html" iconRight="→">See the Parents’ Corner</Button>
+              <Button as="a" href="/parents" iconRight="→">See the Parents’ Corner</Button>
             </div>
           </div>
         </div>
@@ -462,20 +477,20 @@ function WhyBlocks() {
 /* Footer link targets. Entries that map to a real page/section are wired;
    the rest ('#') are placeholders for pages not built yet (privacy, FAQs…). */
 const FOOTER_LINKS = {
-  'What’s inside': 'index.html#inside',
-  'How it works': 'index.html#how',
-  'Gold Edition': 'index.html',
-  'Gift a journal': 'gift.html',
-  'Delivery & returns': 'delivery.html',
-  'Parents’ Corner': 'parents.html',
-  'Contact us': 'contact.html',
-  'FAQs': 'faqs.html',
-  'About us': 'about.html',
-  'Why Story Blocks': 'why.html',
-  'Free books for schools': 'schools.html',
-  'Wholesale': 'wholesale.html',
-  'Reviews': 'index.html#reviews',
-  'Privacy': 'privacy.html',
+  'What’s inside': '/#inside',
+  'How it works': '/#how',
+  'Gold Edition': '/',
+  'Gift a journal': '/gift',
+  'Delivery & returns': '/delivery',
+  'Parents’ Corner': '/parents',
+  'Contact us': '/contact',
+  'FAQs': '/faqs',
+  'About us': '/about',
+  'Why Story Blocks': '/why',
+  'Free books for schools': '/schools',
+  'Wholesale': '/wholesale',
+  'Reviews': '/#reviews',
+  'Privacy': '/privacy',
 };
 function SiteFooter() {
   const cols = [
@@ -531,11 +546,11 @@ const HEADER_CSS = `
 `;
 
 const NAV_LINKS = [
-  ['The journal', 'index.html', 'journal'],
-  ['Our mission', 'why.html', 'why'],
-  ['Schools', 'schools.html', 'schools'],
-  ['Free resources', 'resources.html', 'resources'],
-  ['Parents', 'parents.html', 'parents'],
+  ['The journal', '/', 'journal'],
+  ['Our mission', '/why', 'why'],
+  ['Schools', '/schools', 'schools'],
+  ['Free resources', '/resources', 'resources'],
+  ['Parents', '/parents', 'parents'],
 ];
 
 function SiteHeader({ active, count, onBasket }) {
@@ -555,13 +570,13 @@ function SiteHeader({ active, count, onBasket }) {
   const shownCount = count != null ? count : localCount;
   // Buy page passes a drawer opener; elsewhere the cart takes you to the buy
   // page, which opens the basket drawer on arrival (see the #basket handler).
-  const openBasket = onBasket || (() => { window.location.href = 'index.html#basket'; });
+  const openBasket = onBasket || (() => { window.location.href = '/#basket'; });
 
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)' }}>
       <style>{HEADER_CSS}</style>
       <div className="sb-wrap" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, height: 78 }}>
-        <a href="index.html" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
+        <a href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src={asset('assets/blocks-publishing-logo.png')} alt="Blocks Publishing" style={{ height: 46, width: 'auto' }} />
         </a>
 

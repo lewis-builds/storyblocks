@@ -135,7 +135,7 @@ function ResourcesApp() {
               <h2 className="sb-display" style={{ fontSize: 'clamp(1.8rem, 3.4vw, 2.4rem)', marginTop: 8, lineHeight: 1.1 }}>Five starters and a chart to tick</h2>
               <p style={{ marginTop: 14, fontSize: '1.1rem', lineHeight: 1.6 }}>
                 A taste of each starter type - objects, scenarios, first lines and three words - plus the
-                reward chart from the journal. If they love it, <a href="index.html" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>the journal</a> has
+                reward chart from the journal. If they love it, <a href="/" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>the journal</a> has
                 70+ story starters across all four types.
               </p>
             </div>

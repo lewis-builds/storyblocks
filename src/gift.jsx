@@ -25,11 +25,11 @@ function Gift() {
             <li><strong>Not another screen.</strong> Ten quiet minutes of storytelling, not scrolling.</li>
             <li><strong>Made to keep.</strong> Printed and bound in Britain - a keepsake by the time it's full.</li>
             <li><strong>The Gold Edition</strong> adds a gold-foil cover and wooden collector coins - milestone rewards to award as their writing grows.</li>
-            <li><strong>Grown-ups included.</strong> Every journal comes with free <a href="parents.html">Parents’ Corner</a> access - printables and guides to help them cheer the writing on.</li>
+            <li><strong>Grown-ups included.</strong> Every journal comes with free <a href="/parents">Parents’ Corner</a> access - printables and guides to help them cheer the writing on.</li>
           </ul>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 22 }}>
-            <Button as="a" href="index.html" size="lg" iconRight="→">Choose a journal</Button>
-            <Button as="a" href="index.html" size="lg" variant="white">See the Gold Edition</Button>
+            <Button as="a" href="/" size="lg" iconRight="→">Choose a journal</Button>
+            <Button as="a" href="/" size="lg" variant="white">See the Gold Edition</Button>
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
@@ -51,7 +51,7 @@ function Gift() {
 
       <div className="callout" style={{ marginTop: 32 }}>
         <p><strong>Gift receipts & a note:</strong> want a gift message or receipt included? Add a note
-          at checkout, or <a href="contact.html">email us</a> and we'll pop one in.</p>
+          at checkout, or <a href="/contact">email us</a> and we'll pop one in.</p>
       </div>
     </PageShell>
   );

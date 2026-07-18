@@ -21,7 +21,7 @@ function Delivery() {
       <h3>Where we ship</h3>
       <p>We currently ship across the UK. For the Scottish Highlands & Islands, Northern Ireland, and
         other non-mainland addresses, delivery can take a little longer. If you're outside the UK and
-        would like to order, <a href="contact.html">get in touch</a> and we'll do our best to help.</p>
+        would like to order, <a href="/contact">get in touch</a> and we'll do our best to help.</p>
 
       <h2>Returns</h2>
       <p>Changed your mind? You can return an unused journal in its original condition within
@@ -40,7 +40,7 @@ function Delivery() {
 
       <div className="callout">
         <p><strong>Need a hand?</strong> Email <a href="mailto:hello@blockspublishing.com">hello@blockspublishing.com</a> with
-          your order number and we'll sort it quickly. More on the <a href="faqs.html">FAQs page →</a></p>
+          your order number and we'll sort it quickly. More on the <a href="/faqs">FAQs page →</a></p>
       </div>
 
       <p className="muted" style={{ marginTop: 28 }}>These terms don't affect your statutory rights under UK consumer law.</p>

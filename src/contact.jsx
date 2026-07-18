@@ -58,9 +58,9 @@ function Contact() {
             <strong> two working days</strong>.</p>
           <ul>
             <li><strong>Orders & delivery:</strong> have your order number handy and see the
-              <a href="delivery.html"> delivery & returns</a> page.</li>
-            <li><strong>Common questions</strong> are answered on the <a href="faqs.html">FAQs</a>.</li>
-            <li><strong>Schools:</strong> nominate a school on the <a href="schools.html">schools page</a>.</li>
+              <a href="/delivery"> delivery & returns</a> page.</li>
+            <li><strong>Common questions</strong> are answered on the <a href="/faqs">FAQs</a>.</li>
+            <li><strong>Schools:</strong> nominate a school on the <a href="/schools">schools page</a>.</li>
           </ul>
           <img src={asset(CHAR_BASE + '/SB50.png')} alt="" className="sb-float"
             style={{ width: 120, marginTop: 12 }} />

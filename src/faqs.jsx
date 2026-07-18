@@ -74,7 +74,7 @@ function Faqs() {
 
       <div className="callout" style={{ marginTop: 28 }}>
         <p><strong>Still stuck?</strong> Email <a href="mailto:hello@blockspublishing.com">hello@blockspublishing.com</a> or
-          use the <a href="contact.html">contact form</a> - we read every message.</p>
+          use the <a href="/contact">contact form</a> - we read every message.</p>
       </div>
     </PageShell>
   );

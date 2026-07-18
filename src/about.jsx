@@ -34,12 +34,12 @@ function About() {
       <div className="callout">
         <p><strong>We give back.</strong> For every journal that finds a home, we help more find their
           way into classrooms - free boxes of journals, stickers and reward charts sent to schools
-          across the UK. <a href="schools.html">See the schools programme →</a></p>
+          across the UK. <a href="/schools">See the schools programme →</a></p>
       </div>
 
       <h2>Say hello</h2>
       <p>We read everything. If you've got a question, an idea, or a story your child wrote that made
-        you laugh, we'd love to hear it. <a href="contact.html">Get in touch →</a></p>
+        you laugh, we'd love to hear it. <a href="/contact">Get in touch →</a></p>
 
       <p className="muted" style={{ marginTop: 28 }}>Blocks Publishing Ltd · blockspublishing.com · Made in Britain</p>
     </PageShell>

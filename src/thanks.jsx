@@ -19,8 +19,8 @@ function Thanks() {
         While you wait - the free printable pack makes a lovely warm-up.
       </p>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginTop: 24 }}>
-        <Button as="a" href="resources.html" variant="primary">Get the free pack</Button>
-        <Button as="a" href="index.html" variant="white">Back to the site</Button>
+        <Button as="a" href="/resources" variant="primary">Get the free pack</Button>
+        <Button as="a" href="/" variant="white">Back to the site</Button>
       </div>
     </div>
   );

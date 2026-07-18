@@ -65,13 +65,13 @@ function Why() {
         blank-page panic and no wrong answers.</p>
       <p>And because we can't reach every child through a shop, we give journals away too. Our goal is to
         put <strong>500 journals</strong> into schools, libraries and children's wards where they'll be
-        used and loved - and anyone can <a href="schools.html">nominate a school</a>. We can't fix this on
+        used and loved - and anyone can <a href="/schools">nominate a school</a>. We can't fix this on
         our own, but we help where we're welcome. (This is just the start - we'll add photos, school names
         and feedback here as the boxes go out.)</p>
 
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
-        <Button as="a" href="index.html" size="lg" iconRight="→">See the journal</Button>
-        <Button as="a" href="resources.html" size="lg" variant="white">Get the free story-starter pack</Button>
+        <Button as="a" href="/" size="lg" iconRight="→">See the journal</Button>
+        <Button as="a" href="/resources" size="lg" variant="white">Get the free story-starter pack</Button>
       </div>
 
       <h2 style={{ marginTop: 48 }}>Sources</h2>

@@ -105,22 +105,21 @@ function PlaceholderSpread() {
    they only appear on the Gold tab. Widths use clamp() so they scale down with
    the book on smaller screens. Swap public/assets/coin.svg for the real art. */
 const COINS = [
-  { top: '4%', left: '0%', w: 'clamp(40px, 6.4vw, 76px)', r: -14, delay: '-0.4s' },
-  { top: '26%', right: '-2%', w: 'clamp(34px, 5.2vw, 62px)', r: 12, delay: '-1.6s' },
-  { bottom: '20%', left: '-4%', w: 'clamp(36px, 5.8vw, 68px)', r: 8, delay: '-2.4s' },
-  { bottom: '2%', right: '6%', w: 'clamp(42px, 7vw, 82px)', r: -8, delay: '-1.1s' },
-  { top: '52%', left: '-7%', w: 'clamp(30px, 4.6vw, 54px)', r: 20, delay: '-3s' },
+  { file: 'assets/coin-1.svg', top: '3%', left: '-1%', w: 'clamp(46px, 7.2vw, 86px)', r: -12, delay: '-0.4s' },
+  { file: 'assets/coin-2.svg', top: '25%', right: '-3%', w: 'clamp(40px, 6vw, 70px)', r: 10, delay: '-1.6s' },
+  { file: 'assets/coin-3.svg', bottom: '18%', left: '-5%', w: 'clamp(42px, 6.5vw, 78px)', r: 8, delay: '-2.4s' },
+  { file: 'assets/coin-4.svg', bottom: '1%', right: '5%', w: 'clamp(48px, 7.8vw, 92px)', r: -8, delay: '-1.1s' },
+  { file: 'assets/coin-5.svg', top: '52%', left: '-8%', w: 'clamp(36px, 5.4vw, 62px)', r: 18, delay: '-3s' },
 ];
 
 function GoldCoins() {
   return (
     <React.Fragment>
       {COINS.map((c, i) => (
-        <img key={i} className="sb-coin sb-float" src={asset('assets/coin.svg')} alt=""
+        <img key={i} className="sb-coin sb-float" src={asset(c.file)} alt=""
           style={{
             position: 'absolute', width: c.w, top: c.top, left: c.left, right: c.right, bottom: c.bottom,
             ['--r']: c.r + 'deg', animationDelay: c.delay, zIndex: 5, pointerEvents: 'none',
-            filter: 'drop-shadow(3px 4px 0 rgba(35,31,32,.28))',
           }} />
       ))}
     </React.Fragment>
@@ -284,7 +283,7 @@ function App() {
     try { localStorage.setItem('sb_basket_v2', JSON.stringify(basket)); } catch (err) {}
   }, [basket]);
 
-  // Arriving from another page's cart icon (index.html#basket) opens the drawer.
+  // Arriving from another page's cart icon (/#basket) opens the drawer.
   React.useEffect(() => {
     if (window.location.hash === '#basket') setDrawerOpen(true);
   }, []);

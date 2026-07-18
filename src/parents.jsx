@@ -77,7 +77,7 @@ function AccessGate({ onUnlock }) {
           {busy ? 'Checking…' : 'Unlock the Parents’ Corner'}
         </Button>
         <p className="muted" style={{ margin: 0, fontSize: '.86rem', lineHeight: 1.5 }}>
-          No journal yet? <a href="index.html">Grab one here</a> - the code comes with it.
+          No journal yet? <a href="/">Grab one here</a> - the code comes with it.
         </p>
       </div>
     </div>
@@ -132,7 +132,7 @@ function Parents() {
   };
 
   const steps = [
-    { char: 'SB16', tint: 'var(--sb-wash-lemon)', title: 'Get the journal', body: 'Order it from our website - Standard or Gold, whichever suits.' },
+    { char: 'SB16', tint: 'var(--sb-wash-lemon)', title: 'Buy from our website', body: 'Order a journal here on blockspublishing.com - that’s where the access codes come from. Journals from other shops don’t include one.' },
     { char: 'SB50', tint: 'var(--sb-wash-sky)', title: 'Find your code', body: 'It’s on the card inside the front cover of every journal.' },
     { char: 'SB44', tint: 'var(--sb-wash-pink)', title: 'Unlock it, for good', body: 'Enter it once here and the Corner stays open on this device. Free forever - no subscription.' },
   ];
@@ -140,7 +140,7 @@ function Parents() {
   return (
     <PageShell active="parents" wash="purple" kicker="The Parents’ Corner"
       title="Everything you need to cheer them on"
-      intro="A free online corner for the grown-ups, included with every journal - printables, extra reward charts, and short guides on helping a young writer find their feet."
+      intro="A free online corner for the grown-ups - printables, extra reward charts, and short guides on helping a young writer find their feet. It’s included free with every journal bought on our website; your access code comes tucked inside."
       heroChildren={unlocked ? <UnlockedBanner onLock={lock} /> : <AccessGate onUnlock={() => setUnlocked(true)} />}>
 
       {unlocked && <Library />}
@@ -168,14 +168,14 @@ function Parents() {
 
       {!unlocked && (
         <div className="callout" style={{ marginTop: 32 }}>
-          <p><strong>No journal yet?</strong> Every Story Blocks Journal comes with a code for the
-            Corner - along with 70+ story starters, a sticker sheet and a reward chart.{' '}
-            <a href="index.html">See the journal →</a></p>
+          <p><strong>No journal yet?</strong> Every Story Blocks Journal bought on our website comes
+            with a code for the Corner - along with 70+ story starters, a sticker sheet and a reward
+            chart. <a href="/">See the journal →</a></p>
         </div>
       )}
 
       <p className="muted" style={{ marginTop: 28, fontSize: '.9rem' }}>
-        Trouble with your code? <a href="contact.html">Get in touch</a> and we’ll sort it out.
+        Trouble with your code? <a href="/contact">Get in touch</a> and we’ll sort it out.
       </p>
     </PageShell>
   );

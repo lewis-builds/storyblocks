@@ -64,8 +64,8 @@ export default async function handler(req, res) {
       }}],
 
       allow_promotion_codes: true,
-      success_url: `${siteUrl}/thanks.html`,
-      cancel_url: `${siteUrl}/index.html`,
+      success_url: `${siteUrl}/thanks`,
+      cancel_url: `${siteUrl}/`,
     });
 
     return res.status(200).json({ url: session.url });
