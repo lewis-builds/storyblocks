@@ -4,14 +4,15 @@ import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Stripe Price IDs, one per SKU. These are TEST-mode prices — pair them with a
-// sk_test_… key in Vercel. To go live: create the products in live mode, swap in
-// the live price_… IDs here, and switch STRIPE_SECRET_KEY to your sk_live_… key.
+// Stripe Price IDs, one per SKU. Each can be overridden by an env var so you can
+// go live without a code change: set STRIPE_PRICE_* to your live price_… IDs and
+// switch STRIPE_SECRET_KEY to sk_live_…. With no env vars set, these fall back to
+// the TEST-mode prices (pair those with an sk_test_… key).
 const CATALOGUE = {
-  'standard-1': { price: 'price_1TtFRLCRJw0npfUmtjvsxRIf' },
-  'standard-2': { price: 'price_1TtFRYCRJw0npfUmCDCrRVdd' },
-  'gold-1':     { price: 'price_1Tu9KvCRJw0npfUmngGQtAPQ' },
-  'gold-2':     { price: 'price_1Tu9L3CRJw0npfUmi73MvBqe' },
+  'standard-1': { price: process.env.STRIPE_PRICE_STANDARD_1 || 'price_1TtFRLCRJw0npfUmtjvsxRIf' },
+  'standard-2': { price: process.env.STRIPE_PRICE_STANDARD_2 || 'price_1TtFRYCRJw0npfUmCDCrRVdd' },
+  'gold-1':     { price: process.env.STRIPE_PRICE_GOLD_1     || 'price_1Tu9KvCRJw0npfUmngGQtAPQ' },
+  'gold-2':     { price: process.env.STRIPE_PRICE_GOLD_2     || 'price_1Tu9L3CRJw0npfUmi73MvBqe' },
 };
 
 export default async function handler(req, res) {
