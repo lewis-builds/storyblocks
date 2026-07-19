@@ -208,11 +208,14 @@
   /* gold milestone coins - turned-wood medallion discs, engraving carved on top */
   .sb-coin { position: absolute; z-index: 5; pointer-events: none; aspect-ratio: 1;
     border-radius: 50%; display: grid; place-items: center;
-    background: radial-gradient(circle at 36% 30%, #f2d6a3 0%, #dcac66 40%, #bd8443 72%, #96642d 100%);
-    box-shadow: 0 5px 12px rgba(60,35,5,.30), inset 0 2px 5px rgba(255,246,222,.55),
-      inset 0 -7px 11px rgba(110,66,22,.50), inset 0 0 0 2px rgba(120,72,24,.85),
-      inset 0 0 0 4px rgba(240,214,166,.45); }
-  .sb-coin img { width: 84%; height: 84%; opacity: .82; filter: drop-shadow(0 1px 0 rgba(255,246,222,.5)); }
+    /* subtle concentric end-grain over a matte wood gradient */
+    background:
+      repeating-radial-gradient(circle at 50% 47%, rgba(74,44,15,.05) 0 1.5px, rgba(74,44,15,0) 1.5px 5px),
+      radial-gradient(circle at 42% 38%, #e0bb7e 0%, #c6974e 48%, #9f6c32 80%, #7d5225 100%);
+    box-shadow: 0 4px 9px rgba(60,35,5,.26), inset 0 1px 2px rgba(255,244,220,.22),
+      inset 0 -6px 10px rgba(105,63,20,.4), inset 0 0 0 2px rgba(108,66,22,.8),
+      inset 0 0 0 3.5px rgba(206,170,120,.26); }
+  .sb-coin img { width: 84%; height: 84%; opacity: .8; filter: drop-shadow(0 .5px 0 rgba(255,244,220,.28)); }
   .sb-coin--1 { width: clamp(46px, 7.2vw, 86px); top: 3%;    left: -1%; }
   .sb-coin--2 { width: clamp(40px, 6vw, 70px);   top: 25%;   right: -3%; }
   .sb-coin--3 { width: clamp(42px, 6.5vw, 78px); bottom: 18%; left: -5%; }
