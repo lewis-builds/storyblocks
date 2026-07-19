@@ -121,7 +121,6 @@ function BasketDrawer({ open, onClose, basket, setBasket, onToast }) {
                     {s.packSku && q === 1 && (
                       <button onClick={() => addSecondAsPack(sku)}
                         style={{ width: '100%', marginTop: 12, textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, background: 'var(--sb-wash-sky)', border: '2.5px dashed var(--sb-ink)', borderRadius: 12, padding: '9px 12px', font: 'inherit', fontWeight: 800, fontSize: '.88rem', color: 'var(--sb-ink)', cursor: 'pointer' }}>
-                        <span className="sb-marker" style={{ fontSize: '1.05rem', color: 'var(--sb-blue)', flexShrink: 0 }}>Got a sibling?</span>
                         Add a second copy for just {gbp(SKUS[s.packSku].price - s.price)} (save {gbp(s.price * 2 - SKUS[s.packSku].price)}) - tap to add
                       </button>
                     )}
