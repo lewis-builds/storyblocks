@@ -9,15 +9,19 @@
 // Then copy the "Signing secret" (whsec_…) into Vercel.
 //
 // Environment variables (Vercel → Settings → Environment Variables):
-//   STRIPE_SECRET_KEY       sk_live_… (already set for /api/checkout)
-//   STRIPE_WEBHOOK_SECRET   whsec_…   (from the webhook endpoint above)
-//   RESEND_API_KEY          re_…      (resend.com → API Keys)
-//   PARENTS_ACCESS_CODE     the code parents type on /parents (already set)
-//   SITE_URL                https://blockspublishing.com
-//   PARENTS_FROM_EMAIL      (optional) e.g. "Story Blocks <hello@blockspublishing.com>"
+//   STRIPE_SECRET_KEY        sk_live_… (already set for /api/checkout)
+//   STRIPE_WEBHOOK_SECRET    whsec_…   (from the webhook endpoint above)
+//   RESEND_API_KEY           re_…      (resend.com → API Keys)
+//   UPSTASH_REDIS_REST_URL   \ from Upstash Redis — enables UNIQUE per-order
+//   UPSTASH_REDIS_REST_TOKEN /  codes (without them, falls back to the shared
+//                               PARENTS_ACCESS_CODE below)
+//   PARENTS_ACCESS_CODE      optional shared/master code fallback
+//   SITE_URL                 https://blockspublishing.com
+//   PARENTS_FROM_EMAIL       (optional) e.g. "Story Blocks <hello@blockspublishing.com>"
 
 import Stripe from 'stripe';
 import { Resend } from 'resend';
+import { getRedis, issueCodeForSession } from '../lib/parents-store.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -70,11 +74,27 @@ export default async function handler(req, res) {
     }
 
     try {
-      await sendCodeEmail({ email, name });
+      // Prefer a unique per-order code (needs Upstash Redis). If storage isn't
+      // configured, fall back to the single shared PARENTS_ACCESS_CODE.
+      const redis = getRedis();
+      let code;
+      if (redis) {
+        const issued = await issueCodeForSession(redis, { sessionId: session.id, email });
+        if (!issued.isNew) {
+          // A retry for an order we've already emailed — don't send twice.
+          return res.status(200).json({ received: true, skipped: 'already-issued' });
+        }
+        code = issued.code;
+      } else {
+        code = (process.env.PARENTS_ACCESS_CODE || '').trim();
+        if (!code) throw new Error('No code source: set up Upstash Redis or PARENTS_ACCESS_CODE');
+      }
+
+      await sendCodeEmail({ email, name, code });
     } catch (err) {
       // Return 500 so Stripe retries the delivery for us.
-      console.error('stripe-webhook: failed to send code email —', err?.message || err);
-      return res.status(500).json({ error: 'Email send failed' });
+      console.error('stripe-webhook: failed to issue/send code —', err?.message || err);
+      return res.status(500).json({ error: 'Fulfilment failed' });
     }
   }
 
@@ -82,9 +102,8 @@ export default async function handler(req, res) {
 }
 
 /* ---------- the email ---------- */
-async function sendCodeEmail({ email, name }) {
-  const code = (process.env.PARENTS_ACCESS_CODE || '').trim();
-  if (!code) throw new Error('PARENTS_ACCESS_CODE is not set');
+async function sendCodeEmail({ email, name, code }) {
+  if (!code) throw new Error('No access code to send');
   if (!process.env.RESEND_API_KEY) throw new Error('RESEND_API_KEY is not set');
 
   const resend = new Resend(process.env.RESEND_API_KEY);

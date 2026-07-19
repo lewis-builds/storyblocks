@@ -69,7 +69,7 @@ function AccessGate({ onUnlock }) {
         We email it to you right after your order - check your order confirmation.
       </p>
       <div style={{ display: 'grid', gap: 14 }}>
-        <Input label="Access code" placeholder="e.g. STORYBLOCKS" value={code}
+        <Input label="Access code" placeholder="e.g. SB-K7P3QM" value={code}
           onChange={(e) => { setCode(e.target.value); if (error) setError(''); }}
           onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
           error={error} />
