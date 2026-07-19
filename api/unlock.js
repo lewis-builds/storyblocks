@@ -3,7 +3,7 @@
 // ships inside the client bundle. Deployed by Vercel as POST /api/unlock.
 //
 // Set it in Vercel → Settings → Environment Variables, e.g.
-//   PARENTS_ACCESS_CODE = the code printed inside the journal
+//   PARENTS_ACCESS_CODE = the code we email to buyers after each order
 // Comparison is case-insensitive and ignores surrounding spaces, so parents
 // typing "storyblocks" vs "STORYBLOCKS " both work.
 
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   if (!code) return res.status(400).json({ ok: false, error: 'Please enter your access code.' });
 
   if (code.toLowerCase() !== expected.toLowerCase()) {
-    return res.status(401).json({ ok: false, error: 'That code doesn’t look right - check the card inside your journal.' });
+    return res.status(401).json({ ok: false, error: 'That code doesn’t look right - check your order confirmation email.' });
   }
 
   return res.status(200).json({ ok: true });

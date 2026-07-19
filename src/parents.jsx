@@ -1,5 +1,5 @@
 /* Story Blocks - The Parents' Corner. Free online library for journal owners,
-   unlocked with the access code that comes with the journal. The code itself is
+   unlocked with the access code we email after each order. The code itself is
    checked server-side by /api/unlock so it never ships in this bundle. */
 import './lib/react-global.js';
 import React from 'react';
@@ -64,9 +64,9 @@ function AccessGate({ onUnlock }) {
 
   return (
     <div className="panel" style={{ maxWidth: 520, marginTop: 26 }}>
-      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', margin: 0 }}>Got your journal? Pop in your code.</h2>
+      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', margin: 0 }}>Ordered a journal? Pop in your code.</h2>
       <p className="muted" style={{ margin: '8px 0 16px', fontSize: '.95rem', lineHeight: 1.5 }}>
-        You’ll find it on the card inside the front cover.
+        We email it to you right after your order - check your order confirmation.
       </p>
       <div style={{ display: 'grid', gap: 14 }}>
         <Input label="Access code" placeholder="e.g. STORYBLOCKS" value={code}
@@ -77,7 +77,7 @@ function AccessGate({ onUnlock }) {
           {busy ? 'Checking…' : 'Unlock the Parents’ Corner'}
         </Button>
         <p className="muted" style={{ margin: 0, fontSize: '.86rem', lineHeight: 1.5 }}>
-          No journal yet? <a href="/">Grab one here</a> - the code comes with it.
+          No journal yet? <a href="/">Grab one here</a> - your code is emailed with the order.
         </p>
       </div>
     </div>
@@ -133,14 +133,14 @@ function Parents() {
 
   const steps = [
     { char: 'SB16', tint: 'var(--sb-wash-lemon)', title: 'Buy from our website', body: 'Order a journal here on blockspublishing.com - that’s where the access codes come from. Journals from other shops don’t include one.' },
-    { char: 'SB50', tint: 'var(--sb-wash-sky)', title: 'Find your code', body: 'It’s on the card inside the front cover of every journal.' },
+    { char: 'SB50', tint: 'var(--sb-wash-sky)', title: 'Check your inbox', body: 'We email your access code as soon as your order is placed - it’s in your order confirmation.' },
     { char: 'SB44', tint: 'var(--sb-wash-pink)', title: 'Unlock it, for good', body: 'Enter it once here and the Corner stays open on this device. Free forever - no subscription.' },
   ];
 
   return (
     <PageShell active="parents" wash="purple" kicker="The Parents’ Corner"
       title="Everything you need to cheer them on"
-      intro="A free online corner for the grown-ups - printables, extra reward charts, and short guides on helping a young writer find their feet. It’s included free with every journal bought on our website; your access code comes tucked inside."
+      intro="A free online corner for the grown-ups - printables, extra reward charts, and short guides on helping a young writer find their feet. It’s included free with every journal bought on our website; we email your access code as soon as you order."
       heroChildren={unlocked ? <UnlockedBanner onLock={lock} /> : <AccessGate onUnlock={() => setUnlocked(true)} />}>
 
       {unlocked && <Library />}
@@ -169,8 +169,8 @@ function Parents() {
       {!unlocked && (
         <div className="callout" style={{ marginTop: 32 }}>
           <p><strong>No journal yet?</strong> Every Story Blocks Journal bought on our website comes
-            with a code for the Corner - along with 70+ story starters, a sticker sheet and a reward
-            chart. <a href="/">See the journal →</a></p>
+            with a code for the Corner - emailed with your order confirmation, along with 70+ story
+            starters, a sticker sheet and a reward chart. <a href="/">See the journal →</a></p>
         </div>
       )}
 
