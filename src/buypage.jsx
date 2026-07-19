@@ -136,7 +136,7 @@ function GoldCoins() {
             display: 'grid', placeItems: 'center',
           }}>
           <img src={asset(c.file)} alt=""
-            style={{ width: '72%', height: '72%', opacity: 0.82, filter: 'drop-shadow(0 1px 0 rgba(255,246,222,.5))' }} />
+            style={{ width: '84%', height: '84%', opacity: 0.82, filter: 'drop-shadow(0 1px 0 rgba(255,246,222,.5))' }} />
         </span>
       ))}
     </React.Fragment>
