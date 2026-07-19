@@ -102,41 +102,24 @@ function PlaceholderSpread() {
 }
 
 /* Wooden milestone coins scattered around the book - a Gold Edition extra, so
-   they only appear on the Gold tab. Widths use clamp() so they scale down with
-   the book on smaller screens. Art lives in public/assets/coin-1..5.svg. */
+   they only appear on the Gold tab. Position + size live in the .sb-coin--n CSS
+   classes (index.html) so mobile can be tuned separately; only the per-coin
+   rotation and float offset are inline. Art in public/assets/coin-1..5.svg. */
 const COINS = [
-  { file: 'assets/coin-1.svg', top: '3%', left: '-1%', w: 'clamp(46px, 7.2vw, 86px)', r: -12, delay: '-0.4s' },
-  { file: 'assets/coin-2.svg', top: '25%', right: '-3%', w: 'clamp(40px, 6vw, 70px)', r: 10, delay: '-1.6s' },
-  { file: 'assets/coin-3.svg', bottom: '18%', left: '-5%', w: 'clamp(42px, 6.5vw, 78px)', r: 8, delay: '-2.4s' },
-  { file: 'assets/coin-4.svg', bottom: '1%', right: '5%', w: 'clamp(48px, 7.8vw, 92px)', r: -8, delay: '-1.1s' },
-  { file: 'assets/coin-5.svg', top: '52%', left: '-8%', w: 'clamp(36px, 5.4vw, 62px)', r: 18, delay: '-3s' },
+  { file: 'assets/coin-1.svg', r: -12, delay: '-0.4s' },
+  { file: 'assets/coin-2.svg', r: 10, delay: '-1.6s' },
+  { file: 'assets/coin-3.svg', r: 8, delay: '-2.4s' },
+  { file: 'assets/coin-4.svg', r: -8, delay: '-1.1s' },
+  { file: 'assets/coin-5.svg', r: 18, delay: '-3s' },
 ];
-
-/* The engraving SVGs are just the line-art (dark ink on transparent), so each
-   one sits on a turned-wood medallion disc: a warm radial gradient for the wood,
-   bevel + rim rings via layered box-shadows, and the engraving carved on top. */
-const COIN_DISC = 'radial-gradient(circle at 36% 30%, #f2d6a3 0%, #dcac66 40%, #bd8443 72%, #96642d 100%)';
-const COIN_SHADOW = [
-  '0 5px 12px rgba(60,35,5,.30)',           // drop shadow
-  'inset 0 2px 5px rgba(255,246,222,.55)',  // top light bevel
-  'inset 0 -7px 11px rgba(110,66,22,.50)',  // bottom shade bevel
-  'inset 0 0 0 2px rgba(120,72,24,.85)',    // outer rim ring
-  'inset 0 0 0 4px rgba(240,214,166,.45)',  // inner highlight ring
-].join(', ');
 
 function GoldCoins() {
   return (
     <React.Fragment>
       {COINS.map((c, i) => (
-        <span key={i} className="sb-coin sb-float" aria-hidden="true"
-          style={{
-            position: 'absolute', width: c.w, height: c.w, top: c.top, left: c.left, right: c.right, bottom: c.bottom,
-            ['--r']: c.r + 'deg', animationDelay: c.delay, zIndex: 5, pointerEvents: 'none',
-            borderRadius: '50%', background: COIN_DISC, boxShadow: COIN_SHADOW,
-            display: 'grid', placeItems: 'center',
-          }}>
-          <img src={asset(c.file)} alt=""
-            style={{ width: '84%', height: '84%', opacity: 0.82, filter: 'drop-shadow(0 1px 0 rgba(255,246,222,.5))' }} />
+        <span key={i} className={'sb-coin sb-coin--' + (i + 1) + ' sb-float'} aria-hidden="true"
+          style={{ ['--r']: c.r + 'deg', animationDelay: c.delay }}>
+          <img src={asset(c.file)} alt="" />
         </span>
       ))}
     </React.Fragment>

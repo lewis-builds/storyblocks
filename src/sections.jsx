@@ -291,18 +291,27 @@ function HowItWorks() {
           ))}
         </div>
 
-        {/* Scan for a spark callout */}
+        {/* Scan for a spark - the free companion app, as a proper feature */}
         <Reveal delay={120}>
-          <div className="sb-scan" style={{ marginTop: 34, display: 'flex', alignItems: 'center', gap: 24, background: 'var(--sb-yellow)', border: '4px solid var(--sb-ink)', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: '22px 28px' }}>
-            <div style={{ flexShrink: 0, width: 74, height: 74, borderRadius: 20, background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-pop-sm)' }}>
-              <Icon name="phone" size={40} sw={2.4} />
+          <div className="sb-scan" style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,320px)', gap: 40, alignItems: 'center', background: 'var(--sb-yellow)', border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 48px' }}>
+            <div>
+              <div className="sb-marker" style={{ fontSize: '1.25rem', color: 'var(--sb-blue)' }}>The free companion app</div>
+              <h3 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 3.6vw, 2.7rem)', lineHeight: 1.04, marginTop: 6 }}>Stuck? Scan for a spark.</h3>
+              <p style={{ marginTop: 16, lineHeight: 1.6, fontWeight: 600, fontSize: '1.15rem', maxWidth: 480 }}>
+                Scan the page and the app hands over one gentle nudge - a fresh angle, a writing tip, a challenge to try - then puts the screen straight back down. Help exactly when they need it, never a rabbit hole.
+              </p>
+              <div style={{ display: 'flex', gap: '10px 22px', flexWrap: 'wrap', marginTop: 22 }}>
+                {[['scan', 'Scan the page'], ['sparkles', 'One gentle nudge'], ['book', 'Back to the story']].map(([ic, lbl]) => (
+                  <span key={lbl} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 800, fontSize: '.98rem' }}>
+                    <Icon name={ic} size={20} sw={2.6} /> {lbl}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="sb-marker" style={{ fontSize: '1.3rem' }}>Stuck? Scan for a spark</div>
-              <p style={{ marginTop: 2, lineHeight: 1.5, fontWeight: 600 }}>A quick scan gives one gentle nudge when they’re stuck - then puts the screen straight back down. Help when they need it, never a rabbit hole.</p>
+            <div className="sb-scan-media" style={{ display: 'flex', justifyContent: 'center' }}>
+              <img src={asset('assets/phone-app.png')} alt="The Story Blocks companion app showing today’s three words, writing tips and challenges" className="sb-scan-phone"
+                style={{ height: 380, width: 'auto', transform: 'rotate(3deg)', margin: '-40px 0', borderRadius: 30, filter: 'drop-shadow(8px 10px 0 rgba(35,31,32,.35))' }} />
             </div>
-            <img src={asset('assets/phone-app.png')} alt="The Story Blocks companion app showing today’s three words" className="sb-scan-phone"
-              style={{ height: 250, width: 'auto', flexShrink: 0, transform: 'rotate(4deg)', margin: '-52px 6px -52px 0', borderRadius: 24, filter: 'drop-shadow(6px 8px 0 rgba(35,31,32,.35))' }} />
           </div>
         </Reveal>
       </div>
@@ -322,7 +331,7 @@ function ProblemSection() {
           <div style={{ position: 'relative', textAlign: 'center' }}>
             <div className="sb-display" style={{ fontSize: 'clamp(4.5rem, 15vw, 8.5rem)', lineHeight: 0.9, color: 'var(--sb-blue)', letterSpacing: '-0.02em' }}>1 in 4</div>
             <p style={{ margin: '16px auto 0', maxWidth: 320, fontWeight: 700, color: 'var(--sb-ink)', fontSize: '1rem', lineHeight: 1.5 }}>
-              Only around 1 in 4 children now enjoy writing in their free time - near a 15-year low.
+              Only around 1 in 4 children now enjoy writing in their free time - near a{' '}<span style={{ whiteSpace: 'nowrap' }}>15-year low.</span>
             </p>
             <p className="sb-marker" style={{ marginTop: 8, color: 'var(--sb-muted)', fontSize: '1.05rem' }}>National Literacy Trust</p>
             <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB50.png')} alt="" style={{ position: 'absolute', width: 88, right: '2%', bottom: -18, ['--r']: '-5deg', pointerEvents: 'none' }} />
@@ -330,8 +339,7 @@ function ProblemSection() {
 
           {/* the turn to hope */}
           <div>
-            <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)' }}>Why we made this</div>
-            <h2 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 4vw, 2.7rem)', lineHeight: 1.06, marginTop: 6 }}>Kids have stopped writing for the joy of it. We're bringing it back.</h2>
+            <h2 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 4vw, 2.7rem)', lineHeight: 1.06 }}>Kids have stopped writing for the joy of it. We're bringing it back.</h2>
             <p style={{ marginTop: 16, fontSize: '1.16rem', lineHeight: 1.6, maxWidth: 540 }}>
               Writing for pleasure has nearly halved in fifteen years - squeezed out by screens, schedules and school pressure. Story Blocks exists to bring it back: five minutes of storytelling a day, away from screens, until writing stops being a chore and starts being <em>theirs</em>.
             </p>
