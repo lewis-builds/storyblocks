@@ -11,6 +11,9 @@ const { Button: ResButton, Badge: ResBadge, Input: ResInput, Checkbox: ResCheckb
 
 const RES_KEY = 'sb_resources_unlocked_email';
 
+// Flip to true once the printable PDFs are added to /public.
+const DOWNLOADS_READY = false;
+
 /* ---------------- Header - shared SiteHeader from sections.jsx ---------------- */
 
 /* ---------------- Email gate ---------------- */
@@ -84,7 +87,9 @@ function Downloads({ email, onReset }) {
             <h3 className="sb-display" style={{ fontSize: '1.35rem', marginTop: 12 }}>{p.title}</h3>
             <p style={{ marginTop: 8, lineHeight: 1.55, flex: 1 }}>{p.body}</p>
             <div style={{ marginTop: 16 }}>
-              <ResButton as="a" href={p.file} download iconRight="↓">Download</ResButton>
+              {DOWNLOADS_READY
+                ? <ResButton as="a" href={p.file} download iconRight="↓">Download</ResButton>
+                : <ResButton disabled>Coming soon</ResButton>}
             </div>
           </div>
         ))}

@@ -63,11 +63,12 @@ Settings → Environment Variables (Production):
 `UPSTASH_*` come from step 3 automatically. **Redeploy** after saving so the new
 values take effect.
 
-## 7. Content — the Parents' Corner / resources PDFs  **[you + me]**
-Three files are linked but not yet in the repo, so their Download buttons 404:
+## 7. Content — the Parents' Corner / resources PDFs  **[you]**
+The download buttons are currently shown as **"Coming soon"** (disabled), so
+nothing 404s. When ready: drop these into `/public` and flip `DOWNLOADS_READY`
+to `true` in `src/parents.jsx` and `src/resources.jsx`:
 `Story-Blocks-Story-Starters.pdf`, `Story-Blocks-Reward-Chart.pdf`,
-`Story-Blocks-Parent-Guides.pdf`. Either drop them into `/public` (keep those
-names) or I can hide the buttons until they're ready.
+`Story-Blocks-Parent-Guides.pdf`.
 
 ## 8. Test the live flow  **[you]**
 1. On `blockspublishing.com`, buy one Standard with a **real card** (£19.99).

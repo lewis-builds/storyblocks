@@ -10,6 +10,9 @@ import { PageShell } from './lib/page-shell.jsx';
 const { Button, Input } = window.StoryBlocksJournalDesignSystem_239fa7;
 const UNLOCK_KEY = 'sb_parents_unlocked';
 
+// Flip to true once the PDFs are added to /public (keep the RESOURCES filenames).
+const DOWNLOADS_READY = false;
+
 /* The library itself. Drop the real PDFs into /public and keep these filenames
    (or update them here) - each one is a direct download. */
 const RESOURCES = [
@@ -111,7 +114,9 @@ function Library() {
             <h3 style={{ marginTop: 10 }}>{r.title}</h3>
             <p style={{ marginTop: 8, flex: 1 }}>{r.body}</p>
             <div style={{ marginTop: 16 }}>
-              <Button as="a" href={r.file} download iconRight="↓">Download</Button>
+              {DOWNLOADS_READY
+                ? <Button as="a" href={r.file} download iconRight="↓">Download</Button>
+                : <Button disabled>Coming soon</Button>}
             </div>
           </div>
         ))}
