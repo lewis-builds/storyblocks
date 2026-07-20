@@ -1,10 +1,11 @@
-/* Story Blocks - Wholesale / trade. No backend: the enquiry form composes an
-   email in the retailer's own mail app; the trade address is shown plainly too. */
+/* Story Blocks - Wholesale / trade. The enquiry form posts to /api/contact,
+   which emails it to us with Reply-To set to the retailer. */
 import './lib/react-global.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { asset, CHAR_BASE } from './lib/core.js';
 import { PageShell } from './lib/page-shell.jsx';
+import { sendForm, Honeypot, FormError } from './lib/form-submit.jsx';
 
 const { Button, Input, Textarea, Select } = window.StoryBlocksJournalDesignSystem_239fa7;
 const EMAIL = 'hello@blockspublishing.com';
@@ -16,28 +17,47 @@ function EnquiryForm() {
   const [email, setEmail] = React.useState('');
   const [type, setType] = React.useState(BUSINESS_TYPES[0]);
   const [message, setMessage] = React.useState('');
+  const [company, setCompany] = React.useState(''); // honeypot
   const [errors, setErrors] = React.useState({});
+  const [busy, setBusy] = React.useState(false);
+  const [sendError, setSendError] = React.useState('');
+  const [sent, setSent] = React.useState(false);
 
-  const submit = () => {
+  const submit = async () => {
     const e = {};
     if (!shop.trim()) e.shop = 'Please add your business name';
     if (!name.trim()) e.name = 'Please add your name';
     if (!/^\S+@\S+\.\S+$/.test(email)) e.email = 'Please enter a valid email address';
     setErrors(e);
     if (Object.keys(e).length) return;
-    const subject = encodeURIComponent(`Wholesale enquiry - ${shop}`);
-    const body = encodeURIComponent(
-      `Business: ${shop}\nType: ${type}\nContact: ${name}\nEmail: ${email}\n\n${message || 'Please send your trade price list and terms.'}`
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+
+    setBusy(true);
+    setSendError('');
+    const result = await sendForm('wholesale', { shop, name, email, businessType: type, message, company });
+    setBusy(false);
+    if (result.ok) setSent(true);
+    else setSendError(result.error);
   };
+
+  if (sent) {
+    return (
+      <div className="panel" id="enquire" style={{ textAlign: 'center' }}>
+        <img src={asset(CHAR_BASE + '/SB44.png')} alt="" style={{ width: 120 }} />
+        <h2 style={{ marginTop: 12 }}>Enquiry sent! 🎉</h2>
+        <p className="muted" style={{ marginTop: 10, lineHeight: 1.55 }}>
+          Thanks {name.split(' ')[0]} - we've got your details for <strong>{shop}</strong> and
+          we'll send the trade price list and terms shortly.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="panel" id="enquire">
       <h2 style={{ marginTop: 0 }}>Trade enquiry</h2>
       <p className="muted" style={{ marginTop: 0, marginBottom: 18 }}>Tell us a little about your shop and
         we'll send our trade price list and set you up.</p>
-      <div style={{ display: 'grid', gap: 16 }}>
+      <div style={{ display: 'grid', gap: 16, position: 'relative' }}>
         <Input label="Business name" placeholder="e.g. The Corner Bookshop" value={shop}
           onChange={(e) => setShop(e.target.value)} error={errors.shop} />
         <Input label="Your name" placeholder="e.g. Jo Bloggs" value={name}
@@ -48,9 +68,13 @@ function EnquiryForm() {
           onChange={(e) => setType(e.target.value)} />
         <Textarea label="Anything else? (optional)" placeholder="Quantities you're thinking of, questions about terms…"
           rows={4} value={message} onChange={(e) => setMessage(e.target.value)} />
-        <Button size="lg" block iconRight="→" onClick={submit}>Send trade enquiry</Button>
+        <Honeypot value={company} onChange={(e) => setCompany(e.target.value)} />
+        <Button size="lg" block iconRight={busy ? null : '→'} onClick={submit} disabled={busy}>
+          {busy ? 'Sending…' : 'Send trade enquiry'}
+        </Button>
+        <FormError>{sendError}</FormError>
         <p className="muted" style={{ fontSize: '.88rem', textAlign: 'center', margin: 0 }}>
-          This opens your email app with the enquiry ready to send.
+          Or email us directly at <a href={`mailto:${EMAIL}?subject=Wholesale%20enquiry`}>{EMAIL}</a>.
         </p>
       </div>
     </div>

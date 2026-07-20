@@ -5,6 +5,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { asset, CHAR_BASE } from './lib/core.js';
 import { SiteHeader, SiteFooter, SectionHead, Reveal } from './sections.jsx';
+import { sendForm, Honeypot, FormError } from './lib/form-submit.jsx';
 
 const SchoolsDS = window.StoryBlocksJournalDesignSystem_239fa7;
 const { Button: SchButton, Card: SchCard, Badge: SchBadge, Input: SchInput, Select: SchSelect } = SchoolsDS;
@@ -136,20 +137,33 @@ function HowToNominate() {
 }
 
 /* ---------------- Nomination form ---------------- */
+const CONNECTIONS = ['Parent or carer', 'Teacher or staff', 'Governor', 'Pupil', 'Neighbour or friend', 'Other'];
+
 function NominateForm() {
   const [sent, setSent] = React.useState(false);
   const [school, setSchool] = React.useState('');
   const [town, setTown] = React.useState('');
+  const [connection, setConnection] = React.useState(CONNECTIONS[0]);
   const [email, setEmail] = React.useState('');
+  const [company, setCompany] = React.useState(''); // honeypot
   const [errors, setErrors] = React.useState({});
+  const [busy, setBusy] = React.useState(false);
+  const [sendError, setSendError] = React.useState('');
 
-  const submit = () => {
+  const submit = async () => {
     const e = {};
     if (!school.trim()) e.school = 'Please tell us the school\u2019s name';
     if (!town.trim()) e.town = 'Please add a town or postcode';
     if (!/^\S+@\S+\.\S+$/.test(email)) e.email = 'We need an email to tell you when the box ships';
     setErrors(e);
-    if (Object.keys(e).length === 0) setSent(true);
+    if (Object.keys(e).length) return;
+
+    setBusy(true);
+    setSendError('');
+    const result = await sendForm('schools', { school, town, connection, email, company });
+    setBusy(false);
+    if (result.ok) setSent(true);
+    else setSendError(result.error);
   };
 
   return (
@@ -186,12 +200,15 @@ function NominateForm() {
                 onChange={(e) => setSchool(e.target.value)} error={errors.school} />
               <SchInput label="Town or postcode" placeholder="e.g. Whitstable, or CT5" value={town}
                 onChange={(e) => setTown(e.target.value)} error={errors.town} />
-              <SchSelect label="Your connection to the school"
-                options={['Parent or carer', 'Teacher or staff', 'Governor', 'Pupil', 'Neighbour or friend', 'Other']}
-                defaultValue="Parent or carer" />
+              <SchSelect label="Your connection to the school" options={CONNECTIONS}
+                value={connection} onChange={(e) => setConnection(e.target.value)} />
               <SchInput label="Your email" type="email" placeholder="So we can tell you when the box ships" value={email}
                 onChange={(e) => setEmail(e.target.value)} error={errors.email} />
-              <SchButton size="lg" block iconRight="→" onClick={submit}>Nominate this school</SchButton>
+              <Honeypot value={company} onChange={(e) => setCompany(e.target.value)} />
+              <SchButton size="lg" block iconRight={busy ? null : '→'} onClick={submit} disabled={busy}>
+                {busy ? 'Sending…' : 'Nominate this school'}
+              </SchButton>
+              <FormError>{sendError}</FormError>
               <p style={{ fontSize: '.88rem', color: 'var(--sb-muted)', fontWeight: 600, textAlign: 'center' }}>
                 We only use your email to update you about this nomination.
               </p>

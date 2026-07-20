@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -D - -m 20 \"https://blockspublishing.com/\")",
+      "Bash(curl -s -o /dev/null -D - -m 20 \"https://www.blockspublishing.com/\")",
+      "Bash(curl -s -o /dev/null -D - -m 20 -X POST \"https://blockspublishing.com/api/stripe-webhook\")",
+      "Bash(curl -s -o /dev/null -D - -m 20 \"https://blockspublishing.com/parents\")",
+      "Bash(git commit -q -m 'Wire up the website forms to a real backend *)"
+    ]
+  }
+}
