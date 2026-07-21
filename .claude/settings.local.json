@@ -5,7 +5,9 @@
       "Bash(curl -s -o /dev/null -D - -m 20 \"https://www.blockspublishing.com/\")",
       "Bash(curl -s -o /dev/null -D - -m 20 -X POST \"https://blockspublishing.com/api/stripe-webhook\")",
       "Bash(curl -s -o /dev/null -D - -m 20 \"https://blockspublishing.com/parents\")",
-      "Bash(git commit -q -m 'Wire up the website forms to a real backend *)"
+      "Bash(git commit -q -m 'Wire up the website forms to a real backend *)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'Buy page: swap '\\\\''Improves writing skills'\\\\'' for '\\\\''Made in Britain'\\\\'', centre the trust row *)"
     ]
   }
 }

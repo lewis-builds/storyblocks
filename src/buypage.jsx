@@ -197,9 +197,9 @@ function Hero({ edition, setEdition, qty, setQty, onAdd, added }) {
                 {added ? 'Added to basket ✓' : `Add to basket · ${gbp(p.total)}`}
               </SBButton>
             </div>
-            <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginTop: 14, color: 'var(--sb-muted)', fontWeight: 700, fontSize: '.9rem' }}>
+            <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', justifyContent: 'center', marginTop: 14, color: 'var(--sb-muted)', fontWeight: 700, fontSize: '.9rem' }}>
               <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="truck" size={17} stroke="var(--sb-muted)" sw={2.4} />Free UK delivery</span>
-              <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="sparkles" size={17} stroke="var(--sb-muted)" sw={2.4} />Improves writing skills</span>
+              <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="shield" size={17} stroke="var(--sb-muted)" sw={2.4} />Made in Britain</span>
             </div>
           </div>
         </div>
@@ -243,7 +243,7 @@ function MobileBuySheet({ edition, setEdition, qty, setQty, onAdd, added }) {
             </li>
           ))}
         </ul>
-        <div style={{ fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.85rem', margin: '10px 0 4px' }}>Free UK delivery · Improves writing skills</div>
+        <div style={{ fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.85rem', margin: '10px 0 4px', textAlign: 'center' }}>Free UK delivery · Made in Britain</div>
       </div>
 
       {/* row 2: price + CTA */}
