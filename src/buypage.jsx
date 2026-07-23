@@ -189,14 +189,25 @@ function Hero({ edition, setEdition, qty, setQty, onAdd, added }) {
               ))}
             </ul>
 
-            {/* bundle picker - quantity, saving and price in one tidy control */}
-            <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} />
+            {ed.soldOut ? (
+              <div style={{ marginTop: 18 }}>
+                <SBButton variant="white" size="lg" block disabled>Out of stock</SBButton>
+                <p style={{ marginTop: 12, fontSize: '.95rem', lineHeight: 1.5, color: 'var(--sb-muted)', fontWeight: 600, textAlign: 'center' }}>
+                  The {ed.name} is sold out just now - it’ll be back soon. The <button type="button" onClick={() => setEdition('standard')} style={{ background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 800, color: 'var(--sb-blue)', cursor: 'pointer', textDecoration: 'underline' }}>Standard Edition</button> is ready to ship.
+                </p>
+              </div>
+            ) : (
+              <React.Fragment>
+                {/* bundle picker - quantity, saving and price in one tidy control */}
+                <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} />
 
-            <div style={{ marginTop: 16 }}>
-              <SBButton variant={added ? 'green' : 'primary'} size="lg" block iconRight={added ? null : '→'} onClick={onAdd}>
-                {added ? 'Added to basket ✓' : `Add to basket · ${gbp(p.total)}`}
-              </SBButton>
-            </div>
+                <div style={{ marginTop: 16 }}>
+                  <SBButton variant={added ? 'green' : 'primary'} size="lg" block iconRight={added ? null : '→'} onClick={onAdd}>
+                    {added ? 'Added to basket ✓' : `Add to basket · ${gbp(p.total)}`}
+                  </SBButton>
+                </div>
+              </React.Fragment>
+            )}
             <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', justifyContent: 'center', marginTop: 14, color: 'var(--sb-muted)', fontWeight: 700, fontSize: '.9rem' }}>
               <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="truck" size={17} stroke="var(--sb-muted)" sw={2.4} />Free UK delivery</span>
               <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="shield" size={17} stroke="var(--sb-muted)" sw={2.4} />Made in Britain</span>
@@ -232,7 +243,7 @@ function MobileBuySheet({ edition, setEdition, qty, setQty, onAdd, added }) {
 
       {/* expandable: bundles + includes */}
       <div className="sb-sheet__body">
-        <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} />
+        {!ed.soldOut && <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} />}
         <ul style={{ listStyle: 'none', padding: 0, margin: '14px 0 2px', display: 'grid', gap: 8 }}>
           {ed.includes.map((t) => (
             <li key={t} style={{ display: 'flex', gap: 9, alignItems: 'flex-start', fontWeight: 600, fontSize: '.92rem' }}>
@@ -249,15 +260,28 @@ function MobileBuySheet({ edition, setEdition, qty, setQty, onAdd, added }) {
       {/* row 2: price + CTA */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 10 }}>
         <div style={{ minWidth: 0, lineHeight: 1.12 }}>
-          <div className="sb-display" style={{ fontSize: '1.5rem' }}>{gbp(p.total)}</div>
-          <div style={{ fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.8rem', whiteSpace: 'nowrap' }}>
-            {open ? qty + ' × ' + ed.name.replace(' Edition', '') + (p.saved > 0 ? ' · saving ' + gbp(p.saved) : '') : 'Free UK mainland postage'}
-          </div>
+          {ed.soldOut ? (
+            <React.Fragment>
+              <div className="sb-display" style={{ fontSize: '1.35rem' }}>Out of stock</div>
+              <div style={{ fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.8rem', whiteSpace: 'nowrap' }}>Back soon - try the Standard</div>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <div className="sb-display" style={{ fontSize: '1.5rem' }}>{gbp(p.total)}</div>
+              <div style={{ fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.8rem', whiteSpace: 'nowrap' }}>
+                {open ? qty + ' × ' + ed.name.replace(' Edition', '') + (p.saved > 0 ? ' · saving ' + gbp(p.saved) : '') : 'Free UK mainland postage'}
+              </div>
+            </React.Fragment>
+          )}
         </div>
         <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
-          <SBButton variant={added ? 'green' : 'primary'} onClick={open ? onAdd : () => setOpen(true)}>
-            {added ? 'Added ✓' : (open ? 'Add to basket' : 'Buy options')}
-          </SBButton>
+          {ed.soldOut ? (
+            <SBButton variant="white" disabled>Out of stock</SBButton>
+          ) : (
+            <SBButton variant={added ? 'green' : 'primary'} onClick={open ? onAdd : () => setOpen(true)}>
+              {added ? 'Added ✓' : (open ? 'Add to basket' : 'Buy options')}
+            </SBButton>
+          )}
         </div>
       </div>
     </div>
@@ -298,6 +322,7 @@ function App() {
 
   const addToBasket = React.useCallback(() => {
     const ed = EDITIONS[edition];
+    if (ed.soldOut) return; // out of stock - nothing to add
     const p = priceFor(ed.priceNum, qty);
     const sku = edition + '-' + (qty >= 2 ? '2' : '1'); // qty 2 → the 2-pack SKU
     setBasket((b) => ({ ...b, [sku]: Math.min(9, b[sku] + 1) }));

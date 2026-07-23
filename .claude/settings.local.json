@@ -7,7 +7,23 @@
       "Bash(curl -s -o /dev/null -D - -m 20 \"https://blockspublishing.com/parents\")",
       "Bash(git commit -q -m 'Wire up the website forms to a real backend *)",
       "Bash(git add *)",
-      "Bash(git commit -q -m 'Buy page: swap '\\\\''Improves writing skills'\\\\'' for '\\\\''Made in Britain'\\\\'', centre the trust row *)"
+      "Bash(git commit -q -m 'Buy page: swap '\\\\''Improves writing skills'\\\\'' for '\\\\''Made in Britain'\\\\'', centre the trust row *)",
+      "Bash(sips -s format png --out missing_full.png \"/Users/lewis/Documents/HA Emails/Lost Pet/Missing Pet Email.pdf\")",
+      "Bash(sips -s format png --out lostpet_full.png \"/Users/lewis/Documents/HA Emails/Lost Pet/LostPet Emails.pdf\")",
+      "Bash(python3 -c \"import PIL; print\\('pillow', PIL.__version__\\)\")",
+      "Bash(python3)",
+      "Bash([ -f \"$CHROME\" ])",
+      "Read(//Applications/Google Chrome.app/**)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=390,2700 --screenshot=/private/tmp/claude-503/-Users-lewis-Downloads-Product-purchase-page-design--ds/01d85b91-ca3b-4a86-9973-eefd2223f680/scratchpad/render_mobile2.png 'file:///Users/lewis/Documents/HA Emails/Lost Pet/homeagain-lostpet/index.html')",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://github.com/lewis-builds/homeagain-lostpet)",
+      "Bash(git config *)",
+      "Bash(git credential-osxkeychain *)",
+      "Bash(pkill -f \"http.server 8931\")",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=740,760 --screenshot=/private/tmp/claude-503/-Users-lewis-Downloads-Product-purchase-page-design--ds/01d85b91-ca3b-4a86-9973-eefd2223f680/scratchpad/btn_check.png 'file:///Users/lewis/Documents/HA Emails/Lost Pet/homeagain-lostpet/index.html')",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=740,720 --screenshot=/private/tmp/claude-503/-Users-lewis-Downloads-Product-purchase-page-design--ds/01d85b91-ca3b-4a86-9973-eefd2223f680/scratchpad/lastseen_check.png 'file:///Users/lewis/Documents/HA Emails/Lost Pet/homeagain-lostpet/index.html')",
+      "Bash(git commit -q -m 'Gold Edition: mark out of stock, disable purchase *)"
     ]
   }
 }

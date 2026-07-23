@@ -1,6 +1,7 @@
 // /api/checkout.js — creates a Stripe Checkout session for the basket.
 // Deployed automatically by Vercel as POST /api/checkout. Do not rename the folder.
 import Stripe from 'stripe';
+import { SOLD_OUT_SKUS } from '../src/lib/core.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -39,6 +40,12 @@ export default async function handler(req, res) {
   const items = (body?.items || [])
     .filter((i) => i && CATALOGUE[i.sku] && Number.isInteger(i.quantity) && i.quantity > 0 && i.quantity <= 9);
   if (items.length === 0) return res.status(400).json({ error: 'Empty basket' });
+
+  // Safety net: never start a checkout for an out-of-stock SKU, even if it's
+  // lingering in someone's saved basket from before it sold out.
+  if (items.some((i) => SOLD_OUT_SKUS.includes(i.sku))) {
+    return res.status(409).json({ error: 'Sorry, the Gold Edition is currently out of stock. Please remove it to check out.' });
+  }
 
   // Guard against deploying with the placeholder price IDs still in place.
   if (items.some((i) => CATALOGUE[i.sku].price.startsWith('price_PASTE_ME'))) {

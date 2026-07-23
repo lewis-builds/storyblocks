@@ -32,6 +32,7 @@ export const EDITIONS = {
     name: 'Gold Edition',
     priceNum: 24.99,
     cover: 'assets/storyblocks-gold-book.png',
+    soldOut: true, // set to false (or delete) to put the Gold Edition back on sale
     ribbon: 'The gift edition',
     ribbonTint: 'yellow',
     tagline: 'Everything in Standard, dressed up in gold foil - plus milestone coins to award.',
@@ -58,6 +59,14 @@ export const SKUS = {
   'gold-1': { name: 'Gold Edition', books: 1, price: 24.99, fullPrice: 24.99, cover: 'assets/storyblocks-gold-book.png', packSku: 'gold-2' },
   'gold-2': { name: 'Gold Edition - 2-pack', books: 2, price: 44.98, fullPrice: 49.98, cover: 'assets/storyblocks-gold-book.png' },
 };
+
+/* SKUs whose edition is flagged soldOut - blocked on the buy page and, as a
+   safety net, rejected by /api/checkout. Derived from the EDITIONS flag so
+   there's a single source of truth. */
+export const SOLD_OUT_SKUS = Object.keys(SKUS).filter((sku) => {
+  const ed = EDITIONS[sku.split('-')[0]];
+  return ed && ed.soldOut;
+});
 
 export function priceFor(unit, qty) {
   const tier = TIERS.find((t) => qty >= t.min);
