@@ -119,10 +119,10 @@ function VideoPeek({ id, title }) {
 
 /* colour-coded flick-through of the 4 starter types */
 const STARTER_TYPES = [
-  { name: 'Objects', tint: 'peach', para: <React.Fragment>One curious object - a rusty key, a lost letter, a talking clock - and a friendly question. Your child decides what it is, who it belongs to, and what happens next. <strong>The object sparks the idea; their imagination does the rest.</strong></React.Fragment> },
-  { name: 'Scenario', tint: 'sky', para: <React.Fragment>A little situation to land in - <em>you wake up and the house is floating</em>. A friendly question helps your child decide what their character does next, <strong>and the story unfolds from there.</strong></React.Fragment> },
-  { name: 'First line', tint: 'pink', para: <React.Fragment>A ready-made opening sentence to run with. Your child reads it, wonders what could possibly happen next - <strong>and the rest of the page is theirs to fill.</strong></React.Fragment> },
-  { name: 'Three words', tint: 'green', para: <React.Fragment>Three words and one friendly question - that's the classic starter. Your child weaves the words into a story of their own, <strong>on pages made for young writers.</strong></React.Fragment> },
+  { name: 'Objects', tint: 'peach', src: 'assets/starter-objects.jpg', para: <React.Fragment>One curious object - a rusty key, a lost letter, a talking clock - and a friendly question. Your child decides what it is, who it belongs to, and what happens next. <strong>The object sparks the idea; their imagination does the rest.</strong></React.Fragment> },
+  { name: 'Scenario', tint: 'sky', src: 'assets/starter-scenario.jpg', para: <React.Fragment>A little situation to land in - <em>you wake up and the house is floating</em>. A friendly question helps your child decide what their character does next, <strong>and the story unfolds from there.</strong></React.Fragment> },
+  { name: 'First line', tint: 'pink', src: 'assets/starter-first-line.jpg', para: <React.Fragment>A ready-made opening sentence to run with. Your child reads it, wonders what could possibly happen next - <strong>and the rest of the page is theirs to fill.</strong></React.Fragment> },
+  { name: 'Three words', tint: 'green', src: 'assets/starter-three-words.jpg', para: <React.Fragment>Three words and one friendly question - that's the classic starter. Your child weaves the words into a story of their own, <strong>on pages made for young writers.</strong></React.Fragment> },
 ];
 
 /* row 01 - tabs sit under the spread; the photo and text swap with the selected type */
@@ -133,7 +133,7 @@ function StarterSpreadRow({ r, i }) {
       <div className="sb-spread__book">
         {STARTER_TYPES.map((ty, k) => (
           <div key={ty.name} style={{ display: sel === k ? 'block' : 'none' }}>
-            <image-slot id={'inside-page-starter-' + ty.tint} src="/assets/placeholders/spread.svg"
+            <image-slot id={'inside-page-starter-' + ty.tint} src={ty.src ? asset(ty.src) : '/assets/placeholders/spread.svg'}
               style={{ width: '100%', aspectRatio: '296 / 210', height: 'auto', display: 'block' }} shape="rect"
               placeholder={'Drop a photo of a \u201c' + ty.name.toLowerCase() + '\u201d spread'}></image-slot>
           </div>
@@ -186,8 +186,8 @@ function WhatsInside() {
     {
       q: 'What are the stickers and reward chart for?',
       a: <React.Fragment>Finish a story, tick the chart, peel off a sticker. Every journal includes a <strong>free full sticker sheet and reward chart</strong> - little wins that build a daily writing streak and make finishing feel like the best part.</React.Fragment>,
-      slot: { id: 'inside-stickers', caption: 'The sticker sheet - in every box', src: 'assets/sticker-sheet.jpg' },
-      sticker: true,
+      slot: { id: 'inside-stickers', caption: 'Reward chart & sticker sheet', src: 'assets/sticker-reward-spread.png' },
+      spread: true,
       flip: true,
       char: 'SB44',
     },
@@ -202,21 +202,6 @@ function WhatsInside() {
             <Reveal key={r.q} className="sb-inside-row-wrap">
               {r.types ? (
                 <StarterSpreadRow r={r} i={i} />
-              ) : r.sticker ? (
-                <article className={'sb-inside-row' + (r.flip ? ' sb-inside-row--flip' : '')}>
-                  <figure className="sb-inside-media snap" style={{ margin: 0, position: 'relative', transform: `rotate(${r.flip ? 1.5 : -1.5}deg)` }}>
-                    <img src={asset(r.slot.src)} alt="The full Story Blocks sticker sheet, covered in cheerful block-character stickers" style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 8 }} />
-                    <figcaption>{r.slot.caption}</figcaption>
-                    {r.char && (
-                      <img src={asset(CHAR_BASE + '/' + r.char + '.png')} alt="" className="sb-float sb-deco" style={{ '--r': '6deg', position: 'absolute', width: 104, right: -18, bottom: -30, pointerEvents: 'none' }} />
-                    )}
-                  </figure>
-                  <div>
-                    <span className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                    <h3 className="sb-display" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)', lineHeight: 1.1, marginTop: 8 }}>{r.q}</h3>
-                    <p style={{ marginTop: 16, fontSize: '1.16rem', lineHeight: 1.65, maxWidth: 480 }}>{r.a}</p>
-                  </div>
-                </article>
               ) : r.spread ? (
                 <article className={'sb-spread' + (r.flip ? ' sb-spread--alt' : '')}>
                   <div className="sb-spread__book">

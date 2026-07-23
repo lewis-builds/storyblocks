@@ -23,7 +23,27 @@
       "Bash(pkill -f \"http.server 8931\")",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=740,760 --screenshot=/private/tmp/claude-503/-Users-lewis-Downloads-Product-purchase-page-design--ds/01d85b91-ca3b-4a86-9973-eefd2223f680/scratchpad/btn_check.png 'file:///Users/lewis/Documents/HA Emails/Lost Pet/homeagain-lostpet/index.html')",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=740,720 --screenshot=/private/tmp/claude-503/-Users-lewis-Downloads-Product-purchase-page-design--ds/01d85b91-ca3b-4a86-9973-eefd2223f680/scratchpad/lastseen_check.png 'file:///Users/lewis/Documents/HA Emails/Lost Pet/homeagain-lostpet/index.html')",
-      "Bash(git commit -q -m 'Gold Edition: mark out of stock, disable purchase *)"
+      "Bash(git commit -q -m 'Gold Edition: mark out of stock, disable purchase *)",
+      "Bash(git -c user.name=Lewis -c user.email=lewis@desirepath.co commit -qm 'Point 13 images at hosted SFMC CDN URLs \\(copy-paste ready\\) *)",
+      "Bash(git push *)",
+      "Bash(git checkout *)",
+      "Bash(git -c user.name=Lewis -c user.email=lewis@desirepath.co commit -qm 'Remove FOOTER section \\(HomeAgain uses its own footer component\\) *)",
+      "Bash(git -c user.name=Lewis -c user.email=lewis@desirepath.co commit -qm 'Pin explicit line-height on all text \\(buttons + About details\\) *)",
+      "Bash(sed -i '' 's/max-width:700px; margin:0 auto;/max-width:600px; margin:0 auto;/g' index.html)",
+      "Bash(sed -i '' 's/width=\"700\" align=\"center\"/width=\"600\" align=\"center\"/g' index.html)",
+      "Bash(sed -i '' 's/max-width:352px/max-width:300px/g; s/width=\"352\"/width=\"300\"/g' index.html)",
+      "Bash(sed -i '' 's/max-width:284px/max-width:240px/g; s/width=\"284\"/width=\"240\"/g' index.html)",
+      "Bash(sed -i '' 's/max-width:295px/max-width:245px/g' index.html)",
+      "Bash(sed -i '' 's/max-width:300px/max-width:290px/g; s/width=\"300\"/width=\"290\"/g' index.html)",
+      "Bash(sed -i '' 's/max-width:240px/max-width:230px/g; s/width=\"240\"/width=\"230\"/g' index.html)",
+      "Bash(sed -i '' 's/max-width:330px/max-width:300px/g; s/width=\"330\"/width=\"300\"/g' index.html)",
+      "Bash(sed -i '' 's/max-width:210px/max-width:200px/g' index.html)",
+      "Bash(sed -i '' 's/max-width:245px/max-width:235px/g' index.html)",
+      "Bash(pkill -f \"http.server 8934\")",
+      "Bash(git -c user.name=Lewis -c user.email=lewis@desirepath.co commit -qm 'Set email width to 600px and refit columns to stay side-by-side *)",
+      "Bash(cd \"/Users/lewis/Documents/HA Emails/Lost Pet/homeagain-lostpet\" *)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/assets/sticker-reward-spread.png)",
+      "Bash(git commit -q -m 'What'\\\\''s Inside: real book-spread photos for starters + sticker row *)"
     ]
   }
 }
