@@ -76,10 +76,15 @@ function StarterPage({ starter }) {
       <SiteHeader active={null} />
       <main>
         <section style={{ background: `var(--sb-wash-${starter.tint})`, borderBottom: '3px solid var(--sb-ink)', padding: 'clamp(40px, 7vw, 72px) 0' }}>
-          <div className="sb-wrap" style={{ maxWidth: 820 }}>
-            <div className="sb-marker" style={{ fontSize: '1.35rem', color: 'var(--sb-blue)' }}>{starter.type} starter · No. {starter.num}</div>
-            <div style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', fontSize: '.92rem', color: 'var(--sb-muted)', marginTop: 12 }}>{starter.instruction}</div>
-            <PromptDisplay starter={starter} />
+          <div className="sb-wrap" style={{ maxWidth: 900 }}>
+            <div className="sb-starter-hero" style={{ display: 'flex', alignItems: 'center', gap: 'clamp(20px, 4vw, 48px)' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="sb-marker" style={{ fontSize: '1.35rem', color: 'var(--sb-blue)' }}>{starter.type} starter · No. {starter.num}</div>
+                <div style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', fontSize: '.92rem', color: 'var(--sb-muted)', marginTop: 12 }}>{starter.instruction}</div>
+                <PromptDisplay starter={starter} />
+              </div>
+              <img src={'/' + starter.image} alt="" className="sb-float sb-starter-char" aria-hidden="true" />
+            </div>
           </div>
         </section>
 

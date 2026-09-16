@@ -104,3 +104,8 @@ a[href^="#"] { text-decoration: none; }
 .starter-rich ul, .starter-rich ol { margin: 0 0 14px; padding-left: 22px; }
 .starter-rich li { margin-bottom: 6px; }
 .starter-rich a { color: var(--sb-blue); font-weight: 700; }
+.sb-starter-char { width: clamp(130px, 22vw, 240px); height: auto; flex-shrink: 0; }
+@media (max-width: 640px) {
+  .sb-starter-hero { flex-direction: column; align-items: flex-start; gap: 22px !important; }
+  .sb-starter-char { width: 128px; align-self: center; }
+}
