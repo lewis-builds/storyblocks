@@ -109,3 +109,11 @@ a[href^="#"] { text-decoration: none; }
   .sb-starter-hero { flex-direction: column; align-items: flex-start; gap: 22px !important; }
   .sb-starter-char { width: 128px; align-self: center; }
 }
+
+/* ---- Story starters index gallery ---- */
+.starter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
+.starter-card { display: flex; flex-direction: column; border: 3px solid var(--sb-ink); border-radius: 20px;
+  box-shadow: var(--shadow-pop); padding: 18px; text-decoration: none; color: var(--sb-ink);
+  transition: transform .12s ease, box-shadow .12s ease; }
+.starter-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 8px 0 0 var(--sb-ink); }
+.starter-card img { align-self: flex-start; }

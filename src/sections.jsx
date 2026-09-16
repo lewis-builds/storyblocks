@@ -474,6 +474,7 @@ const FOOTER_LINKS = {
   'How it works': '/#how',
   'Gold Edition': '/',
   'Gift a journal': '/gift',
+  'Free story starters': '/story-starters',
   'Delivery & returns': '/delivery',
   'Parents’ Corner': '/parents',
   'Contact us': '/contact',
@@ -487,7 +488,7 @@ const FOOTER_LINKS = {
 };
 function SiteFooter() {
   const cols = [
-    { h: 'The journal', links: ['What’s inside', 'How it works', 'Gold Edition', 'Gift a journal'] },
+    { h: 'The journal', links: ['What’s inside', 'How it works', 'Gold Edition', 'Gift a journal', 'Free story starters'] },
     { h: 'Support', links: ['Delivery & returns', 'Parents’ Corner', 'Contact us', 'FAQs'] },
     { h: 'Blocks Publishing', links: ['About us', 'Why Story Blocks', 'Free books for schools', 'Wholesale', 'Reviews', 'Privacy'] },
   ];

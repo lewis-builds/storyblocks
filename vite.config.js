@@ -51,6 +51,7 @@ export default defineConfig({
         wholesale: resolve(__dirname, 'wholesale.html'),
         why: resolve(__dirname, 'why.html'),
         parents: resolve(__dirname, 'parents.html'),
+        'story-starters': resolve(__dirname, 'story-starters.html'),
         'story-starter': resolve(__dirname, 'story-starter.html'),
       },
     },
