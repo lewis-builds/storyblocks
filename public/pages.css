@@ -94,3 +94,13 @@ a[href^="#"] { text-decoration: none; }
 @media (max-width: 1024px) {
   footer .sb-wrap { grid-template-columns: 1fr 1fr !important; }
 }
+
+/* ---- Story starter pages (/story-starters/*) ---- */
+.starter-rich { font-size: 1.08rem; line-height: 1.62; color: var(--sb-ink); }
+.starter-rich p { margin: 0 0 14px; }
+.starter-rich p:last-child { margin-bottom: 0; }
+.starter-rich strong { font-weight: 800; }
+/* a paragraph that is only a bold question reads as a mini-heading */
+.starter-rich ul, .starter-rich ol { margin: 0 0 14px; padding-left: 22px; }
+.starter-rich li { margin-bottom: 6px; }
+.starter-rich a { color: var(--sb-blue); font-weight: 700; }

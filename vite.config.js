@@ -9,6 +9,11 @@ function cleanUrlsDev() {
   const rewrite = (req, res, next) => {
     const q = req.url.indexOf('?');
     const path = q === -1 ? req.url : req.url.slice(0, q);
+    // Every /story-starters/<slug> is served by the single story-starter page.
+    if (/^\/story-starters\/[^/]+\/?$/.test(path)) {
+      req.url = '/story-starter.html' + (q === -1 ? '' : req.url.slice(q));
+      return next();
+    }
     if (path !== '/' && !path.includes('.') && !path.startsWith('/@') && !path.startsWith('/src/') && !path.startsWith('/node_modules/')) {
       const rel = path.replace(/^\/+/, '').replace(/\/+$/, '');
       if (rel && fs.existsSync(resolve(__dirname, rel + '.html'))) {
@@ -46,6 +51,7 @@ export default defineConfig({
         wholesale: resolve(__dirname, 'wholesale.html'),
         why: resolve(__dirname, 'why.html'),
         parents: resolve(__dirname, 'parents.html'),
+        'story-starter': resolve(__dirname, 'story-starter.html'),
       },
     },
   },
