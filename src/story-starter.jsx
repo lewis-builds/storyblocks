@@ -7,6 +7,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { SiteHeader, SiteFooter, Icon } from './sections.jsx';
 import STARTERS from './lib/story-starters.json';
+import { WordSparks } from './story-words.jsx';
 
 const { Button } = window.StoryBlocksJournalDesignSystem_239fa7;
 const BY_SLUG = Object.fromEntries(STARTERS.map((s) => [s.slug, s]));
@@ -133,4 +134,10 @@ function NotFound() {
 
 const slug = slugFromPath();
 const starter = slug && BY_SLUG[slug];
-createRoot(document.getElementById('root')).render(starter ? <StarterPage starter={starter} /> : <NotFound />);
+function Page({ s }) {
+  if (!s) return <NotFound />;
+  // Three-word starters get the full-screen tap-to-explore experience.
+  if (s.type === 'Three words') return <WordSparks starter={s} />;
+  return <StarterPage starter={s} />;
+}
+createRoot(document.getElementById('root')).render(<Page s={starter} />);
