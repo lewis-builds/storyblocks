@@ -21,6 +21,8 @@ html.sw-lock body { margin:0; background:var(--sb-wash-green); }
 .sw{ height:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column;
   padding:clamp(16px,4vw,26px); padding-block:clamp(18px,5vh,34px); gap:12px; color:var(--sb-ink);
   background:radial-gradient(rgba(35,31,32,.055) 1.5px, transparent 1.6px) 0 0/22px 22px, var(--sb-wash-green); }
+.sw-lower{ display:flex; align-items:flex-end; gap:10px; }
+.sw-char{ flex:0 0 auto; width:clamp(118px,33vw,172px); height:auto; align-self:flex-end; }
 .sw-head{ text-align:center; }
 .sw-logo{ display:block; width:clamp(79px,23vw,104px); height:auto; margin:0 auto; }
 .sw-instruction{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.5rem,6.6vw,2.1rem);
@@ -38,7 +40,7 @@ html.sw-lock body { margin:0; background:var(--sb-wash-green); }
 @keyframes sw-bob{ 0%,100%{ transform:rotate(var(--tilt)) translate(var(--nudge,0),0); } 50%{ transform:rotate(var(--tilt)) translate(var(--nudge,0),-7px); } }
 .sw-word:active{ transform:rotate(var(--tilt)) translate(var(--nudge,0),0) scale(.95); box-shadow:3px 4px 0 0 var(--sb-ink); animation-play-state:paused; }
 .sw-word::after{ content:""; position:absolute; top:-11px; right:16px; width:26px; height:26px; border-radius:50%; background:var(--dot); border:3px solid var(--sb-ink); }
-.sw-hint{ text-align:center; font-family:var(--font-marker); color:#8a7f6a; font-size:1.15rem; display:flex; align-items:center; justify-content:center; gap:8px; }
+.sw-hint{ flex:1; text-align:center; font-family:var(--font-marker); color:#8a7f6a; font-size:1.15rem; display:flex; align-items:center; justify-content:center; gap:8px; }
 .sw-hint svg{ width:20px; height:20px; }
 .sw-actions{ display:flex; gap:11px; }
 .sw-action{ flex:1; min-width:0; cursor:pointer; text-decoration:none; font-family:var(--font-body); font-weight:800;
@@ -107,9 +109,12 @@ export function WordSparks({ starter }) {
           ))}
         </div>
 
-        <div className="sw-hint">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></svg>
-          Tap a word for ideas
+        <div className="sw-lower">
+          <div className="sw-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></svg>
+            Tap a word for ideas
+          </div>
+          <img className="sw-char" src={'/' + starter.image} alt="" aria-hidden="true" />
         </div>
 
         <div className="sw-actions">
