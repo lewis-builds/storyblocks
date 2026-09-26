@@ -37,15 +37,15 @@ html.sp-lock body{ margin:0; background:var(--type-bg,#fff); }
 .sp{ height:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; color:var(--sb-ink);
   padding:clamp(15px,4vw,24px); padding-block:clamp(16px,4.5vh,30px); gap:clamp(10px,2vh,16px);
   background:radial-gradient(rgba(35,31,32,.05) 1.5px, transparent 1.6px) 0 0/22px 22px, var(--type-bg,#fff); }
-.sp-head{ text-align:center; }
+.sp-head{ text-align:center; padding-bottom:clamp(12px,3.4vh,30px); }
 .sp-logo{ display:block; width:clamp(78px,22vw,98px); height:auto; margin:0 auto; }
-.sp-instruction{ font-family:var(--font-marker); color:var(--sb-blue); font-size:1.5rem; line-height:1; margin-top:10px; }
+.sp-instruction{ font-family:var(--font-display); font-weight:700; color:var(--sb-ink); font-size:clamp(1.3rem,5.2vw,1.7rem); line-height:1.14; margin-top:14px; text-wrap:balance; }
 .sp-middle{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(20px,4vh,36px); min-height:0; }
 .sp-prompt-wrap{ display:flex; align-items:center; justify-content:center; }
 .sp-prompt{ background:#fff; border:3.5px solid var(--sb-ink); border-radius:22px; box-shadow:7px 9px 0 0 var(--sb-ink);
   padding:clamp(22px,6vw,34px); transform:rotate(-1.6deg); max-width:100%; position:relative;
   font-family:var(--font-display); font-weight:600; font-size:clamp(1.4rem,5.7vw,2rem); line-height:1.16; text-wrap:pretty; }
-.sp-prompt--quote{ font-style:italic; padding-top:clamp(34px,9vw,50px); }
+.sp-prompt--quote{ padding-top:clamp(34px,9vw,50px); }
 .sp-quote{ position:absolute; top:6px; left:16px; font-family:var(--font-display); font-weight:700; font-size:3.6rem; line-height:.7; color:var(--sb-blue); }
 .sp-nudge-group{ display:flex; flex-direction:column; gap:9px; }
 .sp-nudge-label{ text-align:center; font-family:var(--font-marker); color:var(--sb-blue); font-size:1.2rem; }
