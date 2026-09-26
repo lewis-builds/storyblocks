@@ -3,7 +3,7 @@
 :root {
   /* ---- Families ---- */
   --font-display: 'Fredoka', 'Baloo 2', system-ui, sans-serif;   /* chunky rounded headlines */
-  --font-marker:  'Gochi Hand', 'Comic Sans MS', cursive;         /* felt-tip labels & kickers */
+  --font-marker:  'Caveat', 'Bradley Hand', 'Comic Sans MS', cursive;         /* felt-tip labels & kickers */
   --font-body:    'Nunito', system-ui, -apple-system, sans-serif; /* body & UI */
 
   /* ---- Weights ---- */

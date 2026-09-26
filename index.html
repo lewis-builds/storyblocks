@@ -28,7 +28,7 @@
 
 <!-- Story Blocks design system (fonts, tokens, component bundle) -->
 <link rel="stylesheet" href="/_ds/story-blocks-journal-design-system-239fa7bb-46ac-4a4c-84fd-eae2eea3aa29/styles.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gochi+Hand&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
 <script src="/_ds/story-blocks-journal-design-system-239fa7bb-46ac-4a4c-84fd-eae2eea3aa29/_ds_bundle.js"></script>
 
 <script type="application/ld+json">
@@ -150,7 +150,7 @@
   a { color: inherit; }
   .sb-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
   :root { --sec-pad: 108px; }
-  .sb-marker { font-family: var(--font-marker); }
+  .sb-marker { font-family: var(--font-marker); font-weight: 700; font-size-adjust: 0.449; }
   .sb-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
 
   /* entrance - transform-only so content is never hidden even if transitions are frozen */
@@ -261,7 +261,7 @@
   }
 
   .look__hint { position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%) rotate(-2deg);
-    background: var(--sb-ink); color: #fff; font-family: var(--font-marker); font-size: 1.1rem;
+    background: var(--sb-ink); color: #fff; font-family: var(--font-marker); font-size: 1.1rem; font-size-adjust: 0.449;
     padding: 7px 18px; border-radius: 999px; white-space: nowrap; transition: opacity .3s ease; z-index: 6; }
   .look.is-open .look__hint { opacity: 0; }
   .look__rule { border: 0; border-bottom: 2px solid rgba(35,31,32,.16); margin: 0; }
@@ -278,7 +278,7 @@
   /* ---- what's inside: alternating photo + Q&A rows ---- */
   .snap { background: #fff; border: 3px solid var(--sb-ink); border-radius: 14px;
     box-shadow: var(--shadow-pop); padding: 12px 12px 14px; }
-  .snap figcaption { font-family: var(--font-marker); font-size: 1.1rem; text-align: center; margin-top: 10px; }
+  .snap figcaption { font-family: var(--font-marker); font-size: 1.1rem; font-size-adjust: 0.449; text-align: center; margin-top: 10px; }
   .sb-inside-row { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 72px; align-items: center; }
   .sb-inside-row + .sb-inside-row, .sb-inside-row-wrap + .sb-inside-row-wrap { margin-top: 180px; }
   .sb-inside-row--flip .sb-inside-media { order: 2; }

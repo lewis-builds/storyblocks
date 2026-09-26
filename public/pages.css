@@ -16,7 +16,7 @@ p { margin: 0; }
 a { color: inherit; }
 
 .sb-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-.sb-marker { font-family: var(--font-marker); }
+.sb-marker { font-family: var(--font-marker); font-weight: 700; font-size-adjust: 0.449; }
 .sb-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
 
 @keyframes sb-float { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-9px) rotate(var(--r,0deg)); } }
