@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom/client';
 import { SiteHeader, SiteFooter, Icon } from './sections.jsx';
 import STARTERS from './lib/story-starters.json';
 import { WordSparks } from './story-words.jsx';
+import { PromptStarter } from './story-prompt.jsx';
 
 const { Button } = window.StoryBlocksJournalDesignSystem_239fa7;
 const BY_SLUG = Object.fromEntries(STARTERS.map((s) => [s.slug, s]));
@@ -136,8 +137,9 @@ const slug = slugFromPath();
 const starter = slug && BY_SLUG[slug];
 function Page({ s }) {
   if (!s) return <NotFound />;
-  // Three-word starters get the full-screen tap-to-explore experience.
+  // Every type now gets a full-screen experience.
   if (s.type === 'Three words') return <WordSparks starter={s} />;
+  if (s.type === 'Scenario' || s.type === 'Objects' || s.type === 'First line') return <PromptStarter starter={s} />;
   return <StarterPage starter={s} />;
 }
 createRoot(document.getElementById('root')).render(<Page s={starter} />);
