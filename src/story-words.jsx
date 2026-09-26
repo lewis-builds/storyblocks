@@ -40,7 +40,7 @@ html.sw-lock body { margin:0; background:var(--sb-wash-green); }
 @keyframes sw-bob{ 0%,100%{ transform:rotate(var(--tilt)) translate(var(--nudge,0),0); } 50%{ transform:rotate(var(--tilt)) translate(var(--nudge,0),-7px); } }
 .sw-word:active{ transform:rotate(var(--tilt)) translate(var(--nudge,0),0) scale(.95); box-shadow:3px 4px 0 0 var(--sb-ink); animation-play-state:paused; }
 .sw-word::after{ content:""; position:absolute; top:-11px; right:16px; width:26px; height:26px; border-radius:50%; background:var(--dot); border:3px solid var(--sb-ink); }
-.sw-hint{ flex:1; text-align:center; font-family:var(--font-marker); color:#8a7f6a; font-size:1.15rem; display:flex; align-items:center; justify-content:center; gap:8px; }
+.sw-hint{ flex:1; text-align:center; font-family:var(--font-display); font-weight:600; color:#8a7f6a; font-size:1.02rem; display:flex; align-items:center; justify-content:center; gap:8px; }
 .sw-hint svg{ width:20px; height:20px; }
 .sw-actions{ display:flex; gap:11px; }
 .sw-action{ flex:1; min-width:0; cursor:pointer; text-decoration:none; font-family:var(--font-body); font-weight:800;

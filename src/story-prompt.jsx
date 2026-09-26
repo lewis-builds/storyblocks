@@ -48,7 +48,7 @@ html.sp-lock body{ margin:0; background:var(--type-bg,#fff); }
 .sp-prompt--quote{ padding-top:clamp(34px,9vw,50px); }
 .sp-quote{ position:absolute; top:6px; left:16px; font-family:var(--font-display); font-weight:700; font-size:3.6rem; line-height:.7; color:var(--sb-blue); }
 .sp-nudge-group{ display:flex; flex-direction:column; gap:9px; }
-.sp-nudge-label{ text-align:center; font-family:var(--font-marker); color:var(--sb-blue); font-size:1.2rem; }
+.sp-nudge-label{ text-align:center; font-family:var(--font-display); font-weight:600; color:var(--sb-blue); font-size:1.02rem; }
 .sp-nudges{ display:flex; gap:9px; justify-content:center; }
 .sp-nudge{ flex:1; max-width:150px; appearance:none; cursor:pointer; background:#fff; border:3px solid var(--sb-ink);
   border-radius:16px; box-shadow:3px 4px 0 0 var(--sb-ink); padding:12px 8px 11px; display:flex; flex-direction:column;
