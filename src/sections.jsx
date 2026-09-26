@@ -351,6 +351,22 @@ function Stars({ n = 5 }) {
     </div>
   );
 }
+/* Real families, real journals - a full-bleed strip of children writing.
+   Sits just under the hero/trust bar, leading into "Open it up…". */
+export function KidsWritingStrip() {
+  return (
+    <section style={{ background: 'var(--sb-cream)', paddingBottom: 'clamp(28px, 5vw, 52px)' }}>
+      <div className="sb-wrap">
+        <Reveal>
+          <div className="sb-kids-strip" aria-label="Photos of children writing in their Story Blocks journals">
+            <img src={asset('assets/kids-strip.png')} alt="Children writing in their Story Blocks journals" />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function Reviews() {
   const quotes = [
     { tint: 'purple', tilt: -1.5, text: 'The first thing she reaches for after school now is the journal, not the tablet. I genuinely didn’t think that was possible.', name: 'Priya', meta: 'mum of two, Bristol' },
@@ -367,13 +383,6 @@ function Reviews() {
             <span style={{ fontWeight: 800, fontSize: '1.05rem' }}>4.9 / 5 &nbsp;<span style={{ color: 'var(--sb-muted)', fontWeight: 700 }}>· 2,400+ families</span></span>
           </div>
         </div>
-
-        {/* real families, real journals */}
-        <Reveal delay={80}>
-          <div className="sb-kids-strip" aria-label="Photos of children writing in their Story Blocks journals">
-            <img src={asset('assets/kids-strip.png')} alt="Children writing in their Story Blocks journals" />
-          </div>
-        </Reveal>
 
         <div className="sb-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 22, marginTop: 40 }}>
           {quotes.map((q, i) => (

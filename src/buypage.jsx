@@ -5,7 +5,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { asset, CHAR_BASE, EDITIONS, SKUS, priceFor, gbp } from './lib/core.js';
 import {
-  SiteHeader, TrustStrip, WhatsInside, HowItWorks, ProblemSection, Reviews,
+  SiteHeader, TrustStrip, KidsWritingStrip, WhatsInside, HowItWorks, ProblemSection, Reviews,
   ParentsCorner, WhyBlocks, SiteFooter, Icon,
 } from './sections.jsx';
 import { BasketDrawer } from './basket.jsx';
@@ -345,6 +345,7 @@ function App() {
       <SiteHeader active="journal" count={count} onBasket={() => setDrawerOpen(true)} />
       <Hero edition={edition} setEdition={setEdition} qty={qty} setQty={setQty} onAdd={addToBasket} added={added} />
       <TrustStrip />
+      <KidsWritingStrip />
       <WhatsInside />
       <HowItWorks />
       <ProblemSection />
