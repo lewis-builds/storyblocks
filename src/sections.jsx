@@ -180,7 +180,7 @@ function WhatsInside() {
     {
       q: 'How does it build writing confidence?',
       a: <React.Fragment>With writing tips and mini challenges tucked between the days. Gentle nudges - <em>give your hero a secret, end on a cliffhanger</em> - that stretch their skills without ever feeling like homework. No blank-page panic, no wrong answers.</React.Fragment>,
-      slot: { id: 'inside-page-tips', caption: 'Tips & challenges, mid-journal' },
+      slot: { id: 'inside-page-tips', caption: 'Tips & challenges, mid-journal', src: 'assets/inside-page-challenge.png' },
       spread: true,
     },
     {
@@ -294,8 +294,10 @@ function HowItWorks() {
               </div>
             </div>
             <div className="sb-scan-media" style={{ display: 'flex', justifyContent: 'center' }}>
-              <img src={asset('assets/phone-app.png')} alt="The Story Blocks companion app showing today’s three words, writing tips and challenges" className="sb-scan-phone"
-                style={{ height: 380, width: 'auto', transform: 'rotate(3deg)', margin: '-40px 0', borderRadius: 30, filter: 'drop-shadow(8px 10px 0 rgba(35,31,32,.35))' }} />
+              <div className="sb-phone-body" style={{ transform: 'rotate(3deg)', margin: '-24px 0', background: 'var(--sb-ink)', padding: 7, borderRadius: 30, boxShadow: '8px 10px 0 rgba(35,31,32,.35)' }}>
+                <img src={asset('assets/phone-three-words.png')} alt="The Story Blocks three-words story starter shown on a phone" className="sb-scan-phone"
+                  style={{ height: 300, width: 'auto', display: 'block', borderRadius: 24 }} />
+              </div>
             </div>
           </div>
         </Reveal>
@@ -319,7 +321,6 @@ function ProblemSection() {
               Only around 1 in 4 children now enjoy writing in their free time - near a{' '}<span style={{ whiteSpace: 'nowrap' }}>15-year low.</span>
             </p>
             <p className="sb-marker" style={{ marginTop: 8, color: 'var(--sb-muted)', fontSize: '1.05rem' }}>National Literacy Trust</p>
-            <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB50.png')} alt="" style={{ position: 'absolute', width: 88, right: '2%', bottom: -18, ['--r']: '-5deg', pointerEvents: 'none' }} />
           </div>
 
           {/* the turn to hope */}
