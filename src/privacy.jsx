@@ -10,7 +10,7 @@ function Privacy() {
       title="Your details, treated with care"
       intro="How Blocks Publishing Ltd collects and uses your personal data, in line with UK GDPR and the Data Protection Act 2018.">
 
-      <p className="muted">Last updated: July 2026</p>
+      <p className="muted">Last updated: 27 September 2026</p>
 
       <h2>Who we are</h2>
       <p>Blocks Publishing Ltd ("we", "us") is the data controller for the personal data described
@@ -40,13 +40,31 @@ function Privacy() {
 
       <h2>Who we share it with</h2>
       <p>We only share what's necessary, with providers who help us run the shop: our payment processor
-        (Stripe), our hosting and our email provider. We do <strong>not</strong> sell your data, ever.
-        Some providers may process data outside the UK under appropriate safeguards.</p>
+        (Stripe), our hosting, our email provider, and - if you accept analytics cookies - Google
+        Analytics. We do <strong>not</strong> sell your data, ever. Some providers, including Google,
+        may process data outside the UK under appropriate safeguards.</p>
 
-      <h2>Cookies</h2>
-      <p>The site uses only the storage needed to make it work - for example, remembering the contents
-        of your basket in your browser. Payment pages hosted by Stripe use their own cookies for
-        security and fraud prevention.</p>
+      <h2>Cookies and analytics</h2>
+      <p>We keep cookies to a minimum and ask before setting any that aren't essential. When you first
+        visit, a banner lets you accept or decline analytics. You can change your choice any time using
+        the <strong>"Cookie settings"</strong> link in the footer.</p>
+      <ul>
+        <li><strong>Essential storage</strong> - small bits of data your browser needs for the site to
+          work, like remembering your basket and your cookie choice. These don't track you and are
+          always on. Our legal basis is our legitimate interest in a working site.</li>
+        <li><strong>Analytics (Google Analytics 4)</strong> - only if you accept. It then sets cookies
+          (for example, one named <em>_ga</em>) to give us anonymous, aggregated statistics on how the
+          site is used - which pages are popular, roughly where visitors come from - so we can improve
+          it. We use Google Consent Mode, so nothing analytics-related runs until you opt in, and if you
+          decline, no analytics cookies are set. We don't use it for advertising and don't try to
+          identify you. Our legal basis is your consent, which you can withdraw at any time.</li>
+        <li><strong>Payment security (Stripe)</strong> - the checkout pages hosted by Stripe use their
+          own cookies for security and fraud prevention.</li>
+      </ul>
+      <p>Google Analytics is provided by Google, which may process data outside the UK under appropriate
+        safeguards. For more, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's
+        privacy policy</a> and their <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">opt-out
+        browser add-on</a>.</p>
 
       <h2>How long we keep it</h2>
       <p>Order and transaction records are kept as long as required for accounting and legal reasons
@@ -64,12 +82,6 @@ function Privacy() {
 
       <h2>Changes</h2>
       <p>We may update this policy from time to time; the date at the top shows the latest version.</p>
-
-      <div className="callout">
-        <p className="muted">This policy is a clear starting point for a small shop. Before you go
-          live, it's worth having it checked against your final setup - your registered company
-          details, chosen email provider and any analytics you add.</p>
-      </div>
     </PageShell>
   );
 }
