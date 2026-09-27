@@ -31,24 +31,22 @@ function EmailGate({ onUnlock }) {
   };
 
   return (
-    <div style={{ background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 28 }}>
-      <ResBadge variant="yellow" tilt={false}>Free printable pack</ResBadge>
-      <h2 className="sb-display" style={{ fontSize: '1.6rem', marginTop: 12, lineHeight: 1.1 }}>Pop in your email to unlock the pack</h2>
-      <p style={{ marginTop: 10, lineHeight: 1.55, color: 'var(--sb-muted)', fontWeight: 600 }}>
-        For parents, guardians and teachers. We'll open the downloads right here and send you a copy by email too.
+    <div style={{ background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 30 }}>
+      <h2 className="sb-display" style={{ fontSize: '1.7rem', lineHeight: 1.1 }}>Get the free pack</h2>
+      <p style={{ marginTop: 8, lineHeight: 1.5, color: 'var(--sb-muted)', fontWeight: 600 }}>
+        Pop in your email - we'll unlock the downloads here and send a copy to your inbox.
       </p>
-      <div style={{ display: 'grid', gap: 14, marginTop: 18 }}>
+      <div style={{ display: 'grid', gap: 16, marginTop: 20 }}>
         <ResInput label="Your email" type="email" placeholder="e.g. jo@example.co.uk" value={email}
           onChange={(e) => setEmail(e.target.value)} error={errors.email} />
         <div>
           <ResCheckbox checked={consent} onChange={(e) => setConsent(e.target.checked)}
-            label="Yes - email me the free pack and occasional Story Blocks news. I can unsubscribe any time." />
+            label="Email me the pack and the odd Story Blocks update. Unsubscribe any time." />
           {errors.consent && <div style={{ color: 'var(--sb-blue)', fontWeight: 700, fontSize: '.9rem', marginTop: 6 }}>{errors.consent}</div>}
         </div>
-        <ResButton size="lg" block iconRight="→" onClick={submit}>Unlock my free pack</ResButton>
-        <p style={{ fontSize: '.85rem', color: 'var(--sb-muted)', fontWeight: 600, lineHeight: 1.5 }}>
-          We treat your details with care, in line with UK GDPR. We'll never sell your data, and every email
-          includes a one-click unsubscribe. See our <a href="#" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>privacy policy</a>.
+        <ResButton size="lg" block iconRight="→" onClick={submit}>Send me the pack</ResButton>
+        <p style={{ fontSize: '.82rem', color: 'var(--sb-muted)', fontWeight: 600, lineHeight: 1.5, textAlign: 'center' }}>
+          No spam, ever. See our <a href="/privacy" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>privacy policy</a>.
         </p>
       </div>
     </div>

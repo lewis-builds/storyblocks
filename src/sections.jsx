@@ -383,18 +383,21 @@ export function KidsWritingStrip() {
 
 function Reviews() {
   const quotes = [
-    { tint: 'purple', tilt: -1.5, text: 'The first thing she reaches for after school now is the journal, not the tablet. I genuinely didn’t think that was possible.', name: 'Priya', meta: 'mum of two, Bristol' },
-    { tint: 'sky', tilt: 1.2, text: 'Three words and he’s off. The stories he comes up with make us properly laugh at the dinner table.', name: 'Tom', meta: 'dad of one, Leeds' },
-    { tint: 'peach', tilt: -1, text: 'Lovely quality, and the parent guides tell me exactly how to encourage her without hovering.', name: 'Hannah', meta: 'parent, Glasgow' },
+    { tint: 'purple', tilt: -1.5, name: 'Lisa Gray', title: 'Builds confidence and creativity', text: "My son (age 9) isn't always easy to engage with writing, but this completely changed that. The story starters feel more like a game than homework - and the reward chart really keeps him motivated." },
+    { tint: 'sky', tilt: 1.2, name: 'Mary', title: 'Inspires children to write with confidence', text: "Refreshing to find something that encourages children to use their imagination and enjoy writing, and spend less time glued to a screen. She's gained confidence and comes up with great ideas." },
+    { tint: 'peach', tilt: -1, name: 'Karen', title: 'Creative writing', text: "She's inspired by all the prompts - I've never seen anything like it. A must for all budding authors, and it really gets the mind working. Five stars all the way." },
+    { tint: 'pink', tilt: 1, name: 'BeeH', title: 'A whopping success!', text: "I gifted this to a friend's grandson who'd been struggling with writing. It's proving a whopping success, his confidence growing with every completed story. Brilliant aid, making learning fun." },
+    { tint: 'green', tilt: -1.2, name: 'Marie', title: 'Quality story writing book', text: "Really well designed and a clever idea - a high quality book with thick pages that's lovely to write on, and the reward sticker sheet inside was a lovely touch." },
+    { tint: 'purple', tilt: 1.4, name: 'Writer', title: 'Fun, learning and great value', text: "She greatly enjoyed writing her stories and reading them out to us in the evenings. The stickers were very popular too. A super positive purchase!" },
   ];
   return (
     <section id="reviews" style={{ background: washGrad('lemon'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-end', justifyContent: 'space-between' }}>
-          <SectionHead align="left" max={560} kicker="Loved by parents" title="Screens down, stories up" sub={null} />
+          <SectionHead align="left" max={560} kicker="Loved by families" title="Screens down, stories up" sub={null} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <Stars n={5} />
-            <span style={{ fontWeight: 800, fontSize: '1.05rem' }}>4.9 / 5 &nbsp;<span style={{ color: 'var(--sb-muted)', fontWeight: 700 }}>· 2,400+ families</span></span>
+            <span style={{ fontWeight: 800, fontSize: '1.05rem' }}>5.0 / 5 &nbsp;<span style={{ color: 'var(--sb-muted)', fontWeight: 700 }}>· verified Amazon reviews</span></span>
           </div>
         </div>
 
@@ -403,12 +406,13 @@ function Reviews() {
             <Reveal key={q.name} delay={i * 100}>
               <div style={{ background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, height: '100%', transform: `rotate(${q.tilt}deg)` }}>
                 <Stars n={5} />
-                <p style={{ marginTop: 14, fontSize: '1.12rem', lineHeight: 1.5, fontWeight: 600 }}>“{q.text}”</p>
+                <div className="sb-display" style={{ fontSize: '1.05rem', marginTop: 12, lineHeight: 1.2 }}>{q.title}</div>
+                <p style={{ marginTop: 8, fontSize: '1.02rem', lineHeight: 1.5, fontWeight: 600 }}>“{q.text}”</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 18 }}>
                   <div style={{ width: 40, height: 40, borderRadius: 999, border: '3px solid var(--sb-ink)', background: `var(--sb-${q.tint})`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontFamily: 'var(--font-display)' }}>{q.name[0]}</div>
                   <div style={{ lineHeight: 1.2 }}>
                     <div style={{ fontWeight: 800 }}>{q.name}</div>
-                    <div style={{ color: 'var(--sb-muted)', fontSize: '.9rem', fontWeight: 700 }}>{q.meta}</div>
+                    <div style={{ color: 'var(--sb-muted)', fontSize: '.9rem', fontWeight: 700 }}>Verified purchase · Amazon</div>
                   </div>
                 </div>
               </div>
