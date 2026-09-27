@@ -10,29 +10,26 @@ import { PageShell } from './lib/page-shell.jsx';
 const { Button, Input } = window.StoryBlocksJournalDesignSystem_239fa7;
 const UNLOCK_KEY = 'sb_parents_unlocked';
 
-// Flip to true once the PDFs are added to /public (keep the RESOURCES filenames).
-const DOWNLOADS_READY = false;
-
-/* The library itself. Drop the real PDFs into /public and keep these filenames
-   (or update them here) - each one is a direct download. */
+/* The library. PDFs live in /public and download directly; guides are on-site
+   articles (coming soon). Set `ready: true` once an item's file/link is live. */
 const RESOURCES = [
   {
     char: 'SB10', tint: 'var(--sb-wash-lemon)',
     title: 'Printable story starters',
     body: 'Fresh three-word prompts, objects, scenarios and first lines to print, cut out and pull from a jar. New sets added through the year.',
-    file: 'Story-Blocks-Story-Starters.pdf',
+    file: '/Story-Blocks-Starter-Pack.pdf', ready: true,
   },
   {
     char: 'SB44', tint: 'var(--sb-wash-pink)',
     title: 'Extra reward charts',
-    body: 'Run out of squares to tick? Print another chart any time - plus seasonal ones to keep the streak feeling new.',
-    file: 'Story-Blocks-Reward-Chart.pdf',
+    body: 'Run out of squares to tick? Print another reward chart any time to keep the daily streak going strong.',
+    file: '/Story-Blocks-Reward-Chart.pdf', ready: true,
   },
   {
     char: 'SB33', tint: 'var(--sb-wash-sky)',
     title: 'Guides for grown-ups',
     body: 'Short, practical reads: helping a reluctant writer, what to say (and what not to say), and how to keep ten minutes a day going.',
-    file: 'Story-Blocks-Parent-Guides.pdf',
+    ready: false,
   },
 ];
 
@@ -114,7 +111,7 @@ function Library() {
             <h3 style={{ marginTop: 10 }}>{r.title}</h3>
             <p style={{ marginTop: 8, flex: 1 }}>{r.body}</p>
             <div style={{ marginTop: 16 }}>
-              {DOWNLOADS_READY
+              {r.ready
                 ? <Button as="a" href={r.file} download iconRight="↓">Download</Button>
                 : <Button disabled>Coming soon</Button>}
             </div>
@@ -157,15 +154,14 @@ function Parents() {
         <li><strong>Printable story starters</strong> - fresh prompts to print, cut out and pull from a jar when the journal’s done for the day.</li>
         <li><strong>Extra reward charts</strong> - print another any time, including seasonal ones.</li>
         <li><strong>Guides for grown-ups</strong> - helping a reluctant writer, what to say and what not to say, and how to keep the habit going when motivation dips.</li>
-        <li><strong>Sticker sheets to reprint</strong> - because they always run out of the good ones first.</li>
       </ul>
 
       <h2>How it works</h2>
       <div className="parents-steps">
-        {steps.map((s) => (
+        {steps.map((s, i) => (
           <div key={s.title} style={{ background: s.tint, border: '3px solid var(--sb-ink)', borderRadius: 20, boxShadow: 'var(--shadow-pop)', padding: '22px 20px' }}>
-            <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ width: 64 }} />
-            <h3 style={{ marginTop: 8 }}>{s.title}</h3>
+            <div aria-hidden="true" style={{ width: 48, height: 48, borderRadius: 999, background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.4rem', color: 'var(--sb-ink)' }}>{i + 1}</div>
+            <h3 style={{ marginTop: 10 }}>{s.title}</h3>
             <p style={{ marginBottom: 0 }}>{s.body}</p>
           </div>
         ))}

@@ -150,7 +150,7 @@ function Hero({ edition, setEdition, qty, setQty, onAdd, added }) {
   const ed = EDITIONS[edition];
   const p = priceFor(ed.priceNum, qty);
   return (
-    <section id="top" style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-wash-sky)', borderBottom: '3px solid var(--sb-ink)' }}>
+    <section id="top" style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(90% 85% at 100% 0%, var(--sb-sky-deep) 0%, var(--sb-wash-sky) 58%)', borderBottom: '3px solid var(--sb-ink)' }}>
 
       {/* scattered block friends */}
       <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB33.png')} alt="" style={{ position: 'absolute', left: 8, bottom: 34, width: 98, ['--r']: '5deg', zIndex: 1, pointerEvents: 'none', animationDelay: '-2.2s' }} />

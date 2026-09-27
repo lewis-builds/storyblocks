@@ -147,17 +147,24 @@ function StarterSpreadRow({ r, i }) {
         <h3 className="sb-display" style={{ fontSize: 'clamp(1.4rem, 2.4vw, 1.8rem)', lineHeight: 1.1, marginTop: 4 }}>{r.q}</h3>
         <div className="sb-marker" style={{ fontSize: '1.05rem', color: 'var(--sb-muted)', marginTop: 6 }}>There are 4 types to explore…</div>
         <div className="sb-spread__tabs" role="tablist" aria-label="Story starter types">
-          {STARTER_TYPES.map((ty, k) => (
-            <button key={ty.name} type="button" role="tab" aria-selected={sel === k} onClick={() => setSel(k)}
-              style={{
-                fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: '.85rem', color: 'var(--sb-ink)', whiteSpace: 'nowrap',
-                background: `var(--sb-${ty.tint})`, border: '2.5px solid var(--sb-ink)', borderRadius: 999,
-                padding: '7px 12px', cursor: 'pointer',
-                boxShadow: sel === k ? '2px 2px 0 0 var(--sb-ink)' : 'none',
-                opacity: sel === k ? 1 : .55, transform: sel === k ? 'none' : 'scale(.96)',
-                transition: 'opacity .15s, transform .15s, box-shadow .15s',
-              }}>{ty.name}</button>
-          ))}
+          {STARTER_TYPES.map((ty, k) => {
+            const on = sel === k;
+            return (
+              <button key={ty.name} type="button" role="tab" aria-selected={on} onClick={() => setSel(k)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 9, width: '100%', textAlign: 'left', cursor: 'pointer',
+                  fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: '.9rem', color: 'var(--sb-ink)',
+                  background: on ? `var(--sb-${ty.tint})` : 'var(--sb-paper)',
+                  border: '2.5px solid var(--sb-ink)', borderRadius: 13, padding: '10px 13px',
+                  boxShadow: on ? '3px 3px 0 0 var(--sb-ink)' : 'none',
+                  transform: on ? 'none' : 'translate(1.5px, 1.5px)',
+                  transition: 'background .15s, box-shadow .15s, transform .15s',
+                }}>
+                <span aria-hidden="true" style={{ flexShrink: 0, width: 13, height: 13, borderRadius: 999, background: on ? 'var(--sb-paper)' : `var(--sb-${ty.tint})`, border: '2px solid var(--sb-ink)' }} />
+                {ty.name}
+              </button>
+            );
+          })}
         </div>
       </div>
       <div className="sb-spread__note sb-spread__note--a">
@@ -189,11 +196,11 @@ function WhatsInside() {
       slot: { id: 'inside-stickers', caption: 'Reward chart & sticker sheet', src: 'assets/sticker-reward-spread.png' },
       spread: true,
       flip: true,
-      char: 'SB44',
+      sticker: 'assets/sticker-sheet-full.jpg',
     },
   ];
   return (
-    <section id="inside" style={{ background: 'var(--sb-wash-green)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section id="inside" style={{ background: 'var(--sb-wash-green)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0', overflowX: 'clip' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Open it up…" title="What's inside the journal" sub="Everything a young writer needs to swap the screen for a story - and everything a parent needs to cheer them on." />
         <VideoPeek id="LfGmzb0qi9E" title="Inside the Story Blocks Journal" />
@@ -204,11 +211,17 @@ function WhatsInside() {
                 <StarterSpreadRow r={r} i={i} />
               ) : r.spread ? (
                 <article className={'sb-spread' + (r.flip ? ' sb-spread--alt' : '')}>
-                  <div className="sb-spread__book">
-                    <image-slot id={r.slot.id} src={r.slot.src ? asset(r.slot.src) : '/assets/placeholders/spread.svg'}
-                      style={{ width: '100%', aspectRatio: '296 / 210', height: 'auto', display: 'block' }} shape="rect"
-                      placeholder="Drop a photo of the open spread"></image-slot>
-                    <div className="sb-spread__spine" aria-hidden="true"></div>
+                  <div className="sb-spread__bookwrap" style={{ position: 'relative' }}>
+                    <div className="sb-spread__book">
+                      <image-slot id={r.slot.id} src={r.slot.src ? asset(r.slot.src) : '/assets/placeholders/spread.svg'}
+                        style={{ width: '100%', aspectRatio: '296 / 210', height: 'auto', display: 'block' }} shape="rect"
+                        placeholder="Drop a photo of the open spread"></image-slot>
+                      <div className="sb-spread__spine" aria-hidden="true"></div>
+                    </div>
+                    {r.sticker && (
+                      <img src={asset(r.sticker)} alt="The free peel-off sticker sheet in every journal"
+                        style={{ position: 'absolute', width: '35.5%', right: '1%', bottom: '-4%', transform: 'rotate(4deg)', borderRadius: 4, boxShadow: '0 1px 3px rgba(35,31,32,.12), 0 8px 16px rgba(35,31,32,.20), 0 20px 42px rgba(35,31,32,.18)', zIndex: 4 }} />
+                    )}
                   </div>
                   <div className="sb-spread__note sb-spread__note--q">
                     <span className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>{String(i + 1).padStart(2, '0')}</span>

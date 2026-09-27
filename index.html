@@ -296,7 +296,7 @@
   .sb-spread__spine { position: absolute; top: 0; bottom: 0; left: 50%; width: 44px; transform: translateX(-50%);
     background: linear-gradient(90deg, transparent, rgba(35,31,32,.14) 42%, rgba(35,31,32,.3) 50%, rgba(35,31,32,.14) 58%, transparent);
     pointer-events: none; z-index: 2; }
-  .sb-spread__tabs { display: flex; flex-wrap: nowrap; gap: 7px; margin-top: 12px; }
+  .sb-spread__tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
   /* starter row: question card sits to the right of the spread, answer card to the left */
   .sb-spread--starter .sb-spread__note--q { left: auto; right: -30px; transform: rotate(2deg); }
   .sb-spread--starter .sb-spread__note--a { right: auto; left: -30px; transform: rotate(-1.5deg); }

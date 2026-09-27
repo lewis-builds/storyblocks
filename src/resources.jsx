@@ -11,9 +11,6 @@ const { Button: ResButton, Badge: ResBadge, Input: ResInput, Checkbox: ResCheckb
 
 const RES_KEY = 'sb_resources_unlocked_email';
 
-// Flip to true once the printable PDFs are added to /public.
-const DOWNLOADS_READY = false;
-
 /* ---------------- Header - shared SiteHeader from sections.jsx ---------------- */
 
 /* ---------------- Email gate ---------------- */
@@ -59,40 +56,17 @@ function EmailGate({ onUnlock }) {
 }
 
 /* ---------------- Unlocked downloads ---------------- */
-function Downloads({ email, onReset }) {
-  const packs = [
-    {
-      char: 'SB10', tint: 'var(--sb-wash-lemon)',
-      title: 'Printable story starters',
-      body: '5 story starters - objects, scenarios, first lines and three words. Print, cut out, and pull one from a jar each day.',
-      file: 'Story-Blocks-Story-Starters.pdf',
-    },
-    {
-      char: 'SB44', tint: 'var(--sb-wash-pink)',
-      title: 'Reward chart',
-      body: 'The same tick-and-sticker chart that comes with the journal, sized for A4. Finish a story, tick a box - little wins add up.',
-      file: 'Story-Blocks-Reward-Chart.pdf',
-    },
-  ];
+function Downloads({ onReset }) {
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-        <ResBadge variant="green" tilt={false}>Unlocked</ResBadge>
-        <span style={{ fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.95rem' }}>A copy is on its way to {email}</span>
-      </div>
-      <div className="sb-res-downloads" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 22, marginTop: 18 }}>
-        {packs.map((p) => (
-          <div key={p.title} style={{ background: p.tint, border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, display: 'flex', flexDirection: 'column' }}>
-            <img src={asset(CHAR_BASE + '/' + p.char + '.png')} alt="" style={{ width: 80 }} />
-            <h3 className="sb-display" style={{ fontSize: '1.35rem', marginTop: 12 }}>{p.title}</h3>
-            <p style={{ marginTop: 8, lineHeight: 1.55, flex: 1 }}>{p.body}</p>
-            <div style={{ marginTop: 16 }}>
-              {DOWNLOADS_READY
-                ? <ResButton as="a" href={p.file} download iconRight="↓">Download</ResButton>
-                : <ResButton disabled>Coming soon</ResButton>}
-            </div>
-          </div>
-        ))}
+      <ResBadge variant="green" tilt={false}>Unlocked</ResBadge>
+      <div style={{ background: 'var(--sb-wash-lemon)', border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 26, marginTop: 18, display: 'flex', flexDirection: 'column' }}>
+        <img src={asset(CHAR_BASE + '/SB10.png')} alt="" style={{ width: 80 }} />
+        <h3 className="sb-display" style={{ fontSize: '1.4rem', marginTop: 12 }}>Your free starter pack</h3>
+        <p style={{ marginTop: 8, lineHeight: 1.55 }}>Three story starters - three words, an object and a scenario - plus the reward chart, all in one printable PDF. Print them out and give ten-minute stories a try.</p>
+        <div style={{ marginTop: 18 }}>
+          <ResButton as="a" href="/Story-Blocks-Starter-Pack.pdf" download iconRight="↓">Download the pack</ResButton>
+        </div>
       </div>
       <p style={{ marginTop: 16, fontSize: '.9rem', color: 'var(--sb-muted)', fontWeight: 600 }}>
         Wrong email? <button onClick={onReset} style={{ background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 800, color: 'var(--sb-blue)', cursor: 'pointer', textDecoration: 'underline' }}>Start again</button>
@@ -137,9 +111,9 @@ function ResourcesApp() {
           <div className="sb-wrap">
             <div style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto' }}>
               <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>What's in the pack…</div>
-              <h2 className="sb-display" style={{ fontSize: 'clamp(1.8rem, 3.4vw, 2.4rem)', marginTop: 8, lineHeight: 1.1 }}>Five starters and a chart to tick</h2>
+              <h2 className="sb-display" style={{ fontSize: 'clamp(1.8rem, 3.4vw, 2.4rem)', marginTop: 8, lineHeight: 1.1 }}>Three starters and a chart to tick</h2>
               <p style={{ marginTop: 14, fontSize: '1.1rem', lineHeight: 1.6 }}>
-                A taste of each starter type - objects, scenarios, first lines and three words - plus the
+                A taste of three starter types - three words, an object and a scenario - plus the
                 reward chart from the journal. If they love it, <a href="/" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>the journal</a> has
                 70+ story starters across all four types.
               </p>
@@ -147,8 +121,7 @@ function ResourcesApp() {
 
             {/* pack shot */}
             <figure style={{ margin: '44px auto 0', maxWidth: 820, background: '#fff', border: '3px solid var(--sb-ink)', borderRadius: 14, boxShadow: 'var(--shadow-pop)', padding: '12px 12px 14px', transform: 'rotate(-1deg)' }}>
-              <image-slot id="resources-pack-shot" src="/assets/placeholders/photo.svg" style={{ width: '100%', height: '420px', display: 'block' }} shape="rounded" radius="8"
-                placeholder="Drop the pack image here"></image-slot>
+              <img src={asset('assets/resources-free-pack.jpg')} alt="The free Story Blocks starter pack - three printable story starters and the reward chart" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8 }} />
               <figcaption className="sb-marker" style={{ fontSize: '1.15rem', textAlign: 'center', marginTop: 10 }}>The free pack - story starters & reward chart</figcaption>
             </figure>
           </div>
