@@ -3,7 +3,7 @@ import './lib/react-global.js';
 import './lib/image-slot.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { asset, CHAR_BASE } from './lib/core.js';
+import { asset, CHAR_BASE, washGrad } from './lib/core.js';
 import { SiteHeader, SiteFooter } from './sections.jsx';
 
 const ResDS = window.StoryBlocksJournalDesignSystem_239fa7;
@@ -88,7 +88,7 @@ function ResourcesApp() {
     <React.Fragment>
       <SiteHeader active="resources" />
       <main>
-        <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-wash-sky)', borderBottom: '3px solid var(--sb-ink)' }}>
+        <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('sky'), borderBottom: '3px solid var(--sb-ink)' }}>
           <div className="sb-wrap sb-res-hero" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,1fr)', gap: 56, alignItems: 'center', padding: '64px 24px 72px' }}>
             <div>
               <div className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>Free resources</div>

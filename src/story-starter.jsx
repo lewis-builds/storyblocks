@@ -9,6 +9,7 @@ import { SiteHeader, SiteFooter, Icon } from './sections.jsx';
 import STARTERS from './lib/story-starters.json';
 import { WordSparks } from './story-words.jsx';
 import { PromptStarter } from './story-prompt.jsx';
+import { washGrad } from './lib/core.js';
 
 const { Button } = window.StoryBlocksJournalDesignSystem_239fa7;
 const BY_SLUG = Object.fromEntries(STARTERS.map((s) => [s.slug, s]));
@@ -77,7 +78,7 @@ function StarterPage({ starter }) {
     <React.Fragment>
       <SiteHeader active={null} />
       <main>
-        <section style={{ background: `var(--sb-wash-${starter.tint})`, borderBottom: '3px solid var(--sb-ink)', padding: 'clamp(40px, 7vw, 72px) 0' }}>
+        <section style={{ background: washGrad(starter.tint), borderBottom: '3px solid var(--sb-ink)', padding: 'clamp(40px, 7vw, 72px) 0' }}>
           <div className="sb-wrap" style={{ maxWidth: 900 }}>
             <div className="sb-starter-hero" style={{ display: 'flex', alignItems: 'center', gap: 'clamp(20px, 4vw, 48px)' }}>
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -103,7 +104,7 @@ function StarterPage({ starter }) {
           </div>
         </section>
 
-        <section style={{ background: 'var(--sb-wash-lemon)', borderTop: '3px solid var(--sb-ink)', padding: 'clamp(36px, 6vw, 56px) 0' }}>
+        <section style={{ background: washGrad('lemon'), borderTop: '3px solid var(--sb-ink)', padding: 'clamp(36px, 6vw, 56px) 0' }}>
           <div className="sb-wrap" style={{ maxWidth: 820, textAlign: 'center' }}>
             <h2 className="sb-display" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>77 more starters where this came from</h2>
             <p style={{ marginTop: 10, fontSize: '1.1rem', lineHeight: 1.6, maxWidth: 560, margin: '10px auto 0' }}>Every one is ready in the Story Blocks Journal - a daily writing habit that gets kids off screens and into stories.</p>

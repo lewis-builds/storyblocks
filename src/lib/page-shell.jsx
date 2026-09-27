@@ -2,13 +2,14 @@
    reading column, and the site footer. Keeps each content page thin. */
 import React from 'react';
 import { SiteHeader, SiteFooter } from '../sections.jsx';
+import { washGrad } from '../lib/core.js';
 
 export function PageShell({ active = null, wash = 'sky', kicker, title, intro, heroChildren, children }) {
   return (
     <React.Fragment>
       <SiteHeader active={active} />
       <main>
-        <section className="page-hero" style={{ background: `var(--sb-wash-${wash})` }}>
+        <section className="page-hero" style={{ background: washGrad(wash) }}>
           <div className="sb-wrap">
             {kicker && <div className="sb-marker page-kicker">{kicker}</div>}
             <h1 className="sb-display page-title">{title}</h1>

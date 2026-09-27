@@ -3,7 +3,7 @@ import './lib/react-global.js';
 import './lib/image-slot.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { asset, CHAR_BASE } from './lib/core.js';
+import { asset, CHAR_BASE, washGrad } from './lib/core.js';
 import { SiteHeader, SiteFooter, SectionHead, Reveal } from './sections.jsx';
 import { sendForm, Honeypot, FormError } from './lib/form-submit.jsx';
 
@@ -13,28 +13,18 @@ const { Button: SchButton, Card: SchCard, Badge: SchBadge, Input: SchInput, Sele
 /* ---------------- Hero ---------------- */
 function SchoolsHero() {
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--sb-wash-green)', borderBottom: '3px solid var(--sb-ink)' }}>
-      <div className="sb-wrap sb-schools-hero" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.15fr) minmax(0,1fr)', gap: 56, alignItems: 'center', padding: '64px 24px 72px' }}>
-        <div>
-          <div className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>Blocks Publishing gives back</div>
-          <h1 className="sb-display" style={{ fontSize: 'clamp(2.4rem, 4.8vw, 3.6rem)', lineHeight: 1.04, marginTop: 8 }}>We're giving journals to schools across the UK.</h1>
-          <p style={{ marginTop: 18, fontSize: '1.2rem', lineHeight: 1.55, maxWidth: 540 }}>
-            Story Blocks began as a way to get one child writing at a kitchen table. Now, for every journal
-            that finds a home, we're helping more find their way into classrooms - free boxes of journals,
-            stickers and reward charts, sent to schools where they'll be used and loved.
-          </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 26 }}>
-            <SchButton as="a" href="#nominate" size="lg" iconRight="→">Nominate your school</SchButton>
-            <SchButton as="a" href="#how" size="lg" variant="white">How it works</SchButton>
-          </div>
-        </div>
-        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-          <div className="snap" style={{ transform: 'rotate(-2.5deg)', width: 'min(400px, 100%)' }}>
-            <image-slot id="schools-hero" src="/assets/placeholders/photo.svg" style={{ width: '100%', height: '280px', display: 'block' }} shape="rounded" radius="8"
-              placeholder="Drop a classroom photo"></image-slot>
-            <figcaption className="sb-marker">Journals arriving at a school near you…</figcaption>
-          </div>
-          <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB47.png')} alt="" style={{ position: 'absolute', width: 110, right: -18, bottom: -26, ['--r']: '-6deg', pointerEvents: 'none' }} />
+    <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('green'), borderBottom: '3px solid var(--sb-ink)' }}>
+      <div className="sb-wrap" style={{ maxWidth: 760, textAlign: 'center', padding: '64px 24px 72px' }}>
+        <div className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>Blocks Publishing gives back</div>
+        <h1 className="sb-display" style={{ fontSize: 'clamp(2.4rem, 5vw, 3.6rem)', lineHeight: 1.04, marginTop: 8 }}>We're giving journals to schools across the UK.</h1>
+        <p style={{ marginTop: 18, fontSize: '1.2rem', lineHeight: 1.55, maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>
+          Story Blocks began as a way to get one child writing at a kitchen table. Now, for every journal
+          that finds a home, we're helping more find their way into classrooms - free boxes of journals,
+          stickers and reward charts, sent to schools where they'll be used and loved.
+        </p>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 26, justifyContent: 'center' }}>
+          <SchButton as="a" href="#nominate" size="lg" iconRight="→">Nominate your school</SchButton>
+          <SchButton as="a" href="#how" size="lg" variant="white">How it works</SchButton>
         </div>
       </div>
     </section>
@@ -79,25 +69,29 @@ function SchoolsStory() {
   );
 }
 
-/* ---------------- Photo wall ---------------- */
-function PhotoWall() {
-  const slots = [
-    { id: 'schools-photo-1', tilt: -2, caption: 'The first boxes, packed by hand' },
-    { id: 'schools-photo-2', tilt: 1.5, caption: 'Story time in class' },
-    { id: 'schools-photo-3', tilt: -1, caption: 'A full shelf of sparks' },
+/* ---------------- What's in every box ---------------- */
+function BoxContents() {
+  const items = [
+    { img: 'assets/storyblocks-book.png', tint: 'var(--sb-wash-lemon)', tilt: -2, title: 'Hardback journals', body: 'The same daily-writing journals from this site - one for every child in the class to keep.' },
+    { img: 'assets/sticker-sheet-full.jpg', tint: 'var(--sb-wash-pink)', tilt: 1.5, title: 'Sticker sheets', body: 'Full peel-off sticker sheets to celebrate finished stories and keep the daily streak going.' },
+    { img: 'assets/wall-charts.jpg', tint: 'var(--sb-wash-purple)', tilt: -1, title: 'Wall reward charts', body: 'A big classroom wall chart to tick off reading and writing days - little wins the whole class can cheer on together.' },
   ];
   return (
-    <section style={{ background: 'var(--sb-wash-sky)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section style={{ background: washGrad('sky'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
-        <SectionHead kicker="From the classrooms" title="Photos from the road"
-          sub="We're just getting started - more photos land here as more boxes do." />
+        <SectionHead kicker="What arrives" title="What's in every box"
+          sub="Enough real journals, stickers and reward charts for a whole class to get scribbling." />
         <div className="sb-snaps" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 28, marginTop: 44 }}>
-          {slots.map((s) => (
-            <figure key={s.id} className="snap" style={{ margin: 0, transform: `rotate(${s.tilt}deg)` }}>
-              <image-slot id={s.id} src="/assets/placeholders/photo.svg" style={{ width: '100%', height: '230px', display: 'block' }} shape="rounded" radius="8"
-                placeholder="Photo coming soon"></image-slot>
-              <figcaption>{s.caption}</figcaption>
-            </figure>
+          {items.map((it) => (
+            <Reveal key={it.title}>
+              <div style={{ background: it.tint, border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 22, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ height: 190, background: 'var(--sb-paper)', border: '2.5px solid var(--sb-ink)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                  <img src={asset(it.img)} alt={it.title} style={{ maxWidth: '82%', maxHeight: '84%', objectFit: 'contain', transform: `rotate(${it.tilt}deg)` }} />
+                </div>
+                <h3 className="sb-display" style={{ fontSize: '1.3rem', marginTop: 16 }}>{it.title}</h3>
+                <p style={{ marginTop: 8, lineHeight: 1.55 }}>{it.body}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -167,7 +161,7 @@ function NominateForm() {
   };
 
   return (
-    <section id="nominate" style={{ background: 'var(--sb-wash-lemon)', borderTop: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0 84px' }}>
+    <section id="nominate" style={{ background: washGrad('lemon'), borderTop: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0 84px' }}>
       <div className="sb-wrap sb-nominate" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.1fr)', gap: 56, alignItems: 'center' }}>
         <div>
           <SectionHead align="left" kicker="Nominate a school" title="Know a school that needs a box of sparks?"
@@ -228,7 +222,7 @@ function SchoolsApp() {
       <main>
         <SchoolsHero />
         <SchoolsStory />
-        <PhotoWall />
+        <BoxContents />
         <HowToNominate />
         <NominateForm />
       </main>

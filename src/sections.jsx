@@ -1,6 +1,6 @@
 /* Story Blocks Journal - buy page sections + helpers */
 import React from 'react';
-import { asset, CHAR_BASE } from './lib/core.js';
+import { asset, CHAR_BASE, washGrad, cornerGrad } from './lib/core.js';
 
 const DS = window.StoryBlocksJournalDesignSystem_239fa7;
 const { Button, Card, Badge, Chip, Character, Sticker, Logo } = DS;
@@ -200,7 +200,7 @@ function WhatsInside() {
     },
   ];
   return (
-    <section id="inside" style={{ background: 'var(--sb-wash-green)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0', overflowX: 'clip' }}>
+    <section id="inside" style={{ background: washGrad('green'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0', overflowX: 'clip' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Open it up…" title="What's inside the journal" sub="Everything a young writer needs to swap the screen for a story - and everything a parent needs to cheer them on." />
         <VideoPeek id="LfGmzb0qi9E" title="Inside the Story Blocks Journal" />
@@ -291,7 +291,7 @@ function HowItWorks() {
 
         {/* Scan for a spark - the free companion app, as a proper feature */}
         <Reveal delay={120}>
-          <div className="sb-scan" style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,320px)', gap: 40, alignItems: 'center', background: 'var(--sb-yellow)', border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 48px' }}>
+          <div className="sb-scan" style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,320px)', gap: 40, alignItems: 'center', background: cornerGrad('--sb-yellow'), border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 48px' }}>
             <div>
               <div className="sb-marker" style={{ fontSize: '1.25rem', color: 'var(--sb-blue)' }}>The free companion app</div>
               <h3 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 3.6vw, 2.7rem)', lineHeight: 1.04, marginTop: 6 }}>Stuck? Scan for a spark.</h3>
@@ -324,7 +324,7 @@ function HowItWorks() {
    to the dedicated /why page — the depth and citations live there, not here. */
 function ProblemSection() {
   return (
-    <section style={{ background: 'var(--sb-wash-peach)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section style={{ background: washGrad('peach'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <div className="sb-problem" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,0.85fr) minmax(0,1.15fr)', gap: 52, alignItems: 'center' }}>
           {/* the one stat, as big type */}
@@ -388,7 +388,7 @@ function Reviews() {
     { tint: 'peach', tilt: -1, text: 'Lovely quality, and the parent guides tell me exactly how to encourage her without hovering.', name: 'Hannah', meta: 'parent, Glasgow' },
   ];
   return (
-    <section id="reviews" style={{ background: 'var(--sb-wash-lemon)', borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section id="reviews" style={{ background: washGrad('lemon'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <SectionHead align="left" max={560} kicker="Loved by parents" title="Screens down, stories up" sub={null} />
@@ -446,7 +446,7 @@ function ParentsCorner() {
   return (
     <section style={{ padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
-        <div className="sb-companion" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,.85fr) minmax(0,1.15fr)', gap: 40, alignItems: 'center', background: 'var(--sb-wash-purple)', border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '40px' }}>
+        <div className="sb-companion" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,.85fr) minmax(0,1.15fr)', gap: 40, alignItems: 'center', background: washGrad('purple'), border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '40px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
             <CornerCards />
             <span className="sb-marker" style={{ position: 'absolute', top: -18, right: -6, background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 999, padding: '6px 14px', fontSize: '1.15rem', transform: 'rotate(6deg)', boxShadow: 'var(--shadow-pop-sm)', zIndex: 2 }}>Included 💛</span>

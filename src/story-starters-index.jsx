@@ -5,6 +5,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { SiteHeader, SiteFooter } from './sections.jsx';
 import STARTERS from './lib/story-starters.json';
+import { washGrad } from './lib/core.js';
 
 const TYPES = ['All', 'Scenario', 'Objects', 'First line', 'Three words'];
 const countOf = (t) => STARTERS.filter((s) => s.type === t).length;
@@ -31,7 +32,7 @@ function Index() {
     <React.Fragment>
       <SiteHeader active={null} />
       <main>
-        <section className="page-hero" style={{ background: 'var(--sb-wash-sky)' }}>
+        <section className="page-hero" style={{ background: washGrad('sky') }}>
           <div className="sb-wrap">
             <div className="sb-marker page-kicker">Free story starters</div>
             <h1 className="sb-display page-title">77 story starters to spark a story</h1>
