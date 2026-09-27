@@ -2,6 +2,23 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<!-- Google tag (gtag.js) with Consent Mode v2 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-87PG1CRXD8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // Consent Mode v2: deny storage until the visitor chooses (see /consent.js banner).
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500
+  });
+  // Re-apply a previously accepted choice on later visits.
+  try { if (localStorage.getItem('sb_cookie_consent') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('js', new Date());
+  // Skip config on local dev / preview so it never pollutes analytics.
+  if (!/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) gtag('config', 'G-87PG1CRXD8');
+</script>
+<script defer src="/consent.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Delivery & returns - Story Blocks Journal</title>
 <meta name="description" content="Free UK mainland delivery on every Story Blocks order, dispatched in 1-2 working days, plus a friendly 30-day returns promise.">

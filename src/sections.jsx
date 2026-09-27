@@ -533,7 +533,11 @@ function SiteFooter() {
       </div>
       <div style={{ borderTop: '2px solid rgba(255,255,255,.18)' }}>
         <div className="sb-wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'center', justifyContent: 'space-between', padding: '22px 24px' }}>
-          <span style={{ color: '#C9C4BC', fontWeight: 600, fontSize: '.92rem' }}>© {new Date().getFullYear()} Blocks Publishing Ltd · blockspublishing.com</span>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px 14px', color: '#C9C4BC', fontWeight: 600, fontSize: '.92rem' }}>
+            <span>© {new Date().getFullYear()} Blocks Publishing Ltd · blockspublishing.com</span>
+            <button type="button" onClick={() => window.sbCookieConsent && window.sbCookieConsent.open()}
+              style={{ background: 'none', border: 0, padding: 0, font: 'inherit', color: '#EDE9E3', cursor: 'pointer', textDecoration: 'underline' }}>Cookie settings</button>
+          </div>
           <div style={{ background: '#fff', borderRadius: 12, padding: '6px 10px', display: 'inline-flex' }}>
             <img src={asset('assets/made-in-britain.png')} alt="Made in Britain" style={{ height: 44, width: 'auto' }} />
           </div>
