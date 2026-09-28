@@ -3,6 +3,7 @@
    original Focus On / Writing Tips / Challenges become tappable nudge cards that
    open a reveal sheet - mirroring the three-word experience. */
 import React from 'react';
+import { StarterIntro } from './lib/starter-intro.jsx';
 
 const IC = {
   focusOn: '<svg viewBox="0 0 24 24" fill="none" stroke="#231f20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
@@ -172,6 +173,8 @@ export function PromptStarter({ starter }) {
         </ul>
         <button type="button" className="sp-got" onClick={() => setOpen(null)}>Got it</button>
       </section>
+
+      <StarterIntro image={starter.image} bg={'var(--sb-wash-' + starter.tint + ')'} />
     </React.Fragment>
   );
 }

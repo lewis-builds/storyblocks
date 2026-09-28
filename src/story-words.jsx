@@ -3,6 +3,7 @@
    word library; each starter just supplies its three words. */
 import React from 'react';
 import LIB from './lib/word-sparks.json';
+import { StarterIntro } from './lib/starter-intro.jsx';
 
 const TINTS = ['var(--sb-wash-peach)', 'var(--sb-wash-sky)', 'var(--sb-wash-pink)'];
 const SHEETS = ['#FDF2E9', '#EAF5FB', '#FDEDF3'];
@@ -141,6 +142,8 @@ export function WordSparks({ starter }) {
           <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18 }}><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></svg>
         </button>
       </section>
+
+      <StarterIntro image={starter.image} bg="var(--sb-wash-green)" />
     </React.Fragment>
   );
 }
