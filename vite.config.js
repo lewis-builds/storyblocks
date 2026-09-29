@@ -14,6 +14,11 @@ function cleanUrlsDev() {
       req.url = '/story-starter.html' + (q === -1 ? '' : req.url.slice(q));
       return next();
     }
+    // Every /stickers/<code> is served by the single stickers milestone page.
+    if (/^\/stickers\/[^/]+\/?$/.test(path)) {
+      req.url = '/stickers.html' + (q === -1 ? '' : req.url.slice(q));
+      return next();
+    }
     if (path !== '/' && !path.includes('.') && !path.startsWith('/@') && !path.startsWith('/src/') && !path.startsWith('/node_modules/')) {
       const rel = path.replace(/^\/+/, '').replace(/\/+$/, '');
       if (rel && fs.existsSync(resolve(__dirname, rel + '.html'))) {
@@ -53,6 +58,7 @@ export default defineConfig({
         parents: resolve(__dirname, 'parents.html'),
         'story-starters': resolve(__dirname, 'story-starters.html'),
         'story-starter': resolve(__dirname, 'story-starter.html'),
+        stickers: resolve(__dirname, 'stickers.html'),
       },
     },
   },

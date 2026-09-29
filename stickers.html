@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) with Consent Mode v2 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-87PG1CRXD8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // Consent Mode v2: deny storage until the visitor chooses (see /consent.js banner).
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', wait_for_update: 500
+  });
+  // Re-apply a previously accepted choice on later visits.
+  try { if (localStorage.getItem('sb_cookie_consent') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('js', new Date());
+  // Skip config on local dev / preview so it never pollutes analytics.
+  if (!/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) gtag('config', 'G-87PG1CRXD8');
+</script>
+<script defer src="/consent.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- served at /stickers/<code>; base keeps asset paths resolving from the root. -->
+<base href="/">
+<title>New sticker unlocked! | Story Blocks Journal</title>
+<meta name="description" content="You unlocked a Story Blocks reward sticker - keep the daily writing streak going!">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#F9E25E">
+<link rel="icon" href="/assets/logo.png">
+<link rel="apple-touch-icon" href="/assets/logo.png">
+<link rel="stylesheet" href="/_ds/story-blocks-journal-design-system-239fa7bb-46ac-4a4c-84fd-eae2eea3aa29/styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/stickers.jsx"></script>
+</body>
+</html>
