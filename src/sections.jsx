@@ -187,16 +187,17 @@ function WhatsInside() {
     {
       q: 'How does it build writing confidence?',
       a: <React.Fragment>With writing tips and mini challenges tucked between the days. Gentle nudges - <em>give your hero a secret, end on a cliffhanger</em> - that stretch their skills without ever feeling like homework. No blank-page panic, no wrong answers.</React.Fragment>,
-      slot: { id: 'inside-page-tips', caption: 'Tips & challenges, mid-journal', src: 'assets/inside-page-challenge.png' },
+      slot: { id: 'inside-page-tips', caption: 'The Story Blocks Journal' },
       spread: true,
+      photo: 'assets/cover.jpg',
     },
     {
       q: 'What are the stickers and reward chart for?',
       a: <React.Fragment>Finish a story, tick the chart, peel off a sticker. Every journal includes a <strong>free full sticker sheet and reward chart</strong> - little wins that build a daily writing streak and make finishing feel like the best part.</React.Fragment>,
-      slot: { id: 'inside-stickers', caption: 'Reward chart & sticker sheet', src: 'assets/sticker-reward-spread.png' },
+      slot: { id: 'inside-stickers', caption: 'Reward chart & free sticker sheet' },
       spread: true,
       flip: true,
-      sticker: 'assets/sticker-sheet-full.jpg',
+      photo: 'assets/reward-chart.jpg',
     },
   ];
   return (
@@ -212,15 +213,15 @@ function WhatsInside() {
               ) : r.spread ? (
                 <article className={'sb-spread' + (r.flip ? ' sb-spread--alt' : '')}>
                   <div className="sb-spread__bookwrap" style={{ position: 'relative' }}>
-                    <div className="sb-spread__book">
-                      <image-slot id={r.slot.id} src={r.slot.src ? asset(r.slot.src) : '/assets/placeholders/spread.svg'}
-                        style={{ width: '100%', aspectRatio: '296 / 210', height: 'auto', display: 'block' }} shape="rect"
-                        placeholder="Drop a photo of the open spread"></image-slot>
-                      <div className="sb-spread__spine" aria-hidden="true"></div>
-                    </div>
-                    {r.sticker && (
-                      <img src={asset(r.sticker)} alt="The free peel-off sticker sheet in every journal"
-                        style={{ position: 'absolute', width: '35.5%', right: '1%', bottom: '-4%', transform: 'rotate(4deg)', borderRadius: 4, boxShadow: '0 1px 3px rgba(35,31,32,.12), 0 8px 16px rgba(35,31,32,.20), 0 20px 42px rgba(35,31,32,.18)', zIndex: 4 }} />
+                    {r.photo ? (
+                      <img className="sb-spread__mock" src={asset(r.photo)} alt={r.slot.caption || ''} />
+                    ) : (
+                      <div className="sb-spread__book">
+                        <image-slot id={r.slot.id} src={r.slot.src ? asset(r.slot.src) : '/assets/placeholders/spread.svg'}
+                          style={{ width: '100%', aspectRatio: '296 / 210', height: 'auto', display: 'block' }} shape="rect"
+                          placeholder="Drop a photo of the open spread"></image-slot>
+                        <div className="sb-spread__spine" aria-hidden="true"></div>
+                      </div>
                     )}
                   </div>
                   <div className="sb-spread__note sb-spread__note--q">
@@ -541,6 +542,7 @@ function SiteFooter() {
             <span>© {new Date().getFullYear()} Blocks Publishing Ltd · blockspublishing.com</span>
             <button type="button" onClick={() => window.sbCookieConsent && window.sbCookieConsent.open()}
               style={{ background: 'none', border: 0, padding: 0, font: 'inherit', color: '#EDE9E3', cursor: 'pointer', textDecoration: 'underline' }}>Cookie settings</button>
+            <span>Built by <a href="https://desirepath.co" target="_blank" rel="noopener" style={{ color: '#EDE9E3', fontWeight: 700, textDecoration: 'underline' }}>Desire Path Agency</a></span>
           </div>
           <div style={{ background: '#fff', borderRadius: 12, padding: '6px 10px', display: 'inline-flex' }}>
             <img src={asset('assets/made-in-britain.png')} alt="Made in Britain" style={{ height: 44, width: 'auto' }} />
@@ -574,7 +576,7 @@ const NAV_LINKS = [
   ['The journal', '/', 'journal'],
   ['Our mission', '/why', 'why'],
   ['Schools', '/schools', 'schools'],
-  ['Free resources', '/resources', 'resources'],
+  ['Free Pack', '/resources', 'resources'],
   ['Parents', '/parents', 'parents'],
 ];
 
