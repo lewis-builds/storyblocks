@@ -126,20 +126,15 @@ function GoldCoins() {
   );
 }
 
-function LookInsideBook({ cover, alt, gold }) {
+function LookInsideBook({ alt, gold }) {
+  // One combined image per edition (cover + sticker sheet baked in) so there's
+  // no staggered loading, no separate sticker and no drop-shadow.
+  const img = gold ? 'assets/storyblocks-gold-cover-combo.png' : 'assets/storyblocks-cover-combo.png';
   return (
-    <a className={'look' + (gold ? ' look--gold' : '')} href="#inside" aria-label="Take a look inside the journal">
+    <a className="look look--combo" href="#inside" aria-label="Take a look inside the journal">
       <div className="look__float">
-        <div className="look__cover">
-          <img src={asset(cover)} alt={alt} />
-          {gold && <span className="look__sheen" aria-hidden="true"></span>}
-        </div>
-        <div className="look__shadow" aria-hidden="true"></div>
-        <span className="look__sticker" role="img" aria-label="Free sticker sheet and reward chart included">
-          <img src={asset('assets/sticker-sheet.jpg')} alt="" />
-        </span>
+        <img className="look__combo" src={asset(img)} alt={alt} />
       </div>
-      {gold && <GoldCoins />}
       <span className="look__hint">Take a look inside 👀</span>
     </a>
   );
