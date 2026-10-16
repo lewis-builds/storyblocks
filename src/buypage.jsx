@@ -12,41 +12,49 @@ import { BasketDrawer } from './basket.jsx';
 
 const { Button: SBButton, Card: SBCard, Badge: SBBadge, Tabs: SBTabs, Toast: SBToast } = window.StoryBlocksJournalDesignSystem_239fa7;
 
-function BundlePicker({ unit, qty, setQty }) {
+function BundlePicker({ unit, qty, setQty, gold }) {
   const rows = [
     { n: 1, note: 'Just for them' },
     { n: 2, note: 'Great for siblings' },
   ];
+  const book = gold ? 'assets/storyblocks-gold-book.png' : 'assets/storyblocks-book.png';
+  const shadow = 'drop-shadow(2px 4px 5px rgba(35,31,32,.22))';
   return (
-    <div style={{ display: 'grid', gap: 10, marginTop: 18 }} role="radiogroup" aria-label="How many journals">
-      {rows.map(({ n, note, tag }) => {
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 18 }} role="radiogroup" aria-label="How many journals">
+      {rows.map(({ n, note }) => {
         const pr = priceFor(unit, n);
         const on = qty === n;
         return (
           <button key={n} type="button" role="radio" aria-checked={on} onClick={() => setQty(n)}
             style={{
-              position: 'relative', display: 'flex', alignItems: 'center', gap: 14, textAlign: 'left', width: '100%',
+              position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
               cursor: 'pointer', fontFamily: 'var(--font-body)', color: 'var(--sb-ink)',
               background: on ? 'var(--sb-wash-lemon)' : 'var(--sb-paper)',
-              border: `${on ? 3 : 2}px solid var(--sb-ink)`, borderRadius: 16, padding: '13px 16px',
+              border: `${on ? 3 : 2}px solid var(--sb-ink)`, borderRadius: 18, padding: '16px 10px 14px',
               boxShadow: on ? '4px 4px 0 0 var(--sb-ink)' : 'none',
               transition: 'box-shadow .15s, background .15s, border-width .05s',
             }}>
-            <span style={{ flexShrink: 0, width: 24, height: 24, borderRadius: 999, border: '3px solid var(--sb-ink)', background: on ? 'var(--sb-yellow)' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              {on && <span style={{ width: 9, height: 9, borderRadius: 999, background: 'var(--sb-ink)' }} />}
-            </span>
-            <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <span style={{ fontWeight: 800, fontSize: '1.08rem', display: 'flex', alignItems: 'center', gap: 8 }}>
-                {n} {n === 1 ? 'journal' : 'journals'}
-                {pr.rate > 0 && <span className="sb-marker" style={{ color: 'var(--sb-blue)', fontSize: '1rem', fontWeight: 400 }}>save {Math.round(pr.rate * 100)}%</span>}
-              </span>
-              <span style={{ fontSize: '.86rem', color: 'var(--sb-muted)', fontWeight: 700 }}>{note}</span>
-            </span>
-            <span style={{ textAlign: 'right', flexShrink: 0, lineHeight: 1.1 }}>
-              <span className="sb-display" style={{ fontSize: '1.45rem', display: 'block' }}>{gbp(pr.total)}</span>
-              {pr.rate > 0 && <span style={{ fontSize: '.82rem', color: 'var(--sb-faint)', textDecoration: 'line-through', fontWeight: 700 }}>{gbp(pr.full)}</span>}
-            </span>
-            {tag && <span className="sb-marker" style={{ position: 'absolute', top: -11, right: 16, background: 'var(--sb-ink)', color: '#fff', fontSize: '.85rem', padding: '3px 11px', borderRadius: 999, transform: 'rotate(-3deg)' }}>{tag}</span>}
+            {pr.rate > 0 && (
+              <span className="sb-marker" style={{ position: 'absolute', top: -11, right: 12, background: 'var(--sb-blue)', color: '#fff', fontSize: '1rem', fontWeight: 400, padding: '2px 11px', borderRadius: 999, transform: 'rotate(3deg)', boxShadow: '2px 2px 0 0 var(--sb-ink)', zIndex: 2 }}>save {Math.round(pr.rate * 100)}%</span>
+            )}
+
+            <div style={{ height: 74, width: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', position: 'relative' }}>
+              {n === 1 ? (
+                <img src={asset(book)} alt="" style={{ height: 70, width: 'auto', transform: 'rotate(-5deg)', filter: shadow }} />
+              ) : (
+                <React.Fragment>
+                  <img src={asset(book)} alt="" style={{ height: 62, width: 'auto', position: 'absolute', transform: 'translateX(-17px) rotate(-12deg)', filter: 'drop-shadow(1px 3px 4px rgba(35,31,32,.18))' }} />
+                  <img src={asset(book)} alt="" style={{ height: 70, width: 'auto', position: 'relative', transform: 'translateX(12px) rotate(8deg)', filter: shadow }} />
+                </React.Fragment>
+              )}
+            </div>
+
+            <div style={{ fontWeight: 800, fontSize: '1.05rem', marginTop: 12 }}>{n} {n === 1 ? 'journal' : 'journals'}</div>
+            <div style={{ fontSize: '.84rem', color: 'var(--sb-muted)', fontWeight: 700, marginTop: 2 }}>{note}</div>
+            <div style={{ marginTop: 8 }}>
+              <div className="sb-display" style={{ fontSize: '1.4rem', lineHeight: 1 }}>{gbp(pr.total)}</div>
+              {pr.rate > 0 && <div style={{ fontSize: '.8rem', color: 'var(--sb-faint)', textDecoration: 'line-through', fontWeight: 700, marginTop: 3 }}>{gbp(pr.full)}</div>}
+            </div>
           </button>
         );
       })}
@@ -131,9 +139,12 @@ function LookInsideBook({ alt, gold }) {
   // no staggered loading, no separate sticker and no drop-shadow.
   const img = gold ? 'assets/storyblocks-gold-cover-combo.png' : 'assets/storyblocks-cover-combo.png';
   return (
-    <a className="look look--combo" href="#inside" aria-label="Take a look inside the journal">
+    <a className={'look look--combo' + (gold ? ' look--gold' : '')} href="#inside" aria-label="Take a look inside the journal">
       <div className="look__float">
-        <img className="look__combo" src={asset(img)} alt={alt} />
+        <div className="look__combowrap">
+          <img className="look__combo" src={asset(img)} alt={alt} />
+          {gold && <span className="look__sheen" aria-hidden="true"></span>}
+        </div>
       </div>
       <span className="look__hint">Take a look inside 👀</span>
     </a>
@@ -194,7 +205,7 @@ function Hero({ edition, setEdition, qty, setQty, onAdd, added }) {
             ) : (
               <React.Fragment>
                 {/* bundle picker - quantity, saving and price in one tidy control */}
-                <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} />
+                <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} gold={edition === 'gold'} />
 
                 <div style={{ marginTop: 16 }}>
                   <SBButton variant={added ? 'green' : 'primary'} size="lg" block iconRight={added ? null : '→'} onClick={onAdd}>
@@ -238,7 +249,7 @@ function MobileBuySheet({ edition, setEdition, qty, setQty, onAdd, added }) {
 
       {/* expandable: bundles + includes */}
       <div className="sb-sheet__body">
-        {!ed.soldOut && <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} />}
+        {!ed.soldOut && <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} gold={edition === 'gold'} />}
         <ul style={{ listStyle: 'none', padding: 0, margin: '14px 0 2px', display: 'grid', gap: 8 }}>
           {ed.includes.map((t) => (
             <li key={t} style={{ display: 'flex', gap: 9, alignItems: 'flex-start', fontWeight: 600, fontSize: '.92rem' }}>

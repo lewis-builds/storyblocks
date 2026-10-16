@@ -183,6 +183,7 @@
     perspective: 2600px; position: relative; display: flex; align-items: center; justify-content: center;
     min-height: var(--book-h); cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .look__float { position: relative; width: var(--spread-w); max-width: 100%; display: flex; justify-content: center; will-change: transform; }
+  .look__combowrap { position: relative; display: inline-block; }
   .look__combo { display: block; height: var(--book-h); width: auto; max-width: 100%; }
   @keyframes sb-bookfloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
   @media (prefers-reduced-motion: no-preference) { .look__float { animation: sb-bookfloat 5.5s ease-in-out infinite; } }
@@ -250,14 +251,19 @@
 
   /* gold edition - periodic tilt-to-the-light with a travelling sheen */
   @media (prefers-reduced-motion: no-preference) {
-    .look--gold .look__cover { animation: sb-goldtilt 7s ease-in-out infinite; }
-    .look--gold .look__sticker { animation: sb-goldtilt-sticker 7s ease-in-out infinite; }
-    .look--gold .look__shadow { animation: sb-goldtilt-shadow 7s ease-in-out infinite; }
+    .look--gold .look__combowrap { animation: sb-combo-tilt 7s ease-in-out infinite; }
     .look--gold .look__sheen { animation: sb-goldsheen 7s ease-in-out infinite; }
   }
-  .look__sheen { position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-    background: linear-gradient(115deg, transparent 41%, rgba(255,255,255,.28) 47%, rgba(255,255,255,.55) 50%, rgba(255,255,255,.28) 53%, transparent 59%) no-repeat;
-    background-size: 320% 100%; background-position: 140% 0; }
+  .look__sheen { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(115deg, transparent 41%, rgba(255,255,255,.28) 47%, rgba(255,255,255,.6) 50%, rgba(255,255,255,.28) 53%, transparent 59%) no-repeat;
+    background-size: 320% 100%; background-position: 140% 0;
+    -webkit-mask: url(/assets/storyblocks-gold-cover-combo.png) center / contain no-repeat;
+            mask: url(/assets/storyblocks-gold-cover-combo.png) center / contain no-repeat; }
+  @keyframes sb-combo-tilt {
+    0%, 8%   { transform: perspective(2600px) rotateY(0deg) rotateX(0deg); }
+    26%, 40% { transform: perspective(2600px) rotateY(-26deg) rotateX(7deg); }
+    58%, 100%{ transform: perspective(2600px) rotateY(0deg) rotateX(0deg); }
+  }
   @keyframes sb-goldtilt {
     0%, 8%  { transform: translate(-50%, -50%) perspective(2600px) rotateY(0deg) rotateX(0deg); }
     26%, 40% { transform: translate(-50%, -50%) perspective(2600px) rotateY(-28deg) rotateX(8deg); }
