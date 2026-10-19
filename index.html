@@ -168,6 +168,13 @@
   .sb-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
   :root { --sec-pad: 108px; }
   .sb-marker { font-family: var(--font-marker); font-weight: 700; font-size-adjust: 0.449; }
+  /* No-JS / pre-hydration fallback inside #root (React replaces it on load). */
+  .sb-ssr { max-width: 720px; margin: 0 auto; padding: 44px 24px; }
+  .sb-ssr h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 5vw, 2.4rem); line-height: 1.12; }
+  .sb-ssr h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; margin-top: 24px; }
+  .sb-ssr p { margin: 12px 0; line-height: 1.6; }
+  .sb-ssr nav { margin-top: 22px; font-weight: 700; }
+  .sb-ssr a { color: var(--sb-blue); font-weight: 800; }
   .sb-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
 
   /* entrance - transform-only so content is never hidden even if transitions are frozen */
@@ -418,7 +425,15 @@
 </style>
 </head>
 <body>
-<div id="root"></div>
+<div id="root"><main class="sb-ssr">
+<h1>Story Blocks Journal - the daily creative-writing journal for kids</h1>
+<p>The Story Blocks Journal gives children aged 6+ a daily spark to write their own stories: three words and a friendly question, with 70+ story starters, writing tips and mini challenges across four kinds of starter - three words, an object, a scenario and a first line - on pages made for young writers. Every journal includes a free sticker sheet and reward chart, plus access to the online Parents' Corner of printables and guides. Made in Britain. £19.99 with free UK delivery.</p>
+<h2>What's inside</h2>
+<p>70+ daily story starters, writing tips and challenges; a free sticker sheet and reward chart in every journal; and free Parents' Corner access with printables and guides for grown-ups.</p>
+<h2>For parents and schools</h2>
+<p>Swap ten minutes of scrolling for ten minutes of storytelling. There's a free printable pack to try, and we give free boxes of journals to UK schools.</p>
+<nav aria-label="Site"><a href="/why">Our mission</a> &middot; <a href="/schools">Schools</a> &middot; <a href="/resources">Free pack</a> &middot; <a href="/parents">Parents' Corner</a> &middot; <a href="/faqs">FAQs</a> &middot; <a href="/about">About</a> &middot; <a href="/contact">Contact</a> &middot; <a href="/privacy">Privacy</a></nav>
+</main></div>
 
 <script type="module" src="/src/buypage.jsx"></script>
 </body>

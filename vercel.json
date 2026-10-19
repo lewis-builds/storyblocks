@@ -5,6 +5,12 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/((?!assets/|_ds/|.*\\.).*)",
+      "headers": [{ "key": "Vary", "value": "Accept" }]
+    }
+  ],
   "rewrites": [
     { "source": "/story-starters/:slug", "destination": "/story-starter" },
     { "source": "/stickers/:code", "destination": "/stickers" }

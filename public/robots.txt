@@ -19,3 +19,7 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://blockspublishing.com/sitemap.xml
+
+# Agent / LLM guidance (when-to-use + machine-readable pages):
+# https://blockspublishing.com/llms.txt
+# Any page also serves Markdown via the Accept: text/markdown header.
