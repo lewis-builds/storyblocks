@@ -2,10 +2,18 @@
 import './lib/react-global.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { purchaseFromPending } from './lib/analytics.js';
 
 const { Button } = window.StoryBlocksJournalDesignSystem_239fa7;
 
 function Thanks() {
+  // GA4: report the purchase using the basket stashed before the Stripe redirect,
+  // keyed by the Stripe session id passed through the success URL.
+  React.useEffect(() => {
+    const sid = new URLSearchParams(window.location.search).get('session_id');
+    purchaseFromPending(sid);
+  }, []);
+
   return (
     <div style={{ maxWidth: 560, width: '100%', background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 36px', textAlign: 'center', position: 'relative' }}>
       <img className="sb-float" src="/assets/characters/SB44.png" alt="" style={{ width: 150 }} />

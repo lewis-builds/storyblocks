@@ -9,6 +9,7 @@ import {
   ParentsCorner, WhyBlocks, SiteFooter, Icon,
 } from './sections.jsx';
 import { BasketDrawer } from './basket.jsx';
+import { viewItem, addToCart } from './lib/analytics.js';
 
 const { Button: SBButton, Card: SBCard, Badge: SBBadge, Tabs: SBTabs, Toast: SBToast } = window.StoryBlocksJournalDesignSystem_239fa7;
 
@@ -318,6 +319,9 @@ function App() {
     if (window.location.hash === '#basket') setDrawerOpen(true);
   }, []);
 
+  // GA4: viewing the product (re-fires when the edition tab changes).
+  React.useEffect(() => { viewItem(edition + '-1'); }, [edition]);
+
   const count = Object.values(basket).reduce((n, q) => n + q, 0); // products, not books - a 2-pack counts as 1
 
   const showToast = React.useCallback((msg) => {
@@ -332,6 +336,7 @@ function App() {
     const p = priceFor(ed.priceNum, qty);
     const sku = edition + '-' + (qty >= 2 ? '2' : '1'); // qty 2 → the 2-pack SKU
     setBasket((b) => ({ ...b, [sku]: Math.min(9, b[sku] + 1) }));
+    addToCart(sku, 1);
     setAdded(true);
     setToast(p.saved > 0
       ? `${SKUS[sku].name} added - you saved ${gbp(p.saved)}!`

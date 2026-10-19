@@ -4,6 +4,7 @@
    and returns its URL (see api/checkout.example.js). */
 import React from 'react';
 import { asset, CHAR_BASE, SKUS, gbp } from './lib/core.js';
+import { viewCart, beginCheckout, addToCart, removeFromCart } from './lib/analytics.js';
 
 const { Button: SBButton } = window.StoryBlocksJournalDesignSystem_239fa7;
 
@@ -19,6 +20,9 @@ function BasketDrawer({ open, onClose, basket, setBasket, onToast }) {
   }, { total: 0, saved: 0, books: 0 });
 
   const setLine = (sku, q) => setBasket((b) => ({ ...b, [sku]: Math.max(0, Math.min(9, q)) }));
+
+  // GA4: report the cart when the drawer opens.
+  React.useEffect(() => { if (open) viewCart(basket); }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* two (or more) singles of the same edition → offer the 2-pack */
   const swapForPack = (sku) => {
@@ -49,6 +53,7 @@ function BasketDrawer({ open, onClose, basket, setBasket, onToast }) {
 
   const checkout = async () => {
     setBusy(true);
+    beginCheckout(basket); // GA4 + stash basket for the purchase event on /thanks
     try {
       const res = await fetch('/api/checkout', {
         method: 'POST',
@@ -104,10 +109,10 @@ function BasketDrawer({ open, onClose, basket, setBasket, onToast }) {
                           {gbp(s.price * q)}{s.fullPrice > s.price && <span> · saving {gbp((s.fullPrice - s.price) * q)}</span>}
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
-                          <button style={stepBtn} aria-label={'Fewer ' + s.name} onClick={() => setLine(sku, q - 1)}>−</button>
+                          <button style={stepBtn} aria-label={'Fewer ' + s.name} onClick={() => { setLine(sku, q - 1); removeFromCart(sku, 1); }}>−</button>
                           <span className="sb-display" style={{ minWidth: 18, textAlign: 'center' }}>{q}</span>
-                          <button style={stepBtn} aria-label={'More ' + s.name} onClick={() => setLine(sku, q + 1)}>＋</button>
-                          <button onClick={() => setLine(sku, 0)} style={{ marginLeft: 'auto', background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 800, fontSize: '.85rem', color: 'var(--sb-muted)', cursor: 'pointer', textDecoration: 'underline' }}>Remove</button>
+                          <button style={stepBtn} aria-label={'More ' + s.name} onClick={() => { setLine(sku, q + 1); addToCart(sku, 1); }}>＋</button>
+                          <button onClick={() => { removeFromCart(sku, q); setLine(sku, 0); }} style={{ marginLeft: 'auto', background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 800, fontSize: '.85rem', color: 'var(--sb-muted)', cursor: 'pointer', textDecoration: 'underline' }}>Remove</button>
                         </div>
                       </div>
                     </div>
