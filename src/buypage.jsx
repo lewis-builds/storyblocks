@@ -169,7 +169,7 @@ function Hero({ edition, setEdition, qty, setQty, onAdd, added }) {
         <div className="sb-hero-head" style={{ textAlign: 'center', maxWidth: 860, margin: '0 auto 40px' }}>
           <div className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>The daily creative-writing journal for kids</div>
           <h1 className="sb-display" style={{ fontSize: 'clamp(2.6rem, 5.2vw, 4rem)', lineHeight: 1.02, marginTop: 6 }}>Build healthier habits.</h1>
-          <p style={{ marginTop: 16, fontSize: '1.22rem', lineHeight: 1.5, maxWidth: 620, margin: '16px auto 0' }}>Swap ten minutes of scrolling for ten minutes of storytelling.<br className="sb-desk-br"/>One little spark a day and their imagination does the rest.</p>
+          <p style={{ marginTop: 16, fontSize: '1.22rem', lineHeight: 1.5, maxWidth: 620, margin: '16px auto 0' }}>Swap ten minutes of screens for ten minutes of storytelling.<br className="sb-desk-br"/>One little spark a day and their imagination does the rest.</p>
         </div>
 
         <div className="sb-hero" style={{ display: 'grid', gridTemplateColumns: 'minmax(520px, 1fr) minmax(0, 1fr)', gap: 56, alignItems: 'center' }}>
