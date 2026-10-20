@@ -201,7 +201,7 @@ function WhatsInside() {
     },
   ];
   return (
-    <section id="inside" style={{ background: washGrad('green'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0', overflowX: 'clip' }}>
+    <section id="inside" style={{ background: washGrad('pink'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0', overflowX: 'clip' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Open it up…" title="What's inside the journal" sub="Everything a young writer needs to swap the screen for a story - and everything a parent needs to cheer them on." />
         <VideoPeek id="LfGmzb0qi9E" title="Inside the Story Blocks Journal" />
