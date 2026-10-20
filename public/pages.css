@@ -25,7 +25,7 @@ a { color: inherit; }
 .sb-ssr p { margin: 12px 0; line-height: 1.6; }
 .sb-ssr nav { margin-top: 22px; font-weight: 700; }
 .sb-ssr a { color: var(--sb-blue); font-weight: 800; }
-.sb-marker { font-family: var(--font-marker); font-weight: 700; font-size-adjust: 0.449; }
+.sb-marker { font-family: var(--font-marker); font-weight: 700; }
 .sb-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
 
 @keyframes sb-float { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-9px) rotate(var(--r,0deg)); } }
