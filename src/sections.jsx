@@ -201,7 +201,7 @@ function WhatsInside() {
     },
   ];
   return (
-    <section id="inside" style={{ background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0', overflowX: 'clip' }}>
+    <section id="inside" style={{ background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)', padding: 'clamp(24px, 4vw, 40px) 0 var(--sec-pad, 72px)', overflowX: 'clip' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Open it up…" title="What's inside the journal" sub="Everything a young writer needs to swap the screen for a story - and everything a parent needs to cheer them on." />
         <VideoPeek id="LfGmzb0qi9E" title="Inside the Story Blocks Journal" />
@@ -370,7 +370,7 @@ function Stars({ n = 5 }) {
    Sits just under the hero/trust bar, leading into "Open it up…". */
 export function KidsWritingStrip() {
   return (
-    <section style={{ background: 'var(--sb-cream)', paddingBottom: 'clamp(28px, 5vw, 52px)' }}>
+    <section style={{ background: 'var(--sb-cream)', paddingBottom: 'clamp(12px, 2.5vw, 24px)' }}>
       <div className="sb-wrap">
         <Reveal>
           <div className="sb-kids-strip" aria-label="Photos of children writing in their Story Blocks journals">
