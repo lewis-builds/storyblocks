@@ -26,11 +26,11 @@ export const EDITIONS = {
     cover: 'assets/storyblocks-book.png',
     ribbon: 'Most loved',
     ribbonTint: 'green',
-    tagline: 'The everyday journal that gets kids writing - and keeps you in the loop.',
+    tagline: 'Everything a young writer needs to swap screen time for story time - and keep coming back.',
     includes: [
-      '70+ daily story starters + writing tips',
-      'Free sticker sheet & reward chart',
-      'Free Parents’ Corner access - guides & printables',
+      { b: '70+ daily story starters', t: 'with built-in writing tips' },
+      { b: 'Free sticker sheet + reward chart', t: 'to build the daily habit' },
+      { b: 'Free Parents’ Corner', t: '- guides, tips and printables' },
     ],
   },
   gold: {
@@ -43,9 +43,9 @@ export const EDITIONS = {
     ribbonTint: 'yellow',
     tagline: 'Everything in Standard, dressed up in gold foil - plus milestone coins to award.',
     includes: [
-      'Everything in the Standard Edition',
-      'Gold-foil cover',
-      'Wooden collector milestone coins',
+      { b: 'Everything in the Standard Edition', t: '' },
+      { b: 'Gold-foil cover', t: '' },
+      { b: 'Wooden collector milestone coins', t: '' },
     ],
   },
 };

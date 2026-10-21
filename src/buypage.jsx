@@ -13,6 +13,9 @@ import { viewItem, addToCart } from './lib/analytics.js';
 
 const { Button: SBButton, Card: SBCard, Badge: SBBadge, Tabs: SBTabs, Toast: SBToast } = window.StoryBlocksJournalDesignSystem_239fa7;
 
+/* Brand tints cycled across the "what's included" check badges. */
+const INCLUDE_TINTS = ['green', 'sky', 'peach'];
+
 function BundlePicker({ unit, qty, setQty, gold }) {
   const rows = [
     { n: 1, note: 'Just for them' },
@@ -187,11 +190,11 @@ function Hero({ edition, setEdition, qty, setQty, onAdd, added }) {
 
             <p style={{ marginTop: 16, fontSize: '1.02rem', lineHeight: 1.45, fontWeight: 600, color: 'var(--sb-ink)' }}>{ed.tagline}</p>
 
-            <ul style={{ listStyle: 'none', padding: 0, margin: '16px 0 0', display: 'grid', gap: 10 }}>
-              {ed.includes.map((t) => (
-                <li key={t} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontWeight: 600 }}>
-                  <span style={{ flexShrink: 0, width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1 }}><Icon name="check" size={19} sw={3.2} /></span>
-                  {t}
+            <ul style={{ listStyle: 'none', padding: 0, margin: '16px 0 0', display: 'grid', gap: 12 }}>
+              {ed.includes.map((it, i) => (
+                <li key={it.b} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontWeight: 600, lineHeight: 1.35 }}>
+                  <span style={{ flexShrink: 0, width: 27, height: 27, borderRadius: 999, background: `var(--sb-${INCLUDE_TINTS[i % INCLUDE_TINTS.length]})`, border: '2.5px solid var(--sb-ink)', boxShadow: '2px 2px 0 0 var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1 }}><Icon name="check" size={15} sw={3.6} stroke="var(--sb-ink)" /></span>
+                  <span><strong style={{ fontWeight: 800 }}>{it.b}</strong>{it.t ? ' ' + it.t : ''}</span>
                 </li>
               ))}
             </ul>
@@ -251,13 +254,13 @@ function MobileBuySheet({ edition, setEdition, qty, setQty, onAdd, added }) {
       {/* expandable: bundles + includes */}
       <div className="sb-sheet__body">
         {!ed.soldOut && <BundlePicker unit={ed.priceNum} qty={qty} setQty={setQty} gold={edition === 'gold'} />}
-        <ul style={{ listStyle: 'none', padding: 0, margin: '14px 0 2px', display: 'grid', gap: 8 }}>
-          {ed.includes.map((t) => (
-            <li key={t} style={{ display: 'flex', gap: 9, alignItems: 'flex-start', fontWeight: 600, fontSize: '.92rem' }}>
-              <span style={{ flexShrink: 0, width: 20, height: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1 }}>
-                <Icon name="check" size={16} sw={3.4} />
+        <ul style={{ listStyle: 'none', padding: 0, margin: '14px 0 2px', display: 'grid', gap: 10 }}>
+          {ed.includes.map((it, i) => (
+            <li key={it.b} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontWeight: 600, fontSize: '.92rem', lineHeight: 1.3 }}>
+              <span style={{ flexShrink: 0, width: 23, height: 23, borderRadius: 999, background: `var(--sb-${INCLUDE_TINTS[i % INCLUDE_TINTS.length]})`, border: '2.5px solid var(--sb-ink)', boxShadow: '1.5px 1.5px 0 0 var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 1 }}>
+                <Icon name="check" size={13} sw={3.8} stroke="var(--sb-ink)" />
               </span>
-              {t}
+              <span><strong style={{ fontWeight: 800 }}>{it.b}</strong>{it.t ? ' ' + it.t : ''}</span>
             </li>
           ))}
         </ul>
