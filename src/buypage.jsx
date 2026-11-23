@@ -203,23 +203,21 @@ function JournalHero({ onSponsor }) {
           .sb-jhero__copy .sb-marker { text-align: center; }
         }
       `}</style>
-      <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB33.png')} alt="" style={{ position: 'absolute', left: 8, bottom: 28, width: 86, ['--r']: '5deg', zIndex: 1, pointerEvents: 'none', animationDelay: '-2.2s' }} />
-      <div className="sb-wrap sb-jhero" style={{ position: 'relative', zIndex: 2, padding: '44px 24px 56px', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 48, alignItems: 'center' }}>
+      <div className="sb-wrap sb-jhero" style={{ position: 'relative', zIndex: 2, padding: '56px 24px 64px', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 56, alignItems: 'center' }}>
         <div className="sb-jhero__copy">
-          <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)' }}>The daily creative-writing journal for kids</div>
+          <div className="sb-marker" style={{ fontSize: '1.35rem', color: 'var(--sb-blue)' }}>For local businesses</div>
           <h1 className="sb-display" style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>Sponsor the journal kids love to write in.</h1>
-          <p style={{ marginTop: 16, fontSize: '1.15rem', lineHeight: 1.55, maxWidth: 520 }}>
-            Story Blocks gives a child a daily spark - three words and a friendly question - and 70+ story starters that make writing feel like play. You sponsor a batch for a UK primary school you nominate; <strong>under £8.50 puts one in a child’s hands.</strong>
+          <p style={{ marginTop: 18, fontSize: '1.18rem', lineHeight: 1.55, maxWidth: 480 }}>
+            Give a batch to a UK state primary school you nominate. <strong>Under £8.50 puts a journal in a child’s hands.</strong>
           </p>
-          <p className="sb-marker" style={{ marginTop: 12, fontSize: '1.2rem', color: 'var(--sb-ink)' }}>No app. No account. No data. Just good books.</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 24 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 26 }}>
             <SBButton variant="primary" size="lg" iconRight="→" onClick={onSponsor}>Sponsor a school</SBButton>
             <SBButton as="a" href="#inside" variant="white" size="lg">See what’s inside</SBButton>
           </div>
         </div>
         <div className="sb-jhero__art" style={{ display: 'flex', justifyContent: 'center' }}>
-          <img src={asset('assets/storyblocks-cover-combo.png')} alt="The Story Blocks Journal with its sticker sheet"
-            style={{ width: 'min(420px, 92%)', height: 'auto', filter: 'drop-shadow(8px 10px 0 rgba(35,31,32,.22))', transform: 'rotate(-2deg)' }} />
+          <img src={asset('assets/storyblocks-book.png')} alt="The Story Blocks Journal - a daily creative-writing journal for children"
+            style={{ width: 'min(340px, 82%)', height: 'auto', filter: 'drop-shadow(8px 10px 0 rgba(35,31,32,.18))', transform: 'rotate(-3deg)' }} />
         </div>
       </div>
     </section>
