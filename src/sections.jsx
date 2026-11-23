@@ -66,7 +66,9 @@ function SectionHead({ kicker, title, sub, align = 'center', max = 640 }) {
   );
 }
 
-/* ============================ TRUST STRIP ============================ */
+/* ============================ TRUST STRIP (auto-rotating) ============================ */
+/* One point at a time, centred, cross-fading. The active dot fills like a
+   countdown so it's clear another is about to appear. */
 function TrustStrip() {
   const items = [
     { icon: 'shield', label: 'We confirm with every school' },
@@ -74,15 +76,36 @@ function TrustStrip() {
     { icon: 'award', label: 'Certificate + social post pack' },
     { icon: 'sparkles', label: 'Made in Britain' },
   ];
+  const DUR = 3800;
+  const [i, setI] = React.useState(0);
+  React.useEffect(() => {
+    const t = setTimeout(() => setI((n) => (n + 1) % items.length), DUR);
+    return () => clearTimeout(t);
+  }, [i, items.length]);
+
   return (
     <div style={{ background: 'var(--sb-ink)' }}>
-      <div className="sb-wrap sb-trust" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 40px', justifyContent: 'center', padding: '16px 24px' }}>
-        {items.map((it) => (
-          <div key={it.label} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: '#fff', fontWeight: 800, fontSize: '.98rem' }}>
-            <Icon name={it.icon} size={22} stroke="var(--sb-yellow)" sw={2.6} />
-            {it.label}
-          </div>
-        ))}
+      <style>{`
+        @keyframes sbTrustIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+        @keyframes sbTrustFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        @media (prefers-reduced-motion: reduce) { .sb-trust-item, .sb-trust-fill { animation: none !important; } }
+      `}</style>
+      <div className="sb-wrap" style={{ padding: '14px 24px', minHeight: 70, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 11 }}>
+        <div key={i} className="sb-trust-item" aria-live="polite"
+          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 11, color: '#fff', fontWeight: 800, fontSize: '1.02rem', textAlign: 'center', lineHeight: 1.3, animation: 'sbTrustIn .5s ease' }}>
+          <Icon name={items[i].icon} size={22} stroke="var(--sb-yellow)" sw={2.6} style={{ flexShrink: 0 }} />
+          {items[i].label}
+        </div>
+        <div style={{ display: 'flex', gap: 7, justifyContent: 'center' }} aria-hidden="true">
+          {items.map((_, k) => (
+            <span key={k} style={{ height: 7, borderRadius: 999, overflow: 'hidden', width: k === i ? 30 : 7, background: 'rgba(255,255,255,.26)', transition: 'width .35s ease' }}>
+              {k === i && (
+                <span key={i} className="sb-trust-fill"
+                  style={{ display: 'block', height: '100%', width: '100%', background: 'var(--sb-yellow)', transformOrigin: 'left', animation: `sbTrustFill ${DUR}ms linear forwards` }} />
+              )}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

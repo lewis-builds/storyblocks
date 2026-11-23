@@ -201,6 +201,7 @@ function JournalHero({ onSponsor }) {
           .sb-jhero__art { order: -1; }
           .sb-jhero__copy p { margin-left: auto; margin-right: auto; }
           .sb-jhero__copy .sb-marker { text-align: center; }
+          .sb-hero-ctas { justify-content: center; }
         }
       `}</style>
       <div className="sb-wrap sb-jhero" style={{ position: 'relative', zIndex: 2, padding: '56px 24px 64px', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 56, alignItems: 'center' }}>
@@ -210,7 +211,7 @@ function JournalHero({ onSponsor }) {
           <p style={{ marginTop: 18, fontSize: '1.18rem', lineHeight: 1.55, maxWidth: 480 }}>
             Give a batch of journals to a classroom at a UK state primary school you nominate. <strong>Under £8.50 a journal.</strong>
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 26 }}>
+          <div className="sb-hero-ctas" style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 26 }}>
             <SBButton variant="primary" size="lg" iconRight="→" onClick={onSponsor}>Sponsor a school</SBButton>
             <SBButton as="a" href="#inside" variant="white" size="lg">See what’s inside</SBButton>
           </div>
