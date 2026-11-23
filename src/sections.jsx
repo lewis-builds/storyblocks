@@ -69,10 +69,10 @@ function SectionHead({ kicker, title, sub, align = 'center', max = 640 }) {
 /* ============================ TRUST STRIP ============================ */
 function TrustStrip() {
   const items = [
-    { icon: 'truck', label: 'Free UK delivery' },
-    { icon: 'sparkles', label: 'Improves writing skills' },
-    { icon: 'award', label: 'Free stickers + reward chart' },
-    { icon: 'book', label: 'Free parent guides & printables' },
+    { icon: 'shield', label: 'We confirm with every school' },
+    { icon: 'book', label: 'Named bookplate in every copy' },
+    { icon: 'award', label: 'Certificate + social post pack' },
+    { icon: 'sparkles', label: 'Made in Britain' },
   ];
   return (
     <div style={{ background: 'var(--sb-ink)' }}>
@@ -85,6 +85,64 @@ function TrustStrip() {
         ))}
       </div>
     </div>
+  );
+}
+
+/* ============================ SPONSOR STEPS ============================ */
+/* How a sponsorship works, start to finish - the businesslike, two-minute view. */
+function SponsorSteps() {
+  const steps = [
+    { n: '01', char: 'SB16', tint: 'sky', label: 'Choose a tier', body: 'Class (30), Year Group (60) or Whole School (90). One off, from £249. The 60 and 90 tiers include a Gold Edition award copy for the school.' },
+    { n: '02', char: 'SB50', tint: 'green', label: 'Nominate a school', body: 'Search the UK primary-school register for one you’d like to back - or ask us to choose a school that’s already waiting for books.' },
+    { n: '03', char: 'SB47', tint: 'peach', label: 'We confirm with them', body: 'We check with the school before anything ships - we never send unannounced. If they can’t accept, we arrange your second choice with you.' },
+    { n: '04', char: 'SB44', tint: 'pink', label: 'We deliver, you’re recognised', body: 'The journals arrive with a named bookplate in every copy. You get a certificate, a ready-made social post pack, and a delivery photo where the school allows it.' },
+  ];
+  return (
+    <section id="how" style={{ padding: 'var(--sec-pad, 72px) 0' }}>
+      <div className="sb-wrap">
+        <SectionHead kicker="Two minutes, genuinely" title="How sponsoring a school works" sub="You’re doing a good local thing - we make it effortless and make sure you’re seen doing it." />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, marginTop: 46 }}>
+          {steps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 100}>
+              <div style={{ position: 'relative', background: `var(--sb-wash-${s.tint})`, border: '3px solid var(--sb-ink)', borderRadius: 24, boxShadow: 'var(--shadow-pop)', padding: '28px 22px 22px', height: '100%' }}>
+                <span className="sb-marker" style={{ position: 'absolute', top: -18, left: 22, background: 'var(--sb-ink)', color: '#fff', fontSize: '1.25rem', lineHeight: 1, padding: '8px 14px', borderRadius: 999, transform: 'rotate(-3deg)' }}>{s.n}</span>
+                <div style={{ display: 'flex', justifyContent: 'center', height: 128 }}>
+                  <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ height: 128, width: 'auto' }} />
+                </div>
+                <h3 className="sb-display" style={{ fontSize: '1.3rem', marginTop: 6 }}>{s.label}</h3>
+                <p style={{ marginTop: 8, lineHeight: 1.5 }}>{s.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ REGISTER-A-SCHOOL BAND ============================ */
+/* Invites schools (teachers, heads, PTAs) to join the receiving list. */
+function RegisterBand() {
+  return (
+    <section style={{ padding: 'var(--sec-pad, 72px) 0' }}>
+      <div className="sb-wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,300px)', gap: 36, alignItems: 'center', background: cornerGrad('--sb-green'), border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(28px, 4vw, 44px)' }} className="sb-register-band">
+          <div>
+            <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>Teachers &amp; schools</div>
+            <h2 className="sb-display" style={{ fontSize: 'clamp(1.8rem, 3.6vw, 2.6rem)', lineHeight: 1.05, marginTop: 6 }}>Want journals for your school?</h2>
+            <p style={{ marginTop: 14, lineHeight: 1.6, fontWeight: 600, fontSize: '1.1rem', maxWidth: 480 }}>
+              Join our receiving list - it’s free and there’s no commitment. When a local sponsor asks us to choose a school, we match them with schools like yours.
+            </p>
+            <div style={{ marginTop: 22 }}>
+              <a href="/schools" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'var(--sb-yellow)', color: 'var(--sb-ink)', fontWeight: 800, fontSize: '1.05rem', textDecoration: 'none', padding: '14px 24px', border: '3px solid var(--sb-ink)', borderRadius: 16, boxShadow: 'var(--shadow-pop)' }}>Register your school →</a>
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }} className="sb-register-art">
+            <img src={asset(CHAR_BASE + '/SB33.png')} alt="" style={{ width: 'min(240px, 70vw)', height: 'auto' }} />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -498,27 +556,25 @@ function WhyBlocks() {
 /* Footer link targets. Entries that map to a real page/section are wired;
    the rest ('#') are placeholders for pages not built yet (privacy, FAQs…). */
 const FOOTER_LINKS = {
-  'What’s inside': '/#inside',
+  'Sponsor a school': '/#sponsor',
   'How it works': '/#how',
-  'Gold Edition': '/',
-  'Gift a journal': '/gift',
-  'Free story starters': '/story-starters',
-  'Delivery & returns': '/delivery',
-  'Parents’ Corner': '/parents',
+  'What’s inside': '/#inside',
+  'Reviews': '/#reviews',
+  'Register your school': '/schools',
+  'Delivery & dispatch': '/delivery',
   'Contact us': '/contact',
   'FAQs': '/faqs',
+  'Free story starters': '/story-starters',
+  'Parents’ Corner': '/parents',
   'About us': '/about',
   'Why Story Blocks': '/why',
-  'Free books for schools': '/schools',
-  'Wholesale': '/wholesale',
-  'Reviews': '/#reviews',
   'Privacy': '/privacy',
 };
 function SiteFooter() {
   const cols = [
-    { h: 'The journal', links: ['What’s inside', 'How it works', 'Gold Edition', 'Gift a journal', 'Free story starters'] },
-    { h: 'Support', links: ['Delivery & returns', 'Parents’ Corner', 'Contact us', 'FAQs'] },
-    { h: 'Blocks Publishing', links: ['About us', 'Why Story Blocks', 'Free books for schools', 'Wholesale', 'Reviews', 'Privacy'] },
+    { h: 'Sponsor', links: ['Sponsor a school', 'How it works', 'What’s inside', 'Reviews'] },
+    { h: 'Schools & support', links: ['Register your school', 'Delivery & dispatch', 'Contact us', 'FAQs'] },
+    { h: 'Blocks Publishing', links: ['About us', 'Why Story Blocks', 'Free story starters', 'Parents’ Corner', 'Privacy'] },
   ];
   return (
     <footer style={{ background: 'var(--sb-ink)', color: '#fff', paddingTop: 56 }}>
@@ -561,6 +617,7 @@ const HEADER_CSS = `
 .sb-mobile-menu { display: none; }
 @media (max-width: 720px) {
   .sb-nav { display: none !important; }
+  .sb-header-cta { display: none !important; }
   .sb-hamburger { display: inline-flex !important; }
   .sb-mobile-menu { display: none; flex-direction: column; padding: 6px 24px 16px;
     background: var(--sb-cream); border-top: 2px solid rgba(35,31,32,.12); }
@@ -573,31 +630,18 @@ const HEADER_CSS = `
 `;
 
 const NAV_LINKS = [
-  ['The journal', '/', 'journal'],
+  ['Sponsor', '/', 'sponsor'],
   ['Our mission', '/why', 'why'],
-  ['Schools', '/schools', 'schools'],
+  ['For schools', '/schools', 'schools'],
   ['Free Pack', '/resources', 'resources'],
   ['Parents', '/parents', 'parents'],
 ];
 
-function SiteHeader({ active, count, onBasket }) {
+function SiteHeader({ active, onCta }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
-  const [localCount, setLocalCount] = React.useState(0);
-
-  // On pages without a live basket (everything but the buy page), read the
-  // saved basket so the cart badge still shows the right number.
-  React.useEffect(() => {
-    if (count != null) return;
-    try {
-      const b = JSON.parse(localStorage.getItem('sb_basket_v2')) || {};
-      setLocalCount(Object.values(b).reduce((n, q) => n + (q || 0), 0));
-    } catch (err) {}
-  }, [count]);
-
-  const shownCount = count != null ? count : localCount;
-  // Buy page passes a drawer opener; elsewhere the cart takes you to the buy
-  // page, which opens the basket drawer on arrival (see the #basket handler).
-  const openBasket = onBasket || (() => { window.location.href = '/#basket'; });
+  // On the home page, onCta smooth-scrolls to the sponsor flow; elsewhere the
+  // button links home to it.
+  const cta = onCta || (() => { window.location.href = '/#sponsor'; });
 
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)' }}>
@@ -614,14 +658,11 @@ function SiteHeader({ active, count, onBasket }) {
           ))}
         </nav>
 
-        {/* cart + hamburger — always at the far right via space-between */}
+        {/* CTA + hamburger — always at the far right via space-between */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <button aria-label={'Basket' + (shownCount > 0 ? ` (${shownCount} item${shownCount > 1 ? 's' : ''})` : '')} onClick={openBasket}
-            style={{ position: 'relative', width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
-            <Icon name="bag" size={22} sw={2.4} />
-            {shownCount > 0 && (
-              <span style={{ position: 'absolute', top: -9, right: -9, minWidth: 24, height: 24, padding: '0 6px', borderRadius: 999, background: 'var(--sb-pink)', border: '2.5px solid var(--sb-ink)', color: 'var(--sb-ink)', fontWeight: 800, fontSize: '.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{shownCount}</span>
-            )}
+          <button onClick={cta} className="sb-header-cta"
+            style={{ height: 46, padding: '0 18px', borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-yellow)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', flexShrink: 0 }}>
+            Sponsor a school
           </button>
 
           {/* hamburger — mobile only */}
@@ -646,4 +687,4 @@ function SiteHeader({ active, count, onBasket }) {
   );
 }
 
-export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, ProblemSection, Reviews, ParentsCorner, WhyBlocks, SiteFooter, SiteHeader, Stars };
+export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, SponsorSteps, RegisterBand, ProblemSection, Reviews, ParentsCorner, WhyBlocks, SiteFooter, SiteHeader, Stars };

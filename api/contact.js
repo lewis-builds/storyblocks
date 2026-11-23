@@ -41,6 +41,15 @@ const FORMS = {
       ['Their connection', f.connection || '(not given)'], ['Nominator email', f.email],
     ],
   },
+  register: {
+    label: 'School registration (receiving list)',
+    required: ['school', 'name', 'email'],
+    subject: (f) => `School registration - ${f.school}`,
+    rows: (f) => [
+      ['School', f.school], ['Town / postcode', f.town || '(not given)'], ['URN', f.urn || '(none)'],
+      ['Contact', f.name], ['Role', f.role || '(not given)'], ['Email', f.email],
+    ],
+  },
 };
 
 const isEmail = (v) => /^\S+@\S+\.\S+$/.test(String(v || '').trim());

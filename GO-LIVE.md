@@ -32,16 +32,18 @@ connect it to this project. Vercel injects the connection env vars automatically
 
 ## 5. Stripe — go live  **[you]**
 1. Toggle Stripe to **Live mode** (top of dashboard).
-2. Recreate the 4 products/prices in live mode — the fastest way is, in **Test
-   mode**, open each product → ••• → **Copy to live mode**. Prices:
-   - Standard single **£19.99**, Standard 2-pack **£35.98**
-   - Gold single **£24.99**, Gold 2-pack **£44.98**
-3. Copy the 4 **live** `price_…` IDs (you'll paste them as env vars in step 6).
+2. Create **3 products**, each with a single **one-off** price (GBP):
+   - **Class** — 30 journals — **£249**
+   - **Year Group** — 60 journals — **£475**
+   - **Whole School** — 90 journals — **£675**
+3. Copy the 3 **live** `price_…` IDs (you'll paste them as env vars in step 6).
 4. Get your **live secret key** (`sk_live_…`).
 5. Developers → **Webhooks** → Add endpoint (in **Live mode**):
    - URL `https://blockspublishing.com/api/stripe-webhook`
    - Event `checkout.session.completed`
    - Copy the **Signing secret** (`whsec_…`).
+   (The webhook emails your team the sponsorship + nominated school so you can
+   confirm with the school before dispatch.)
 
 ## 6. Set env vars in Vercel  **[you]** → then redeploy
 Settings → Environment Variables (Production):
@@ -49,19 +51,19 @@ Settings → Environment Variables (Production):
 | Name | Value |
 |---|---|
 | `STRIPE_SECRET_KEY` | `sk_live_…` |
-| `STRIPE_PRICE_STANDARD_1` | live single price id |
-| `STRIPE_PRICE_STANDARD_2` | live 2-pack price id |
-| `STRIPE_PRICE_GOLD_1` | live gold single price id |
-| `STRIPE_PRICE_GOLD_2` | live gold 2-pack price id |
+| `STRIPE_PRICE_CLASS` | live price id for the £249 / 30-book tier |
+| `STRIPE_PRICE_YEARGROUP` | live price id for the £475 / 60-book tier |
+| `STRIPE_PRICE_WHOLESCHOOL` | live price id for the £675 / 90-book tier |
 | `STRIPE_WEBHOOK_SECRET` | `whsec_…` (live, from step 5) |
 | `SITE_URL` | `https://blockspublishing.com` |
-| `RESEND_API_KEY` | `re_…` |
+| `RESEND_API_KEY` | `re_…` (for the form + sponsorship-notification emails) |
+| `CONTACT_TO_EMAIL` | where enquiries + sponsorship alerts land *(optional)* |
 | `PARENTS_FROM_EMAIL` | `Story Blocks <hello@blockspublishing.com>` *(optional)* |
-| `ADMIN_API_TOKEN` | long random string — `openssl rand -hex 24` |
-| `PARENTS_ACCESS_CODE` | *(optional)* a master/test code for /parents |
 
-`UPSTASH_*` come from step 3 automatically. **Redeploy** after saving so the new
-values take effect.
+**Redeploy** after saving so the new values take effect. (There is no basket,
+no per-journal SKU, and no Parents' Corner access code any more — the old
+`STRIPE_PRICE_STANDARD_*` / `_GOLD_*`, `PARENTS_ACCESS_CODE`, `ADMIN_API_TOKEN`
+and `UPSTASH_*` vars are no longer read by the sponsorship flow.)
 
 ## 7. Content — the Parents' Corner / resources PDFs  **[you]**
 The download buttons are currently shown as **"Coming soon"** (disabled), so
@@ -70,18 +72,27 @@ to `true` in `src/parents.jsx` and `src/resources.jsx`:
 `Story-Blocks-Story-Starters.pdf`, `Story-Blocks-Reward-Chart.pdf`,
 `Story-Blocks-Parent-Guides.pdf`.
 
-## 8. Test the live flow  **[you]**
-1. On `blockspublishing.com`, buy one Standard with a **real card** (£19.99).
-2. Confirm: order completes → you receive the code email → the code unlocks
-   `/parents`.
-3. Refund yourself in Stripe (Payments → the payment → Refund).
-4. Spot-check `/api/admin-lookup` with your `ADMIN_API_TOKEN` (see api/admin-lookup.js).
+## 8. Build the school index  **[you]**
+The school type-ahead ships with a small **seed** of real primary schools so it
+works out of the box. For the full UK register, download the DfE GIAS
+"All establishment data" CSV from
+<https://get-information-schools.service.gov.uk/Downloads> and run:
+`node scripts/build-schools-index.mjs path/to/edubasealldata.csv`
+That overwrites `public/schools-index.json` with every open primary school
+(name, town, postcode, URN). Commit + redeploy.
+
+## 9. Test the live flow  **[you]**
+1. On `blockspublishing.com`, choose a tier → nominate a school → pay with a
+   **real card** (then refund yourself in Stripe).
+2. Confirm: checkout completes → you land on `/thanks` → you receive the
+   sponsorship-notification email (tier, sponsor, nominated school + URN).
+3. Submit the **register-your-school** form and confirm it emails your inbox.
 
 ---
 
 ### Env var reference (what reads what)
-- **checkout**: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_*`, `SITE_URL`
+- **checkout**: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_CLASS|YEARGROUP|WHOLESCHOOL`, `SITE_URL`
 - **stripe-webhook**: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`,
-  `UPSTASH_*` (or `PARENTS_ACCESS_CODE` fallback), `SITE_URL`, `PARENTS_FROM_EMAIL`
-- **unlock**: `UPSTASH_*` and/or `PARENTS_ACCESS_CODE`
-- **admin-lookup**: `ADMIN_API_TOKEN`, `UPSTASH_*`
+  `CONTACT_TO_EMAIL`, `PARENTS_FROM_EMAIL`
+- **contact** (contact / wholesale / school registration forms): `RESEND_API_KEY`,
+  `CONTACT_TO_EMAIL`, `PARENTS_FROM_EMAIL`, `UPSTASH_*` *(optional rate limiting)*

@@ -6,40 +6,40 @@ import { PageShell } from './lib/page-shell.jsx';
 
 const FAQS = [
   {
-    q: 'What age is the Story Blocks Journal for?',
-    a: "It's designed for children aged 6 and up (Key Stage 2 & 3) - old enough to write a little independently, young enough to love a sticker reward. Younger children enjoy it too with a grown-up scribing for them.",
+    q: 'How does sponsoring work?',
+    a: 'In three steps: choose a tier (Class, Year Group or Whole School), nominate a UK primary school - search the register or ask us to choose one that’s waiting for books - then add your recognition details and pay securely by Stripe. We handle the rest.',
   },
   {
-    q: 'What is a daily story starter?',
-    a: 'Three words and one friendly question - that’s a story starter. Your child weaves the words into a story of their own, on pages made for young writers. There are 70+ of them, across four types: three words, objects, scenarios and first lines.',
+    q: 'What do the tiers cost?',
+    a: 'Three one-off prices: Class is 30 journals for £249, Year Group is 60 journals for £475, and Whole School is 90 journals for £675. That’s under £8.50 per journal - the Year Group and Whole School tiers also include a Gold Edition award copy.',
   },
   {
-    q: 'Do we have to use it every day?',
-    a: "Not at all. The date pages aren't fixed, so you can dip in whenever suits - a few times a week is plenty to build the habit. The streak chart is there to encourage, never to nag.",
+    q: 'What’s in the recognition pack?',
+    a: 'Every tier includes it: a named bookplate in every copy ("Donated to [school] by [sponsor]"), a certificate for your business to frame or post, and a ready-made social post pack - images and words you can share straight away.',
   },
   {
-    q: "What's the difference between the Standard and Gold editions?",
-    a: 'The writing inside is identical. The Gold Edition adds a gold-foil cover and a set of wooden collector coins - milestone rewards for you to award as their writing grows. It’s the one people buy as a present.',
+    q: 'Can I choose which school?',
+    a: 'Yes - you nominate the school. Search by name, town or postcode, or ask us to choose one from our registered-schools list. Important: nominating isn’t the same as the school agreeing. We always confirm with the school before dispatch - we never send unannounced. If they can’t accept, we arrange your second choice with you.',
   },
   {
-    q: 'What are the stickers and reward chart for?',
-    a: 'Finish a story, tick the chart, peel off a sticker. Every journal includes a free full sticker sheet and reward chart - little wins that build a daily writing streak and make finishing feel like the best part.',
+    q: 'What is the Gold Edition award copy?',
+    a: 'Included with the Year Group (60) and Whole School (90) tiers, it’s a special gold-foil edition of the journal for the school to present to a child - a little moment of recognition for a budding writer. It isn’t sold separately.',
+  },
+  {
+    q: 'What’s in the journals themselves?',
+    a: 'Each Story Blocks Journal gives a child aged 6+ a daily spark to write their own stories: three words and a friendly question, 70+ story starters across four types, writing tips and challenges, plus a sticker sheet and reward chart. Made in Britain.',
+  },
+  {
+    q: 'How and when are the journals delivered?',
+    a: 'Straight to the nominated school, free, once we’ve confirmed with them - usually within a couple of weeks. You’ll get a delivery confirmation, with a photo where the school is happy to share one. Your Stripe receipt covers the payment.',
+  },
+  {
+    q: 'I’m a school - how do we receive journals?',
+    a: 'Join our receiving list on the register-your-school page. It’s free, with no commitment. When a sponsor asks us to choose a school, we match them with registered schools - and we always confirm with you before anything ships.',
   },
   {
     q: 'What is the Parents’ Corner?',
-    a: 'A free online area for grown-ups, included with every journal. It’s full of printable story starters, extra reward charts and short, practical guides on helping a reluctant writer - what to say, what not to say, and how to keep the habit going. Buy the journal from our website and you’ll get an access code to unlock it.',
-  },
-  {
-    q: 'How much is delivery and how long does it take?',
-    a: 'UK mainland delivery is free on every order. Orders are dispatched within 1-2 working days and usually arrive within 2-4 working days. Full details are on the delivery & returns page.',
-  },
-  {
-    q: 'Can I return it if it isn’t right?',
-    a: 'Yes - unused journals can be returned within 30 days for a full refund of the item price, and anything damaged or faulty is replaced or refunded in full. See delivery & returns for how.',
-  },
-  {
-    q: 'Do you work with schools?',
-    a: 'We do - we send free boxes of journals, stickers and reward charts to schools across the UK. Anyone can nominate a school on our schools page.',
+    a: 'A free, open online area for grown-ups - printable story starters, extra reward charts and short guides on helping a young writer. No code or account needed; just print and go.',
   },
 ];
 

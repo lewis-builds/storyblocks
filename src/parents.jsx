@@ -1,14 +1,13 @@
-/* Story Blocks - The Parents' Corner. Free online library for journal owners,
-   unlocked with the access code we email after each order. The code itself is
-   checked server-side by /api/unlock so it never ships in this bundle. */
+/* Story Blocks - The Parents' Corner. A free, open online library of printables
+   and guides for grown-ups - handy whether a child writes in a journal at home
+   or has a sponsored one from school. No code, no account. */
 import './lib/react-global.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { asset, CHAR_BASE } from './lib/core.js';
 import { PageShell } from './lib/page-shell.jsx';
 
-const { Button, Input } = window.StoryBlocksJournalDesignSystem_239fa7;
-const UNLOCK_KEY = 'sb_parents_unlocked';
+const { Button } = window.StoryBlocksJournalDesignSystem_239fa7;
 
 /* The library. PDFs live in /public and download directly; guides are on-site
    articles (coming soon). Set `ready: true` once an item's file/link is live. */
@@ -33,77 +32,11 @@ const RESOURCES = [
   },
 ];
 
-/* ---------------- The gate (hero) ---------------- */
-function AccessGate({ onUnlock }) {
-  const [code, setCode] = React.useState('');
-  const [error, setError] = React.useState('');
-  const [busy, setBusy] = React.useState(false);
-
-  const submit = async () => {
-    if (!code.trim()) { setError('Please enter your access code'); return; }
-    setBusy(true);
-    setError('');
-    try {
-      const res = await fetch('/api/unlock', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: code.trim() }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data.ok) {
-        try { localStorage.setItem(UNLOCK_KEY, '1'); } catch (err) {}
-        onUnlock();
-        return;
-      }
-      setError(data.error || 'That code doesn’t look right.');
-    } catch (err) {
-      setError('We couldn’t check that code just now. Please try again in a moment.');
-    }
-    setBusy(false);
-  };
-
-  return (
-    <div className="panel" style={{ maxWidth: 520, marginTop: 26 }}>
-      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', margin: 0 }}>Ordered a journal? Pop in your code.</h2>
-      <p className="muted" style={{ margin: '8px 0 16px', fontSize: '.95rem', lineHeight: 1.5 }}>
-        We email it to you right after your order - check your order confirmation.
-      </p>
-      <div style={{ display: 'grid', gap: 14 }}>
-        <Input label="Access code" placeholder="e.g. SB-K7P3QM" value={code}
-          onChange={(e) => { setCode(e.target.value); if (error) setError(''); }}
-          onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
-          error={error} />
-        <Button size="lg" block iconRight={busy ? null : '→'} onClick={submit} disabled={busy}>
-          {busy ? 'Checking…' : 'Unlock the Parents’ Corner'}
-        </Button>
-        <p className="muted" style={{ margin: 0, fontSize: '.86rem', lineHeight: 1.5 }}>
-          No journal yet? <a href="/">Grab one here</a> - your code is emailed with the order.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------- Unlocked confirmation (hero) ---------------- */
-function UnlockedBanner({ onLock }) {
-  return (
-    <div className="panel" style={{ maxWidth: 520, marginTop: 26, display: 'flex', alignItems: 'center', gap: 16 }}>
-      <img src={asset(CHAR_BASE + '/SB44.png')} alt="" className="sb-float" style={{ width: 64, flexShrink: 0 }} />
-      <div>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', margin: 0 }}>You’re in! 🎉</h2>
-        <p className="muted" style={{ margin: '4px 0 0', fontSize: '.95rem', lineHeight: 1.5 }}>
-          Everything below is yours. <button onClick={onLock} style={{ background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 800, color: 'var(--sb-blue)', cursor: 'pointer', textDecoration: 'underline' }}>Not your device?</button>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------- The library (unlocked) ---------------- */
+/* ---------------- The library ---------------- */
 function Library() {
   return (
     <React.Fragment>
-      <h2>Your printables & guides</h2>
+      <h2>Your printables &amp; guides</h2>
       <div className="parents-grid">
         {RESOURCES.map((r) => (
           <div key={r.title} style={{ background: r.tint, border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, display: 'flex', flexDirection: 'column' }}>
@@ -124,59 +57,47 @@ function Library() {
 
 /* ---------------- Page ---------------- */
 function Parents() {
-  const [unlocked, setUnlocked] = React.useState(() => {
-    try { return localStorage.getItem(UNLOCK_KEY) === '1'; } catch (err) { return false; }
-  });
-
-  const lock = () => {
-    try { localStorage.removeItem(UNLOCK_KEY); } catch (err) {}
-    setUnlocked(false);
-  };
-
-  const steps = [
-    { char: 'SB16', tint: 'var(--sb-wash-lemon)', title: 'Buy from our website', body: 'Order a journal here on blockspublishing.com - that’s where the access codes come from. Journals from other shops don’t include one.' },
-    { char: 'SB50', tint: 'var(--sb-wash-sky)', title: 'Check your inbox', body: 'We email your access code as soon as your order is placed - it’s in your order confirmation.' },
-    { char: 'SB44', tint: 'var(--sb-wash-pink)', title: 'Unlock it, for good', body: 'Enter it once here and the Corner stays open on this device. Free forever - no subscription.' },
+  const uses = [
+    { char: 'SB16', tint: 'var(--sb-wash-lemon)', title: 'At home', body: 'Print a few starters, pop them in a jar, and pull one out whenever a child fancies writing a story.' },
+    { char: 'SB50', tint: 'var(--sb-wash-sky)', title: 'In the classroom', body: 'Teachers are welcome to print and share these with a class - a quick, screen-free writing warm-up.' },
+    { char: 'SB44', tint: 'var(--sb-wash-pink)', title: 'Alongside a journal', body: 'Got a Story Blocks journal from a school sponsorship? These keep the daily habit going when the pages run low.' },
   ];
 
   return (
     <PageShell active="parents" wash="purple" kicker="The Parents’ Corner"
       title="Everything you need to cheer them on"
-      intro="A free online corner for the grown-ups - printables, extra reward charts, and short guides on helping a young writer find their feet. It’s included free with every journal bought on our website; we email your access code as soon as you order."
-      heroChildren={unlocked ? <UnlockedBanner onLock={lock} /> : <AccessGate onUnlock={() => setUnlocked(true)} />}>
+      intro="A free online corner for the grown-ups - printables, extra reward charts and short guides on helping a young writer find their feet. No code, no account: just print and go."
+      heroChildren={null}>
 
-      {unlocked && <Library />}
+      <Library />
 
       <h2>What’s included</h2>
-      <p>The Corner is our way of staying useful long after the journal lands on the doormat. It’s all
-        free with your journal, and it grows - we add new printables and guides through the year.</p>
+      <p>The Corner is our way of being useful beyond the journal itself - free to everyone, and it grows:
+        we add new printables and guides through the year.</p>
       <ul>
-        <li><strong>Printable story starters</strong> - fresh prompts to print, cut out and pull from a jar when the journal’s done for the day.</li>
+        <li><strong>Printable story starters</strong> - fresh prompts to print, cut out and pull from a jar.</li>
         <li><strong>Extra reward charts</strong> - print another any time, including seasonal ones.</li>
         <li><strong>Guides for grown-ups</strong> - helping a reluctant writer, what to say and what not to say, and how to keep the habit going when motivation dips.</li>
       </ul>
 
-      <h2>How it works</h2>
+      <h2>Ways to use it</h2>
       <div className="parents-steps">
-        {steps.map((s, i) => (
+        {uses.map((s) => (
           <div key={s.title} style={{ background: s.tint, border: '3px solid var(--sb-ink)', borderRadius: 20, boxShadow: 'var(--shadow-pop)', padding: '22px 20px' }}>
-            <div aria-hidden="true" style={{ width: 48, height: 48, borderRadius: 999, background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.4rem', color: 'var(--sb-ink)' }}>{i + 1}</div>
+            <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ width: 56 }} />
             <h3 style={{ marginTop: 10 }}>{s.title}</h3>
             <p style={{ marginBottom: 0 }}>{s.body}</p>
           </div>
         ))}
       </div>
 
-      {!unlocked && (
-        <div className="callout" style={{ marginTop: 32 }}>
-          <p><strong>No journal yet?</strong> Every Story Blocks Journal bought on our website comes
-            with a code for the Corner - emailed with your order confirmation, along with 70+ story
-            starters, a sticker sheet and a reward chart. <a href="/">See the journal →</a></p>
-        </div>
-      )}
+      <div className="callout" style={{ marginTop: 32 }}>
+        <p><strong>Know a school that would love these?</strong> Businesses can sponsor a batch of Story
+          Blocks journals for a UK primary school, and schools can join our receiving list. <a href="/">Sponsor a school →</a></p>
+      </div>
 
       <p className="muted" style={{ marginTop: 28, fontSize: '.9rem' }}>
-        Trouble with your code? <a href="/contact">Get in touch</a> and we’ll sort it out.
+        Questions? <a href="/contact">Get in touch</a> - we’re happy to help.
       </p>
     </PageShell>
   );
