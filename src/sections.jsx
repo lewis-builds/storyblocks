@@ -629,8 +629,8 @@ const HEADER_CSS = `
 `;
 
 const NAV_LINKS = [
-  ['Gift a journal', '/gift', 'gift'],
-  ['Sponsor', '/', 'sponsor'],
+  ['For business', '/', 'sponsor'],
+  ['For individuals', '/gift', 'gift'],
   ['Our mission', '/why', 'why'],
   ['For schools', '/schools', 'schools'],
   ['Parents', '/parents', 'parents'],
