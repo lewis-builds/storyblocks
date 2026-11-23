@@ -94,8 +94,7 @@ function SponsorSteps() {
   const steps = [
     { n: '01', char: 'SB16', tint: 'sky', label: 'Choose a tier', body: 'Class (30), Year Group (60) or Whole School (90). One off, from £249. The 60 and 90 tiers include a Gold Edition award copy for the school.' },
     { n: '02', char: 'SB50', tint: 'green', label: 'Nominate a school', body: 'Search the UK primary-school register for one you’d like to back - or ask us to choose a school that’s already waiting for books.' },
-    { n: '03', char: 'SB47', tint: 'peach', label: 'We confirm with them', body: 'We check with the school before anything ships - we never send unannounced. If they can’t accept, we arrange your second choice with you.' },
-    { n: '04', char: 'SB44', tint: 'pink', label: 'We deliver, you’re recognised', body: 'The journals arrive with a named bookplate in every copy. You get a certificate, a ready-made social post pack, and a delivery photo where the school allows it.' },
+    { n: '03', char: 'SB44', tint: 'pink', label: 'We confirm, deliver & recognise you', body: 'We check with the school first - we never send unannounced. Then the journals arrive with your named bookplate, and you get a certificate, a social post pack and a delivery photo where the school allows it.' },
   ];
   return (
     <section id="how" style={{ padding: 'var(--sec-pad, 72px) 0' }}>

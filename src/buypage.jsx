@@ -106,7 +106,7 @@ function SponsorFlow() {
   const schoolLabel = allocate ? 'a school we’ll choose for you' : (school ? school.n : 'your school');
 
   return (
-    <div ref={panelRef} id="sponsor" style={{ scrollMarginTop: 90 }}>
+    <div ref={panelRef} style={{ scrollMarginTop: 90 }}>
       {/* Step rail */}
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 22, flexWrap: 'wrap' }}>
         {[['tier', '1 · Choose a tier'], ['nominate', '2 · Nominate a school'], ['details', '3 · Your details']].map(([k, label]) => (
@@ -191,22 +191,51 @@ function SponsorFlow() {
   );
 }
 
-/* ---------------- Hero ---------------- */
-function SponsorHero() {
+/* ---------------- Hero - shows the journal, CTA scrolls to the sponsor flow ---------------- */
+function JournalHero({ onSponsor }) {
   return (
     <section id="top" style={{ position: 'relative', overflow: 'hidden', background: washGrad('sky'), borderBottom: '3px solid var(--sb-ink)' }}>
-      <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB33.png')} alt="" style={{ position: 'absolute', left: 8, bottom: 34, width: 92, ['--r']: '5deg', zIndex: 1, pointerEvents: 'none', animationDelay: '-2.2s' }} />
-      <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB47.png')} alt="" style={{ position: 'absolute', right: 20, bottom: 26, width: 84, ['--r']: '-6deg', zIndex: 1, pointerEvents: 'none', animationDelay: '-0.8s' }} />
-      <div className="sb-wrap" style={{ position: 'relative', zIndex: 2, padding: '44px 24px 60px' }}>
-        <div style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto 36px' }}>
-          <div className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>Put writing back in young hands</div>
-          <h1 className="sb-display" style={{ fontSize: 'clamp(2.6rem, 6vw, 4.4rem)', lineHeight: 1.0, marginTop: 6 }}>Sponsor journals for a local school.</h1>
-          <p style={{ marginTop: 16, fontSize: '1.18rem', lineHeight: 1.5, maxWidth: 640, margin: '16px auto 0' }}>
-            Give a batch of Story Blocks journals to a UK primary school you nominate - and get the recognition for doing a genuinely good local thing. <strong>Under £8.50 puts a journal in a child’s hands.</strong>
+      <style>{`
+        @media (max-width: 820px) {
+          .sb-jhero { grid-template-columns: 1fr !important; gap: 24px !important; text-align: center; }
+          .sb-jhero__art { order: -1; }
+          .sb-jhero__copy p { margin-left: auto; margin-right: auto; }
+          .sb-jhero__copy .sb-marker { text-align: center; }
+        }
+      `}</style>
+      <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB33.png')} alt="" style={{ position: 'absolute', left: 8, bottom: 28, width: 86, ['--r']: '5deg', zIndex: 1, pointerEvents: 'none', animationDelay: '-2.2s' }} />
+      <div className="sb-wrap sb-jhero" style={{ position: 'relative', zIndex: 2, padding: '44px 24px 56px', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 48, alignItems: 'center' }}>
+        <div className="sb-jhero__copy">
+          <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)' }}>The daily creative-writing journal for kids</div>
+          <h1 className="sb-display" style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>Sponsor the journal kids love to write in.</h1>
+          <p style={{ marginTop: 16, fontSize: '1.15rem', lineHeight: 1.55, maxWidth: 520 }}>
+            Story Blocks gives a child a daily spark - three words and a friendly question - and 70+ story starters that make writing feel like play. You sponsor a batch for a UK primary school you nominate; <strong>under £8.50 puts one in a child’s hands.</strong>
           </p>
-          <p className="sb-marker" style={{ marginTop: 14, fontSize: '1.25rem', color: 'var(--sb-ink)' }}>No app. No account. No data. Just good books.</p>
+          <p className="sb-marker" style={{ marginTop: 12, fontSize: '1.2rem', color: 'var(--sb-ink)' }}>No app. No account. No data. Just good books.</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 24 }}>
+            <SBButton variant="primary" size="lg" iconRight="→" onClick={onSponsor}>Sponsor a school</SBButton>
+            <SBButton as="a" href="#inside" variant="white" size="lg">See what’s inside</SBButton>
+          </div>
         </div>
-        <SponsorFlow />
+        <div className="sb-jhero__art" style={{ display: 'flex', justifyContent: 'center' }}>
+          <img src={asset('assets/storyblocks-cover-combo.png')} alt="The Story Blocks Journal with its sticker sheet"
+            style={{ width: 'min(420px, 92%)', height: 'auto', filter: 'drop-shadow(8px 10px 0 rgba(35,31,32,.22))', transform: 'rotate(-2deg)' }} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Sponsor section - the tier + nomination flow ---------------- */
+function SponsorSection() {
+  return (
+    <section id="sponsor" style={{ scrollMarginTop: 84, background: washGrad('green'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+      <div className="sb-wrap">
+        <SectionHead kicker="Sponsor a school" title="Choose your sponsorship"
+          sub="Pick a tier, nominate a UK primary school (or ask us to choose one), and you’re done. Every tier includes the full recognition pack." />
+        <div style={{ marginTop: 40 }}>
+          <SponsorFlow />
+        </div>
       </div>
     </section>
   );
@@ -243,9 +272,10 @@ function App() {
   return (
     <React.Fragment>
       <SiteHeader active="sponsor" onCta={scrollToSponsor} />
-      <SponsorHero />
+      <JournalHero onSponsor={scrollToSponsor} />
       <TrustStrip />
       <SponsorSteps />
+      <SponsorSection />
       <RecognitionPack />
       <KidsWritingStrip />
       <WhatsInside />
