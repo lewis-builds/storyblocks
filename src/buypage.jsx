@@ -233,6 +233,9 @@ function SponsorSection() {
       <div className="sb-wrap">
         <SectionHead kicker="Sponsor a school" title="Choose your sponsorship"
           sub="Pick a tier, nominate a UK primary school (or ask us to choose one), and you’re done. Every tier includes the full recognition pack." />
+        <p style={{ textAlign: 'center', marginTop: 10, fontWeight: 700 }}>
+          Gifting just a few? <a href="/gift" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>Gift single journals from £8.50 →</a>
+        </p>
         <div style={{ marginTop: 40 }}>
           <SponsorFlow />
         </div>

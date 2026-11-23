@@ -50,6 +50,16 @@ const FORMS = {
       ['Contact', f.name], ['Role', f.role || '(not given)'], ['Email', f.email],
     ],
   },
+  nominate: {
+    label: 'School nomination (public)',
+    required: ['school', 'name', 'email'],
+    subject: (f) => `Nominate a school - ${f.school}`,
+    rows: (f) => [
+      ['School', f.school], ['Town / postcode', f.town || '(not given)'], ['URN', f.urn || '(none)'],
+      ['Nominator', f.name], ['Relationship', f.relationship || '(not given)'], ['Email', f.email],
+      ['Consent to be emailed', f.consent ? 'Yes' : 'No'],
+    ],
+  },
 };
 
 const isEmail = (v) => /^\S+@\S+\.\S+$/.test(String(v || '').trim());

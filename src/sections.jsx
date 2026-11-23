@@ -614,7 +614,7 @@ function SiteFooter() {
 const HEADER_CSS = `
 .sb-hamburger { display: none; }
 .sb-mobile-menu { display: none; }
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .sb-nav { display: none !important; }
   .sb-header-cta { display: none !important; }
   .sb-hamburger { display: inline-flex !important; }
@@ -629,10 +629,10 @@ const HEADER_CSS = `
 `;
 
 const NAV_LINKS = [
+  ['Gift a journal', '/gift', 'gift'],
   ['Sponsor', '/', 'sponsor'],
   ['Our mission', '/why', 'why'],
   ['For schools', '/schools', 'schools'],
-  ['Free Pack', '/resources', 'resources'],
   ['Parents', '/parents', 'parents'],
 ];
 

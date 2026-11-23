@@ -5,27 +5,39 @@ import { createRoot } from 'react-dom/client';
 
 const { Button } = window.StoryBlocksJournalDesignSystem_239fa7;
 
-const STEPS = [
+const isGift = new URLSearchParams(window.location.search).get('kind') === 'gift';
+
+const SPONSOR_STEPS = [
   { n: '1', b: 'We confirm with the school', t: 'We check they can accept the books before anything ships - we never send unannounced.' },
   { n: '2', b: 'We box and dispatch', t: 'Each journal carries your named bookplate. Your certificate and social post pack come to you.' },
   { n: '3', b: 'You see it land', t: 'A delivery confirmation - with a photo where the school is happy to share one.' },
+];
+
+const GIFT_STEPS = [
+  { n: '1', b: 'Your journals join a classroom', t: 'They go toward the classroom of 30 that’s currently filling.' },
+  { n: '2', b: 'At 30, we match a school', t: 'We match the completed classroom to a UK primary school and confirm they’d like them first.' },
+  { n: '3', b: 'The books arrive', t: 'You get the delivery email, with a photo where the school is happy to share one.' },
 ];
 
 function Thanks() {
   React.useEffect(() => {
     if (window.gtag) {
       const sid = new URLSearchParams(window.location.search).get('session_id');
-      window.gtag('event', 'purchase_confirmed', { transaction_id: sid || undefined });
+      window.gtag('event', 'purchase_confirmed', { transaction_id: sid || undefined, kind: isGift ? 'gift' : 'sponsorship' });
     }
   }, []);
+
+  const STEPS = isGift ? GIFT_STEPS : SPONSOR_STEPS;
 
   return (
     <div style={{ maxWidth: 580, width: '100%', background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 36px', textAlign: 'center', position: 'relative' }}>
       <img className="sb-float" src="/assets/characters/SB44.png" alt="" style={{ width: 140 }} />
       <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)', marginTop: 10 }}>Thank you!</div>
-      <h1 className="sb-display" style={{ fontSize: 'clamp(2rem, 6vw, 2.6rem)', lineHeight: 1.05, marginTop: 8 }}>Your sponsorship is in.</h1>
+      <h1 className="sb-display" style={{ fontSize: 'clamp(2rem, 6vw, 2.6rem)', lineHeight: 1.05, marginTop: 8 }}>{isGift ? 'Your gift is in.' : 'Your sponsorship is in.'}</h1>
       <p style={{ marginTop: 16, fontSize: '1.12rem', lineHeight: 1.6 }}>
-        You’ve just put a batch of Story Blocks journals in the hands of children who’ll love them. A receipt is already in your inbox. Here’s what happens next:
+        {isGift
+          ? 'You’ve just helped put Story Blocks journals in the hands of children who’ll love them. A receipt is already in your inbox. Here’s what happens next:'
+          : 'You’ve just put a batch of Story Blocks journals in the hands of children who’ll love them. A receipt is already in your inbox. Here’s what happens next:'}
       </p>
 
       <div style={{ display: 'grid', gap: 12, textAlign: 'left', margin: '24px auto 0', maxWidth: 440 }}>
@@ -38,11 +50,13 @@ function Thanks() {
       </div>
 
       <p style={{ marginTop: 20, fontSize: '.98rem', lineHeight: 1.6, color: 'var(--sb-muted)', fontWeight: 700 }}>
-        We’ll confirm with the school before dispatch. If they can’t accept, we’ll arrange your second choice with you - just reply to your receipt or email hello@blockspublishing.com.
+        {isGift
+          ? 'Every journal you gifted reaches a school - guaranteed. If a classroom hasn’t completed within 3 months, we complete it ourselves. Questions? Reply to your receipt or email hello@blockspublishing.com.'
+          : 'We’ll confirm with the school before dispatch. If they can’t accept, we’ll arrange your second choice with you - just reply to your receipt or email hello@blockspublishing.com.'}
       </p>
 
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginTop: 24 }}>
-        <Button as="a" href="/" variant="primary">Back to the site</Button>
+        <Button as="a" href={isGift ? '/gift' : '/'} variant="primary">{isGift ? 'Gift more journals' : 'Back to the site'}</Button>
         <Button as="a" href="/resources" variant="white">See the free pack</Button>
       </div>
     </div>
