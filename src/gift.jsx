@@ -24,9 +24,8 @@ function ClassroomMeter() {
     const filled = i < current;
     segs.push(
       <span key={i} aria-hidden="true" style={{
-        flex: '1 1 14px', height: 30, borderRadius: 6, border: '2.5px solid var(--sb-ink)',
-        background: filled ? 'var(--sb-yellow)' : 'var(--sb-paper)',
-        boxShadow: filled ? 'inset 0 -4px 0 rgba(35,31,32,.14)' : 'none',
+        flex: '1 1 14px', height: 28, borderRadius: 6,
+        background: filled ? 'var(--sb-yellow)' : 'rgba(35,31,32,0.1)',
       }} />
     );
   }
