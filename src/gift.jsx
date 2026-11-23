@@ -115,7 +115,7 @@ function GiftPicker() {
         </SBButton>
         {error && <p style={{ marginTop: 12, color: '#c2185b', fontWeight: 700, lineHeight: 1.45 }}>{error}</p>}
         <p style={{ textAlign: 'center', marginTop: 12, color: 'var(--sb-muted)', fontWeight: 700, fontSize: '.88rem' }}>
-          {gbp(GIFT_PRICE)} per journal · Secure payment by Stripe
+          {gbp(GIFT_PRICE)} per journal
         </p>
       </div>
     </div>
@@ -126,7 +126,6 @@ function GiftPicker() {
 function GiftHero() {
   return (
     <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('purple'), borderBottom: '3px solid var(--sb-ink)' }}>
-      <img className="sb-float sb-deco" src={asset(CHAR_BASE + '/SB44.png')} alt="" style={{ position: 'absolute', left: 10, bottom: 30, width: 84, ['--r']: '6deg', zIndex: 1, pointerEvents: 'none', animationDelay: '-1.6s' }} />
       <div className="sb-wrap" style={{ position: 'relative', zIndex: 2, maxWidth: 780, textAlign: 'center', padding: '48px 24px 56px' }}>
         <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)' }}>A small gift, a big difference</div>
         <h1 className="sb-display" style={{ fontSize: 'clamp(2.4rem, 5.6vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>
@@ -136,7 +135,7 @@ function GiftHero() {
           just {gbp(GIFT_PRICE)}
         </div>
         <p style={{ marginTop: 18, fontSize: '1.12rem', lineHeight: 1.55, maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>
-          Just <strong>1 in 4 children</strong> now enjoy writing in their free time (National Literacy Trust). A journal of their own helps change that - and you can put one in a child’s hands today.
+          Just <strong>1 in 4 children*</strong> now enjoy writing in their free time. A journal of their own helps change that - and you can put one in a child’s hands today.
         </p>
 
         {/* the give card */}
@@ -159,7 +158,7 @@ function GiftHero() {
 function HowItWorks() {
   const steps = [
     { n: '01', char: 'SB16', tint: 'var(--sb-wash-pink)', title: 'Gift journals', body: `Give one, five, ten or as many as you like at ${gbp(GIFT_PRICE)} each. They join the classroom that’s currently filling.` },
-    { n: '02', char: 'SB33', tint: 'var(--sb-wash-lemon)', title: 'A classroom fills', body: 'At 30 journals we match the classroom to a UK primary school and confirm they’d like them - we never deliver unannounced.' },
+    { n: '02', char: 'SB33', tint: 'var(--sb-wash-lemon)', title: 'A classroom fills', body: 'At 30 journals we match the classroom to a UK state primary school and confirm they’d like them - we never deliver unannounced.' },
     { n: '03', char: 'SB44', tint: 'var(--sb-wash-sky)', title: 'The books arrive', body: 'The journals are delivered to the school. Everyone who gifted gets the delivery email, with a photo where the school is happy to share one.' },
   ];
   return (
@@ -367,6 +366,11 @@ function GiftApp() {
         <Promises />
         <DeliveredWall />
         <NominateForm />
+        <div className="sb-wrap" style={{ padding: '22px 24px' }}>
+          <p style={{ color: 'var(--sb-muted)', fontWeight: 600, fontSize: '.84rem', lineHeight: 1.5, margin: 0, maxWidth: 680 }}>
+            * Writing-for-pleasure figure: National Literacy Trust annual literacy survey - the share of children and young people who say they enjoy writing in their free time.
+          </p>
+        </div>
       </main>
       <SiteFooter />
     </React.Fragment>

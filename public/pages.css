@@ -104,6 +104,15 @@ a[href^="#"] { text-decoration: none; }
   footer .sb-wrap { grid-template-columns: 1fr 1fr !important; }
 }
 
+/* ---- shared layout grids (schools / gift / etc.): stack on smaller screens ---- */
+@media (max-width: 1024px) {
+  .sb-story, .sb-steps, .sb-nominate { grid-template-columns: 1fr !important; }
+  .sb-snaps { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 620px) {
+  .sb-snaps { grid-template-columns: 1fr !important; }
+}
+
 /* ---- Story starter pages (/story-starters/*) ---- */
 .starter-rich { font-size: 1.08rem; line-height: 1.62; color: var(--sb-ink); }
 .starter-rich p { margin: 0 0 14px; }

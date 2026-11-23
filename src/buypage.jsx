@@ -182,7 +182,7 @@ function SponsorFlow() {
               {submitting ? 'Starting secure checkout…' : `Continue to payment · ${gbp(tier.price)}`}
             </SBButton>
             <p style={{ textAlign: 'center', marginTop: 12, color: 'var(--sb-muted)', fontWeight: 700, fontSize: '.9rem' }}>
-              Secure payment by Stripe · You’re sponsoring {tier.books} journals for {schoolLabel}.
+              You’re sponsoring {tier.books} journals for {schoolLabel}.
             </p>
           </div>
         </div>
