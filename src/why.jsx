@@ -63,15 +63,16 @@ function Why() {
         day - three words and a friendly question - with tips, challenges and rewards that turn ten quiet
         minutes into a habit they actually look forward to. Five minutes a day, away from screens, no
         blank-page panic and no wrong answers.</p>
-      <p>And because we can't reach every child through a shop, we give journals away too. Our goal is to
-        put <strong>500 journals</strong> into schools, libraries and children's wards where they'll be
-        used and loved - and anyone can <a href="/schools">nominate a school</a>. We can't fix this on
-        our own, but we help where we're welcome. (This is just the start - we'll add photos, school names
-        and feedback here as the boxes go out.)</p>
+      <p>And rather than sell single copies, we built the whole business around getting journals to the
+        children who need them. <strong>Businesses sponsor a batch</strong> - 30, 60 or 90 journals - for a
+        UK state primary school they nominate. <strong>Individuals gift single journals</strong> from £8.50,
+        which we deliver to schools in classroom batches of 30. And schools can <a href="/schools">register</a>
+        to receive them. We always confirm with the school before we deliver - we can't fix this on our own,
+        but we help where we're welcome.</p>
 
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 28 }}>
-        <Button as="a" href="/" size="lg" iconRight="→">See the journal</Button>
-        <Button as="a" href="/resources" size="lg" variant="white">Get the free story-starter pack</Button>
+        <Button as="a" href="/" size="lg" iconRight="→">Sponsor as a business</Button>
+        <Button as="a" href="/gift" size="lg" variant="white">Gift a journal from £8.50</Button>
       </div>
 
       <h2 style={{ marginTop: 48 }}>Sources</h2>

@@ -88,10 +88,11 @@ function Contact() {
           <p>Email us directly at <a href={`mailto:${EMAIL}`}>{EMAIL}</a> - we usually reply within
             <strong> two working days</strong>.</p>
           <ul>
-            <li><strong>Orders & delivery:</strong> have your order number handy and see the
-              <a href="/delivery"> delivery & returns</a> page.</li>
-            <li><strong>Common questions</strong> are answered on the <a href="/faqs">FAQs</a>.</li>
-            <li><strong>Schools:</strong> nominate a school on the <a href="/schools">schools page</a>.</li>
+            <li><strong>Sponsor as a business:</strong> see the tiers on the <a href="/">business page</a>.</li>
+            <li><strong>Gift a journal</strong> (from £8.50) on the <a href="/gift">individuals page</a>, or <a href="/gift#nominate">nominate a school</a>.</li>
+            <li><strong>Schools:</strong> join the receiving list on the <a href="/schools">register page</a>.</li>
+            <li><strong>Bulk, trade or partnerships:</strong> email us - happy to talk about larger or ongoing orders.</li>
+            <li><strong>Common questions</strong> are answered on the <a href="/faqs">FAQs</a>, and dispatch on <a href="/delivery">delivery</a>.</li>
           </ul>
           <img src={asset(CHAR_BASE + '/SB50.png')} alt="" className="sb-float"
             style={{ width: 120, marginTop: 12 }} />

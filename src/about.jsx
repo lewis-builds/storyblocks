@@ -31,10 +31,16 @@ function About() {
         We care about the object as much as the idea - it should feel like a keepsake by the time
         it's full.</p>
 
+      <h2>How the journals reach children</h2>
+      <p>Today we get journals into schools two ways, and the whole business is built around it.
+        <strong>Businesses sponsor a batch</strong> - 30, 60 or 90 journals - for a UK primary school they
+        nominate. And <strong>anyone can gift single journals</strong> from £8.50, which we deliver to
+        schools in classroom batches of 30. Either way, every journal reaches a school, and we always
+        confirm with the school before we deliver.</p>
+
       <div className="callout">
-        <p><strong>We give back.</strong> For every journal that finds a home, we help more find their
-          way into classrooms - free boxes of journals, stickers and reward charts sent to schools
-          across the UK. <a href="/schools">See the schools programme →</a></p>
+        <p><strong>Three ways to help:</strong> <a href="/">sponsor as a business</a>, <a href="/gift">gift a
+          journal</a> from £8.50, or - if you're a school - <a href="/schools">register to receive them</a>.</p>
       </div>
 
       <h2>Say hello</h2>
