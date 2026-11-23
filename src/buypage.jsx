@@ -208,7 +208,7 @@ function JournalHero({ onSponsor }) {
           <div className="sb-marker" style={{ fontSize: '1.35rem', color: 'var(--sb-blue)' }}>For local businesses</div>
           <h1 className="sb-display" style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>Sponsor the journal kids love to write in.</h1>
           <p style={{ marginTop: 18, fontSize: '1.18rem', lineHeight: 1.55, maxWidth: 480 }}>
-            Give a batch to a UK state primary school you nominate. <strong>Under £8.50 puts a journal in a child’s hands.</strong>
+            Give a batch of journals to a classroom at a UK state primary school you nominate. <strong>Under £8.50 a journal.</strong>
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 26 }}>
             <SBButton variant="primary" size="lg" iconRight="→" onClick={onSponsor}>Sponsor a school</SBButton>
