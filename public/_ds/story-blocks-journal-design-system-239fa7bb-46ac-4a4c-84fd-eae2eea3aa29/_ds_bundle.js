@@ -330,8 +330,8 @@ function Button({
 }) {
   const fills = {
     primary: {
-      bg: 'var(--sb-yellow)',
-      fg: 'var(--sb-ink)'
+      bg: 'var(--sb-ink)',
+      fg: '#fff'
     },
     green: {
       bg: 'var(--sb-green)',
@@ -403,25 +403,25 @@ function Button({
     color: f.fg,
     background: f.bg,
     padding: s.pad,
-    border: isGhost ? '3px solid transparent' : '3px solid var(--sb-ink)',
-    borderRadius: s.radius,
-    boxShadow: isGhost ? 'none' : 'var(--shadow-pop)',
+    border: 'none',
+    borderRadius: 'var(--radius-pill)',
+    boxShadow: 'none',
+    textDecoration: isGhost ? 'underline' : 'none',
+    textUnderlineOffset: '5px',
     cursor: disabled ? 'not-allowed' : 'pointer',
     opacity: disabled ? 0.5 : 1,
-    transition: 'transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), background var(--dur-fast)',
+    transition: 'transform var(--dur-fast) var(--ease-out), background var(--dur-fast), opacity var(--dur-fast)',
     WebkitTapHighlightColor: 'transparent',
     userSelect: 'none',
     ...style
   };
   const onDown = e => {
-    if (disabled || isGhost) return;
-    e.currentTarget.style.transform = 'translate(3px, 3px)';
-    e.currentTarget.style.boxShadow = '1px 1px 0 0 var(--sb-ink)';
+    if (disabled) return;
+    e.currentTarget.style.transform = 'scale(0.97)';
   };
   const reset = e => {
-    if (disabled || isGhost) return;
+    if (disabled) return;
     e.currentTarget.style.transform = '';
-    e.currentTarget.style.boxShadow = 'var(--shadow-pop)';
   };
   const Tag = as;
   return /*#__PURE__*/React.createElement(Tag, _extends({
@@ -478,9 +478,9 @@ function Card({
   return /*#__PURE__*/React.createElement("div", _extends({
     style: {
       background: tints[tint] || tints.paper,
-      border: '3px solid var(--sb-ink)',
+      border: 'none',
       borderRadius: 'var(--radius-lg)',
-      boxShadow: pop ? 'var(--shadow-pop)' : 'none',
+      boxShadow: 'none',
       padding,
       transform: tilt ? `rotate(${tilt}deg)` : undefined,
       color: 'var(--sb-ink)',
@@ -529,11 +529,11 @@ function Chip({
       fontWeight: 700,
       fontSize: '1rem',
       color: 'var(--sb-ink)',
-      background: selected ? fill : 'var(--sb-paper)',
-      padding: '8px 18px',
-      border: '2.5px solid var(--sb-ink)',
+      background: selected ? fill : 'rgba(59,55,52,0.06)',
+      padding: '10px 18px',
+      border: 'none',
       borderRadius: 'var(--radius-pill)',
-      boxShadow: selected ? 'var(--shadow-pop-sm)' : 'none',
+      boxShadow: 'none',
       cursor: clickable ? 'pointer' : 'default',
       transition: 'background var(--dur-fast), box-shadow var(--dur-fast)',
       WebkitTapHighlightColor: 'transparent',
@@ -574,7 +574,7 @@ function IconButton({
   const onDown = e => {
     if (disabled) return;
     e.currentTarget.style.transform = 'translate(2px,2px)';
-    e.currentTarget.style.boxShadow = '1px 1px 0 0 var(--sb-ink)';
+    e.currentTarget.style.transform = 'scale(0.97)';
   };
   const reset = e => {
     if (disabled) return;
@@ -597,7 +597,7 @@ function IconButton({
       lineHeight: 1,
       color: 'var(--sb-ink)',
       background: fills[variant] || fills.white,
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: shape === 'round' ? '999px' : 'var(--radius-md)',
       boxShadow: 'var(--shadow-pop-sm)',
       cursor: disabled ? 'not-allowed' : 'pointer',
@@ -656,7 +656,7 @@ function ProgressBar({
       position: 'relative',
       height,
       background: 'var(--sb-paper)',
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 'var(--radius-pill)',
       overflow: 'hidden'
     }
@@ -729,7 +729,7 @@ function StreakTracker({
         alignItems: 'center',
         justifyContent: 'center',
         background: complete ? fills[color] || fills.yellow : 'var(--sb-paper)',
-        border: isToday ? '4px solid var(--sb-ink)' : '3px solid var(--sb-ink)',
+        border: isToday ? '1px solid var(--sb-line)' : '1px solid var(--sb-line)',
         borderRadius: '50%',
         boxShadow: complete ? 'var(--shadow-pop-sm)' : 'none',
         fontWeight: 900,
@@ -779,7 +779,7 @@ function Toast({
       alignItems: 'center',
       gap: 12,
       background: tints[tint] || tints.green,
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 'var(--radius-md)',
       boxShadow: 'var(--shadow-pop)',
       padding: '12px 16px',
@@ -873,7 +873,7 @@ function Checkbox({
       alignItems: 'center',
       justifyContent: 'center',
       background: isOn ? fills[color] || fills.green : 'var(--sb-paper)',
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 'var(--radius-sm)',
       boxShadow: isOn ? 'var(--shadow-pop-sm)' : 'none',
       transition: 'background var(--dur-fast), box-shadow var(--dur-fast)',
@@ -1031,7 +1031,7 @@ function Radio({
         alignItems: 'center',
         justifyContent: 'center',
         background: 'var(--sb-paper)',
-        border: '3px solid var(--sb-ink)',
+        border: '1px solid var(--sb-line)',
         borderRadius: '50%',
         boxShadow: on ? 'var(--shadow-pop-sm)' : 'none',
         transition: 'box-shadow var(--dur-fast)'
@@ -1106,7 +1106,7 @@ function Select({
       color: 'var(--sb-ink)',
       background: 'var(--sb-paper)',
       padding: '12px 44px 12px 16px',
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 'var(--radius-md)',
       cursor: 'pointer',
       outline: 'none'
@@ -1186,7 +1186,7 @@ function Switch({
       height: 32,
       flex: '0 0 auto',
       background: isOn ? fills[color] || fills.green : 'var(--sb-paper)',
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 'var(--radius-pill)',
       transition: 'background var(--dur)'
     }
@@ -1260,7 +1260,7 @@ function Textarea({
       color: 'var(--sb-ink)',
       background: 'var(--sb-paper)',
       padding: '14px 16px',
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 'var(--radius-lg)',
       boxShadow: focus ? 'var(--shadow-pop-sm)' : 'none',
       outline: 'none',
@@ -1318,7 +1318,7 @@ function Tabs({
       gap: 6,
       padding: 6,
       background: 'var(--sb-paper)',
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 'var(--radius-pill)',
       ...style
     }
@@ -1339,7 +1339,7 @@ function Tabs({
         color: 'var(--sb-ink)',
         background: on ? fills[color] || fills.yellow : 'transparent',
         padding: '9px 20px',
-        border: on ? '2.5px solid var(--sb-ink)' : '2.5px solid transparent',
+        border: on ? '1px solid var(--sb-line)' : '2.5px solid transparent',
         borderRadius: 'var(--radius-pill)',
         boxShadow: on ? 'var(--shadow-pop-sm)' : 'none',
         cursor: 'pointer',
@@ -1413,7 +1413,7 @@ function TabBar({
   return /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
-      borderTop: '3px solid var(--sb-ink)',
+      borderTop: '1px solid var(--sb-line)',
       background: 'var(--sb-paper)'
     }
   }, items.map(it => {
@@ -1446,7 +1446,7 @@ function TabBar({
         alignItems: 'center',
         justifyContent: 'center',
         background: on ? 'var(--sb-yellow)' : 'transparent',
-        border: on ? '2.5px solid var(--sb-ink)' : '2.5px solid transparent',
+        border: on ? '1px solid var(--sb-line)' : '2.5px solid transparent',
         borderRadius: 999,
         boxShadow: on ? 'var(--shadow-pop-sm)' : 'none'
       }
@@ -1549,7 +1549,7 @@ function MeScreen() {
       height: 78,
       borderRadius: '50%',
       background: 'var(--sb-wash-purple)',
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -1835,7 +1835,7 @@ function RewardScreen({
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       background: '#fff',
-      border: '2.5px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       borderRadius: 8,
       padding: '4px 12px',
       fontFamily: 'var(--font-body)',
@@ -2064,7 +2064,7 @@ function WriteScreen({
     style: {
       width: 40,
       height: 40,
-      border: '3px solid var(--sb-ink)',
+      border: '1px solid var(--sb-line)',
       background: 'var(--sb-paper)',
       borderRadius: 999,
       boxShadow: 'var(--shadow-pop-sm)',

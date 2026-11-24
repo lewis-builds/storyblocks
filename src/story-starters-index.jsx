@@ -44,9 +44,9 @@ function Index() {
                   <button key={t} type="button" onClick={() => setFilter(t)}
                     style={{
                       fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: '.92rem', color: 'var(--sb-ink)',
-                      background: on ? 'var(--sb-yellow)' : 'var(--sb-paper)', border: '3px solid var(--sb-ink)',
+                      background: on ? 'var(--sb-sky)' : 'var(--sb-paper)', border: 'none',
                       borderRadius: 999, padding: '8px 16px', cursor: 'pointer',
-                      boxShadow: on ? '3px 3px 0 0 var(--sb-ink)' : 'none', transition: 'background .15s, box-shadow .15s',
+                      boxShadow: on ? 'none' : 'none', transition: 'background .15s, box-shadow .15s',
                     }}>
                     {t}{t !== 'All' && ' · ' + countOf(t)}
                   </button>

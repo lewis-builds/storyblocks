@@ -7,8 +7,8 @@ import { Icon } from '../sections.jsx';
 
 const INPUT_STYLE = {
   width: '100%', padding: '13px 15px', fontSize: '1rem', fontWeight: 600, fontFamily: 'inherit',
-  color: 'var(--sb-ink)', background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)',
-  borderRadius: 14, boxShadow: '2px 2px 0 0 var(--sb-ink)', outline: 'none',
+  color: 'var(--sb-ink)', background: 'var(--sb-paper)', border: '1px solid var(--sb-line)',
+  borderRadius: 18, boxShadow: 'none', outline: 'none',
 };
 
 export function SchoolSearch({ value, onPick, placeholder }) {
@@ -52,7 +52,7 @@ export function SchoolSearch({ value, onPick, placeholder }) {
 
   if (value) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 15px', background: 'var(--sb-wash-green)', border: '3px solid var(--sb-ink)', borderRadius: 14, boxShadow: '2px 2px 0 0 var(--sb-ink)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', background: 'var(--sb-wash-green)', border: 'none', borderRadius: 18, boxShadow: 'none' }}>
         <Icon name="check" size={20} sw={3.4} stroke="var(--sb-ink)" />
         <span style={{ flex: 1, minWidth: 0 }}>
           <strong style={{ fontWeight: 800, display: 'block' }}>{value.n}</strong>
@@ -73,7 +73,7 @@ export function SchoolSearch({ value, onPick, placeholder }) {
         style={INPUT_STYLE}
       />
       {open && q.trim().length >= 2 && (
-        <div style={{ position: 'absolute', zIndex: 20, left: 0, right: 0, top: 'calc(100% + 8px)', background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 14, boxShadow: 'var(--shadow-pop)', overflow: 'hidden', maxHeight: 320, overflowY: 'auto' }}>
+        <div style={{ position: 'absolute', zIndex: 20, left: 0, right: 0, top: 'calc(100% + 8px)', background: 'var(--sb-paper)', border: '1px solid var(--sb-line)', borderRadius: 18, boxShadow: 'var(--shadow-float)', overflow: 'hidden', maxHeight: 320, overflowY: 'auto' }}>
           {loading && <div style={{ padding: '14px 15px', fontWeight: 700, color: 'var(--sb-muted)' }}>Loading schools…</div>}
           {!loading && results.length === 0 && (
             <div style={{ padding: '14px 15px', fontWeight: 700, color: 'var(--sb-muted)' }}>No match yet - try the town or postcode.</div>

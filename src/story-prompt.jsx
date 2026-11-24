@@ -43,7 +43,7 @@ html.sp-lock body{ margin:0; background:var(--type-bg,#fff); }
 .sp-instruction{ font-family:var(--font-display); font-weight:700; color:var(--sb-ink); font-size:clamp(1.3rem,5.2vw,1.7rem); line-height:1.14; margin-top:14px; text-wrap:balance; }
 .sp-middle{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(20px,4vh,36px); min-height:0; }
 .sp-prompt-wrap{ display:flex; align-items:center; justify-content:center; }
-.sp-prompt{ background:#fff; border:3.5px solid var(--sb-ink); border-radius:22px; box-shadow:7px 9px 0 0 var(--sb-ink);
+.sp-prompt{ background:#fff; border:none; border-radius:22px; box-shadow:var(--shadow-soft);
   padding:clamp(22px,6vw,34px); transform:rotate(-1.6deg); max-width:100%; position:relative;
   font-family:var(--font-display); font-weight:600; font-size:clamp(1.4rem,5.7vw,2rem); line-height:1.16; text-wrap:pretty; }
 .sp-prompt--quote{ padding-top:clamp(34px,9vw,50px); }
@@ -51,43 +51,43 @@ html.sp-lock body{ margin:0; background:var(--type-bg,#fff); }
 .sp-nudge-group{ display:flex; flex-direction:column; gap:9px; }
 .sp-nudge-label{ text-align:center; font-family:var(--font-display); font-weight:600; color:var(--sb-blue); font-size:1.02rem; }
 .sp-nudges{ display:flex; gap:9px; justify-content:center; }
-.sp-nudge{ flex:1; max-width:150px; appearance:none; cursor:pointer; background:#fff; border:3px solid var(--sb-ink);
-  border-radius:16px; box-shadow:3px 4px 0 0 var(--sb-ink); padding:12px 8px 11px; display:flex; flex-direction:column;
+.sp-nudge{ flex:1; max-width:150px; appearance:none; cursor:pointer; background:#fff; border:none;
+  border-radius:16px; box-shadow:var(--shadow-soft); padding:12px 8px 11px; display:flex; flex-direction:column;
   align-items:center; gap:7px; font-family:var(--font-body); font-weight:800; font-size:.85rem; color:var(--sb-ink);
   text-align:center; line-height:1.08; transition:transform .14s ease, box-shadow .14s ease; }
 .sp-nudge:nth-child(1){ transform:rotate(-3deg); } .sp-nudge:nth-child(2){ transform:rotate(1.6deg); } .sp-nudge:nth-child(3){ transform:rotate(-1.4deg); }
-.sp-nudge:active{ transform:translate(1px,2px) rotate(0deg); box-shadow:1px 1px 0 0 var(--sb-ink); }
-.sp-nudge-ic{ width:36px; height:36px; border-radius:11px; border:2.5px solid var(--sb-ink); display:grid; place-items:center; background:var(--nt); }
+.sp-nudge:active{ transform:translate(1px,2px) rotate(0deg); box-shadow:var(--shadow-soft); }
+.sp-nudge-ic{ width:36px; height:36px; border-radius:11px; border:none; display:grid; place-items:center; background:var(--nt); }
 .sp-nudge-ic svg{ width:20px; height:20px; }
 .sp-lower{ display:flex; align-items:flex-end; justify-content:flex-end; }
 .sp-char{ width:clamp(126px,36vw,184px); height:auto; }
 .sp-actions{ display:flex; gap:11px; }
 .sp-action{ flex:1; min-width:0; cursor:pointer; text-decoration:none; font-family:var(--font-body); font-weight:800; font-size:1rem;
-  color:var(--sb-ink); border:3.5px solid var(--sb-ink); border-radius:15px; box-shadow:4px 5px 0 0 var(--sb-ink); padding:14px 10px;
+  color:var(--sb-ink); border:none; border-radius:15px; box-shadow:var(--shadow-soft); padding:14px 10px;
   display:flex; align-items:center; justify-content:center; gap:9px; text-align:center; line-height:1.1; transition:transform .14s, box-shadow .14s; }
-.sp-action--print{ background:#fff; } .sp-action--send{ background:var(--sb-yellow); }
-.sp-action:active{ transform:translate(2px,3px); box-shadow:1px 2px 0 0 var(--sb-ink); }
+.sp-action--print{ background:#fff; } .sp-action--send{ background:var(--sb-sky); }
+.sp-action:active{ transform:translate(2px,3px); box-shadow:var(--shadow-soft); }
 .sp-action svg{ width:21px; height:21px; flex:0 0 auto; }
 .sp-scrim{ position:fixed; inset:0; background:rgba(33,28,25,.42); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
   opacity:0; pointer-events:none; transition:opacity .28s ease; z-index:60; }
 .sp-scrim.on{ opacity:1; pointer-events:auto; }
 .sp-sheet{ position:fixed; left:0; right:0; bottom:0; z-index:61; max-width:520px; margin:0 auto; background:#fff;
-  border:3.5px solid var(--sb-ink); border-bottom:none; border-radius:26px 26px 0 0;
+  border:none; border-bottom:none; border-radius:26px 26px 0 0;
   padding:14px clamp(20px,6vw,28px) calc(24px + env(safe-area-inset-bottom,0px)); transform:translateY(110%);
   transition:transform .4s cubic-bezier(.22,1,.36,1); max-height:82vh; overflow-y:auto; }
 .sp-sheet.on{ transform:translateY(0); }
 .sp-handle{ width:52px; height:6px; border-radius:99px; background:var(--sb-ink); opacity:.35; margin:2px auto 14px; }
 .sp-sheet-title{ display:flex; align-items:center; gap:12px; }
-.sp-badge{ width:46px; height:46px; flex:0 0 auto; border-radius:13px; border:3px solid var(--sb-ink); background:var(--sdot,#fff);
-  display:grid; place-items:center; box-shadow:2px 2px 0 0 var(--sb-ink); transform:rotate(-6deg); }
+.sp-badge{ width:46px; height:46px; flex:0 0 auto; border-radius:13px; border:none; background:var(--sdot,#fff);
+  display:grid; place-items:center; box-shadow:var(--shadow-soft); transform:rotate(-6deg); }
 .sp-badge svg{ width:26px; height:26px; }
 .sp-sheet-title h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.7rem,7vw,2.3rem); margin:0; line-height:1; }
 .sp-ideas{ list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:16px; }
 .sp-ideas .q{ font-weight:800; font-size:1.1rem; line-height:1.4; display:flex; gap:11px; align-items:flex-start; }
-.sp-ideas .q::before{ content:""; flex:0 0 auto; width:16px; height:16px; margin-top:4px; border-radius:5px; background:var(--sdot); border:2.5px solid var(--sb-ink); transform:rotate(12deg); }
+.sp-ideas .q::before{ content:""; flex:0 0 auto; width:16px; height:16px; margin-top:4px; border-radius:5px; background:var(--sdot); border:none; transform:rotate(12deg); }
 .sp-ideas .b{ margin:6px 0 0 27px; font-weight:600; font-size:1.02rem; line-height:1.45; color:#3a352f; }
 .sp-got{ appearance:none; margin-top:22px; width:100%; font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:var(--sb-ink);
-  background:transparent; border:3px solid var(--sb-ink); border-radius:14px; padding:13px; cursor:pointer; }
+  background:rgba(59,55,52,0.06); border:none; border-radius:14px; padding:13px; cursor:pointer; }
 .sp-got:active{ background:var(--sb-ink); color:var(--sb-cream); }
 @media (prefers-reduced-motion:reduce){ .sp *{transition-duration:.01ms !important} .sp-nudge,.sp-prompt{transform:none} }`;
 

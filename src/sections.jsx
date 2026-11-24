@@ -93,7 +93,7 @@ function TrustStrip() {
       <div className="sb-wrap" style={{ padding: '14px 24px', minHeight: 70, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 11 }}>
         <div key={i} className="sb-trust-item" aria-live="polite"
           style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 11, color: '#fff', fontWeight: 800, fontSize: '1.02rem', textAlign: 'center', lineHeight: 1.3, animation: 'sbTrustIn .5s ease' }}>
-          <Icon name={items[i].icon} size={22} stroke="var(--sb-yellow)" sw={2.6} style={{ flexShrink: 0 }} />
+          <Icon name={items[i].icon} size={22} stroke="#fff" sw={2.6} style={{ flexShrink: 0 }} />
           {items[i].label}
         </div>
         <div style={{ display: 'flex', gap: 7, justifyContent: 'center' }} aria-hidden="true">
@@ -101,7 +101,7 @@ function TrustStrip() {
             <span key={k} style={{ height: 7, borderRadius: 999, overflow: 'hidden', width: k === i ? 30 : 7, background: 'rgba(255,255,255,.26)', transition: 'width .35s ease' }}>
               {k === i && (
                 <span key={i} className="sb-trust-fill"
-                  style={{ display: 'block', height: '100%', width: '100%', background: 'var(--sb-yellow)', transformOrigin: 'left', animation: `sbTrustFill ${DUR}ms linear forwards` }} />
+                  style={{ display: 'block', height: '100%', width: '100%', background: '#fff', transformOrigin: 'left', animation: `sbTrustFill ${DUR}ms linear forwards` }} />
               )}
             </span>
           ))}
@@ -126,7 +126,7 @@ function SponsorSteps() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, marginTop: 46 }}>
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
-              <div style={{ position: 'relative', background: `var(--sb-wash-${s.tint})`, border: '3px solid var(--sb-ink)', borderRadius: 24, boxShadow: 'var(--shadow-pop)', padding: '28px 22px 22px', height: '100%' }}>
+              <div style={{ position: 'relative', background: `var(--sb-wash-${s.tint})`, border: 'none', borderRadius: 24, boxShadow: 'var(--shadow-pop)', padding: '28px 22px 22px', height: '100%' }}>
                 <span className="sb-marker" style={{ position: 'absolute', top: -18, left: 22, background: 'var(--sb-ink)', color: '#fff', fontSize: '1.25rem', lineHeight: 1, padding: '8px 14px', borderRadius: 999, transform: 'rotate(-3deg)' }}>{s.n}</span>
                 <div style={{ display: 'flex', justifyContent: 'center', height: 128 }}>
                   <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ height: 128, width: 'auto' }} />
@@ -148,7 +148,7 @@ function RegisterBand() {
   return (
     <section style={{ padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,300px)', gap: 36, alignItems: 'center', background: cornerGrad('--sb-green'), border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(28px, 4vw, 44px)' }} className="sb-register-band">
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,300px)', gap: 36, alignItems: 'center', background: cornerGrad('--sb-green'), border: 'none', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(28px, 4vw, 44px)' }} className="sb-register-band">
           <div>
             <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>Teachers &amp; schools</div>
             <h2 className="sb-display" style={{ fontSize: 'clamp(1.8rem, 3.6vw, 2.6rem)', lineHeight: 1.05, marginTop: 6 }}>Want journals for your school?</h2>
@@ -156,7 +156,7 @@ function RegisterBand() {
               Join our receiving list - it’s free and there’s no commitment. When a local sponsor asks us to choose a school, we match them with schools like yours.
             </p>
             <div style={{ marginTop: 22 }}>
-              <a href="/schools" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'var(--sb-yellow)', color: 'var(--sb-ink)', fontWeight: 800, fontSize: '1.05rem', textDecoration: 'none', padding: '14px 24px', border: '3px solid var(--sb-ink)', borderRadius: 16, boxShadow: 'var(--shadow-pop)' }}>Register your school →</a>
+              <a href="/schools" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'var(--sb-ink)', color: '#fff', fontWeight: 800, fontSize: '1.05rem', textDecoration: 'none', padding: '15px 26px', border: 'none', borderRadius: 999, boxShadow: 'none' }}>Register your school →</a>
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }} className="sb-register-art">
@@ -173,7 +173,7 @@ function VideoPeek({ id, title }) {
   const [playing, setPlaying] = React.useState(false);
   return (
     <div style={{ maxWidth: 640, margin: '40px auto 0' }}>
-      <div style={{ position: 'relative', aspectRatio: '16 / 9', border: '3px solid var(--sb-ink)', borderRadius: 18, overflow: 'hidden', boxShadow: 'var(--shadow-pop)', background: 'var(--sb-ink)' }}>
+      <div style={{ position: 'relative', aspectRatio: '16 / 9', border: 'none', borderRadius: 18, overflow: 'hidden', boxShadow: 'var(--shadow-pop)', background: 'var(--sb-ink)' }}>
         {playing ? (
           <iframe src={'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0'}
             title={title} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen
@@ -184,7 +184,7 @@ function VideoPeek({ id, title }) {
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', padding: 0, border: 0, background: 'none', cursor: 'pointer' }}>
             <img src={'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg'} alt=""
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-            <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 68, height: 68, borderRadius: 999, background: 'var(--sb-yellow)', border: '3px solid var(--sb-ink)', boxShadow: '4px 4px 0 0 var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 68, height: 68, borderRadius: 999, background: '#fff', border: 'none', boxShadow: 'var(--shadow-float)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="var(--sb-ink)" style={{ marginLeft: 4 }}><path d="M8 5v14l11-7z"/></svg>
             </span>
           </button>
@@ -235,12 +235,12 @@ function StarterSpreadRow({ r, i }) {
                   display: 'flex', alignItems: 'center', gap: 9, width: '100%', textAlign: 'left', cursor: 'pointer',
                   fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: '.9rem', color: 'var(--sb-ink)',
                   background: on ? `var(--sb-${ty.tint})` : 'var(--sb-paper)',
-                  border: '2.5px solid var(--sb-ink)', borderRadius: 13, padding: '10px 13px',
-                  boxShadow: on ? '3px 3px 0 0 var(--sb-ink)' : 'none',
+                  border: 'none', borderRadius: 13, padding: '10px 13px',
+                  boxShadow: on ? 'none' : 'none',
                   transform: on ? 'none' : 'translate(1.5px, 1.5px)',
                   transition: 'background .15s, box-shadow .15s, transform .15s',
                 }}>
-                <span aria-hidden="true" style={{ flexShrink: 0, width: 13, height: 13, borderRadius: 999, background: on ? 'var(--sb-paper)' : `var(--sb-${ty.tint})`, border: '2px solid var(--sb-ink)' }} />
+                <span aria-hidden="true" style={{ flexShrink: 0, width: 13, height: 13, borderRadius: 999, background: on ? 'var(--sb-paper)' : `var(--sb-${ty.tint})`, border: 'none' }} />
                 {ty.name}
               </button>
             );
@@ -281,7 +281,7 @@ function WhatsInside() {
     },
   ];
   return (
-    <section id="inside" style={{ background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)', padding: 'clamp(24px, 4vw, 40px) 0 var(--sec-pad, 72px)', overflowX: 'clip' }}>
+    <section id="inside" style={{ background: 'var(--sb-cream)', borderBottom: 'none', padding: 'clamp(24px, 4vw, 40px) 0 var(--sec-pad, 72px)', overflowX: 'clip' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Open it up…" title="What's inside the journal" sub="Everything a young writer needs to swap the screen for a story - and everything a parent needs to cheer them on." />
         <VideoPeek id="LfGmzb0qi9E" title="Inside the Story Blocks Journal" />
@@ -358,7 +358,7 @@ function HowItWorks() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24, marginTop: 46 }}>
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 110}>
-              <div style={{ position: 'relative', background: `var(--sb-wash-${s.tint === 'sky' ? 'sky' : s.tint === 'peach' ? 'peach' : 'pink'})`, border: '3px solid var(--sb-ink)', borderRadius: 24, boxShadow: 'var(--shadow-pop)', padding: '28px 24px 24px', height: '100%' }}>
+              <div style={{ position: 'relative', background: `var(--sb-wash-${s.tint === 'sky' ? 'sky' : s.tint === 'peach' ? 'peach' : 'pink'})`, border: 'none', borderRadius: 24, boxShadow: 'var(--shadow-pop)', padding: '28px 24px 24px', height: '100%' }}>
                 <span className="sb-marker" style={{ position: 'absolute', top: -18, left: 22, background: 'var(--sb-ink)', color: '#fff', fontSize: '1.25rem', lineHeight: 1, padding: '8px 14px', borderRadius: 999, transform: 'rotate(-3deg)' }}>{s.n}</span>
                 <div style={{ display: 'flex', justifyContent: 'center', height: 150 }}>
                   <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ height: 150, width: 'auto' }} />
@@ -372,7 +372,7 @@ function HowItWorks() {
 
         {/* Scan for a spark - the free companion app, as a proper feature */}
         <Reveal delay={120}>
-          <div className="sb-scan" style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,320px)', gap: 40, alignItems: 'center', background: cornerGrad('--sb-yellow'), border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 48px' }}>
+          <div className="sb-scan" style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,320px)', gap: 40, alignItems: 'center', background: 'var(--sb-wash-sky)', border: 'none', borderRadius: 40, boxShadow: 'none', padding: '44px 48px' }}>
             <div>
               <div className="sb-marker" style={{ fontSize: '1.25rem', color: 'var(--sb-blue)' }}>The free companion app</div>
               <h3 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 3.6vw, 2.7rem)', lineHeight: 1.04, marginTop: 6 }}>Stuck? Scan for a spark.</h3>
@@ -388,7 +388,7 @@ function HowItWorks() {
               </div>
             </div>
             <div className="sb-scan-media" style={{ display: 'flex', justifyContent: 'center' }}>
-              <div className="sb-phone-body" style={{ transform: 'rotate(3deg)', margin: '-24px 0', background: 'var(--sb-ink)', padding: 7, borderRadius: 30, boxShadow: '8px 10px 0 rgba(35,31,32,.35)' }}>
+              <div className="sb-phone-body" style={{ transform: 'rotate(3deg)', margin: '-24px 0', background: 'var(--sb-ink)', padding: 7, borderRadius: 30, boxShadow: 'var(--shadow-float)' }}>
                 <img src={asset('assets/phone-three-words.png')} alt="The Story Blocks three-words story starter shown on a phone" className="sb-scan-phone"
                   style={{ height: 300, width: 'auto', display: 'block', borderRadius: 24 }} />
               </div>
@@ -405,7 +405,7 @@ function HowItWorks() {
    to the dedicated /why page — the depth and citations live there, not here. */
 function ProblemSection() {
   return (
-    <section style={{ background: washGrad('peach'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section style={{ background: washGrad('peach'), borderTop: 'none', borderBottom: 'none', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <div className="sb-problem" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,0.85fr) minmax(0,1.15fr)', gap: 52, alignItems: 'center' }}>
           {/* the one stat, as big type */}
@@ -424,7 +424,7 @@ function ProblemSection() {
               Writing for pleasure has nearly halved in fifteen years - squeezed out by screens, schedules and school pressure. Story Blocks exists to bring it back: five minutes of storytelling a day, away from screens, until writing stops being a chore and starts being <em>theirs</em>.
             </p>
             <a href="/why" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 22, fontWeight: 800, fontSize: '1.08rem', color: 'var(--sb-ink)', textDecoration: 'none' }}>
-              <span style={{ borderBottom: '3px solid var(--sb-yellow)', paddingBottom: 2 }}>Read why this matters</span>
+              <span style={{ borderBottom: '2px solid var(--sb-blue)', paddingBottom: 2 }}>Read why this matters</span>
               <span aria-hidden="true" style={{ color: 'var(--sb-blue)' }}>→</span>
             </a>
           </div>
@@ -472,7 +472,7 @@ function Reviews() {
     { tint: 'purple', tilt: 1.4, name: 'Writer', title: 'Fun, learning and great value', text: "She greatly enjoyed writing her stories and reading them out to us in the evenings. The stickers were very popular too. A super positive purchase!" },
   ];
   return (
-    <section id="reviews" style={{ background: washGrad('lemon'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section id="reviews" style={{ background: washGrad('lemon'), borderTop: 'none', borderBottom: 'none', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <SectionHead align="left" max={560} kicker="Loved by families" title="Screens down, stories up" sub={null} />
@@ -485,12 +485,12 @@ function Reviews() {
         <div className="sb-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 22, marginTop: 40 }}>
           {quotes.map((q, i) => (
             <Reveal key={q.name} delay={i * 100}>
-              <div style={{ background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, height: '100%', transform: `rotate(${q.tilt}deg)` }}>
+              <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, height: '100%', transform: `rotate(${q.tilt}deg)` }}>
                 <Stars n={5} />
                 <div className="sb-display" style={{ fontSize: '1.05rem', marginTop: 12, lineHeight: 1.2 }}>{q.title}</div>
                 <p style={{ marginTop: 8, fontSize: '1.02rem', lineHeight: 1.5, fontWeight: 600 }}>“{q.text}”</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 18 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 999, border: '3px solid var(--sb-ink)', background: `var(--sb-${q.tint})`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontFamily: 'var(--font-display)' }}>{q.name[0]}</div>
+                  <div style={{ width: 40, height: 40, borderRadius: 999, border: 'none', background: `var(--sb-${q.tint})`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontFamily: 'var(--font-display)' }}>{q.name[0]}</div>
                   <div style={{ lineHeight: 1.2 }}>
                     <div style={{ fontWeight: 800 }}>{q.name}</div>
                     <div style={{ color: 'var(--sb-muted)', fontSize: '.9rem', fontWeight: 700 }}>Verified purchase · Amazon</div>
@@ -516,8 +516,8 @@ function CornerCards() {
   return (
     <div style={{ display: 'grid', gap: 12, width: 'min(300px, 100%)' }}>
       {cards.map(([label, tint, icon, tilt]) => (
-        <div key={label} style={{ background: `var(--sb-wash-${tint})`, border: '3px solid var(--sb-ink)', borderRadius: 16, boxShadow: 'var(--shadow-pop)', padding: '15px 18px', transform: `rotate(${tilt}deg)`, display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: 10, background: 'var(--sb-paper)', border: '2.5px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div key={label} style={{ background: `var(--sb-wash-${tint})`, border: 'none', borderRadius: 16, boxShadow: 'var(--shadow-pop)', padding: '15px 18px', transform: `rotate(${tilt}deg)`, display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: 10, background: 'var(--sb-paper)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Icon name={icon} size={18} sw={2.6} />
           </span>
           <span style={{ fontWeight: 800 }}>{label}</span>
@@ -531,10 +531,10 @@ function ParentsCorner() {
   return (
     <section style={{ padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
-        <div className="sb-companion" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,.85fr) minmax(0,1.15fr)', gap: 40, alignItems: 'center', background: washGrad('purple'), border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '40px' }}>
+        <div className="sb-companion" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,.85fr) minmax(0,1.15fr)', gap: 40, alignItems: 'center', background: washGrad('purple'), border: 'none', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '40px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
             <CornerCards />
-            <span className="sb-marker" style={{ position: 'absolute', top: -18, right: -6, background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 999, padding: '6px 14px', fontSize: '1.15rem', transform: 'rotate(6deg)', boxShadow: 'var(--shadow-pop-sm)', zIndex: 2 }}>Included 💛</span>
+            <span className="sb-marker" style={{ position: 'absolute', top: -18, right: -6, background: 'var(--sb-paper)', border: 'none', borderRadius: 999, padding: '6px 14px', fontSize: '1.15rem', transform: 'rotate(6deg)', boxShadow: 'var(--shadow-pop-sm)', zIndex: 2 }}>Included 💛</span>
           </div>
           <div>
             <Badge variant="purple">For the grown-ups</Badge>
@@ -543,7 +543,7 @@ function ParentsCorner() {
             <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0 0', display: 'grid', gap: 12 }}>
               {['Printable story starters and extra reward charts', 'Short guides - what to say, and what not to say', 'Free forever, with the code that comes with your journal'].map((t) => (
                 <li key={t} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontWeight: 600, fontSize: '1.05rem' }}>
-                  <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: 999, background: 'var(--sb-green)', border: '2.5px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="check" size={16} sw={3} /></span>
+                  <span style={{ flexShrink: 0, width: 26, height: 26, borderRadius: 999, background: 'var(--sb-green)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="check" size={16} sw={3} /></span>
                   {t}
                 </li>
               ))}
@@ -607,7 +607,7 @@ function SiteFooter() {
         </div>
         {cols.map((c) => (
           <div key={c.h}>
-            <div className="sb-marker" style={{ fontSize: '1.25rem', color: 'var(--sb-yellow)', marginBottom: 12 }}>{c.h}</div>
+            <div className="sb-marker" style={{ fontSize: '1.25rem', color: 'var(--sb-sky)', marginBottom: 12 }}>{c.h}</div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 10 }}>
               {c.links.map((l) => <li key={l}><a href={FOOTER_LINKS[l] || '#'} style={{ color: '#EDE9E3', textDecoration: 'none', fontWeight: 600 }}>{l}</a></li>)}
             </ul>
@@ -666,7 +666,7 @@ function SiteHeader({ active, onCta }) {
   const cta = onCta || (() => { window.location.href = '/#sponsor'; });
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-cream)', borderBottom: '3px solid var(--sb-ink)' }}>
+    <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--sb-cream)', borderBottom: 'none' }}>
       <style>{HEADER_CSS}</style>
       <div className="sb-wrap" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, height: 78 }}>
         <a href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
@@ -676,20 +676,20 @@ function SiteHeader({ active, onCta }) {
         {/* nav — absolutely centered so it never shifts the logo or cart */}
         <nav className="sb-nav" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: 26 }}>
           {NAV_LINKS.map(([l, h, key]) => (
-            <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-yellow)' : '3px solid transparent' }}>{l}</a>
+            <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 700, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-blue)' : '3px solid transparent' }}>{l}</a>
           ))}
         </nav>
 
         {/* CTA + hamburger — always at the far right via space-between */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button onClick={cta} className="sb-header-cta"
-            style={{ height: 46, padding: '0 18px', borderRadius: 14, border: '3px solid var(--sb-ink)', background: 'var(--sb-yellow)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', fontWeight: 800, fontSize: '1rem', color: 'var(--sb-ink)', flexShrink: 0 }}>
+            style={{ height: 46, padding: '0 22px', borderRadius: 999, border: 'none', background: 'var(--sb-ink)', boxShadow: 'none', cursor: 'pointer', fontWeight: 700, fontSize: '1rem', color: '#fff', flexShrink: 0 }}>
             Sponsor a school
           </button>
 
           {/* hamburger — mobile only */}
           <button className="sb-hamburger" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen((o) => !o)}
-            style={{ width: 46, height: 46, borderRadius: 14, border: '3px solid var(--sb-ink)', background: menuOpen ? 'var(--sb-yellow)' : 'var(--sb-paper)', boxShadow: 'var(--shadow-pop-sm)', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
+            style={{ width: 46, height: 46, borderRadius: 999, border: '1px solid var(--sb-line)', background: menuOpen ? 'var(--sb-wash-sky)' : 'var(--sb-paper)', boxShadow: 'none', cursor: 'pointer', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 0 }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sb-ink)" strokeWidth="3" strokeLinecap="round">
               {menuOpen
                 ? <React.Fragment><path d="M6 6l12 12" /><path d="M18 6L6 18" /></React.Fragment>

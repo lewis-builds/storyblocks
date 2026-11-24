@@ -1,5 +1,6 @@
 /* Story Blocks Journal — Spacing, radius, border, shadow, motion tokens
-   The brand look = thick ink outlines + hard offset "sticker" shadows + generous rounding. */
+   Fresh & friendly restyle (Nov 2026): the look is now flat colour + big soft
+   corners + lots of white space. No ink outlines, no hard "sticker" shadows. */
 
 :root {
   /* ---- Spacing scale (4px base) ---- */
@@ -12,27 +13,31 @@
   --sp-7:  3rem;     /* 48 */
   --sp-8:  4rem;     /* 64 */
 
-  /* ---- Corner radii (soft, hand-drawn rounding) ---- */
-  --radius-sm:   10px;
-  --radius-md:   16px;   /* buttons, inputs */
-  --radius-lg:   22px;   /* cards */
-  --radius-xl:   30px;   /* sheets, big panels */
-  --radius-pill: 999px;
+  /* ---- Corner radii (big, soft rounding) ---- */
+  --radius-sm:   14px;
+  --radius-md:   18px;   /* inputs */
+  --radius-lg:   32px;   /* cards */
+  --radius-xl:   40px;   /* sheets, big panels */
+  --radius-pill: 999px;  /* buttons, chips */
   --radius-blob: 46% 54% 52% 48% / 55% 47% 53% 45%; /* organic sticker blob */
 
-  /* ---- Ink outlines (the defining brand stroke) ---- */
-  --bw-hair:   2px;
-  --bw:        3px;    /* default outline */
-  --bw-bold:   4px;    /* buttons, feature cards */
-  --border-ink:      var(--bw) solid var(--sb-ink);
-  --border-ink-bold: var(--bw-bold) solid var(--sb-ink);
+  /* ---- Borders — retired as the brand stroke; kept as no-ops so any
+         `var(--border-ink)` resolves to a flat edge. Use --sb-line for the
+         rare genuine hairline divider. ---- */
+  --bw-hair:   1px;
+  --bw:        0px;
+  --bw-bold:   0px;
+  --border-ink:      0 solid transparent;
+  --border-ink-bold: 0 solid transparent;
+  --border-hair:     1px solid var(--sb-line);
 
-  /* ---- Hard offset "sticker" shadows (no blur — the signature) ---- */
-  --shadow-pop-sm: 2px 2px 0 0 var(--sb-ink);
-  --shadow-pop:    4px 4px 0 0 var(--sb-ink);
-  --shadow-pop-lg: 6px 6px 0 0 var(--sb-ink);
-  /* soft ambient (used sparingly, e.g. floating stickers over photos) */
-  --shadow-soft:   0 8px 24px rgba(35,31,32,0.14);
+  /* ---- Shadows — flat by default. A whisper-soft ambient only where depth
+         genuinely helps (a sticker floating over a photo). No hard offsets. ---- */
+  --shadow-pop-sm: none;
+  --shadow-pop:    none;
+  --shadow-pop-lg: none;
+  --shadow-soft:   0 10px 30px rgba(59,55,52,0.10);
+  --shadow-float:  0 14px 40px rgba(59,55,52,0.14);
 
   /* ---- Motion (bouncy & friendly) ---- */
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
@@ -41,8 +46,8 @@
   --dur:         200ms; /* @kind other */
   --dur-slow:    360ms; /* @kind other */
 
-  /* press interaction: nudge toward the shadow + shrink shadow */
-  --press-shift: 3px; /* @kind spacing */
+  /* press interaction: a gentle shrink, no shadow nudge */
+  --press-shift: 0px; /* @kind spacing */
 
   /* ---- Layout ---- */
   --content-max: 1120px; /* @kind spacing */

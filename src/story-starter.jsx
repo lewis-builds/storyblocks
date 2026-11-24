@@ -34,9 +34,9 @@ function Tabs({ starter }) {
           <button key={t.key} role="tab" aria-selected={sel === k} type="button" onClick={() => setSel(k)}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontWeight: 800,
-              fontSize: '.98rem', color: 'var(--sb-ink)', background: sel === k ? 'var(--sb-yellow)' : 'var(--sb-paper)',
-              border: '3px solid var(--sb-ink)', borderRadius: 999, padding: '9px 16px', cursor: 'pointer',
-              boxShadow: sel === k ? '3px 3px 0 0 var(--sb-ink)' : 'none', transition: 'background .15s, box-shadow .15s',
+              fontSize: '.98rem', color: 'var(--sb-ink)', background: sel === k ? 'var(--sb-sky)' : 'var(--sb-paper)',
+              border: 'none', borderRadius: 999, padding: '9px 16px', cursor: 'pointer',
+              boxShadow: sel === k ? 'none' : 'none', transition: 'background .15s, box-shadow .15s',
             }}>
             <Icon name={t.icon} size={18} sw={2.6} /> {t.label}
           </button>
@@ -54,7 +54,7 @@ function PromptDisplay({ starter }) {
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 16 }}>
         {words.map((w) => (
-          <span key={w} className="sb-display" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.4rem)', background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 16, padding: '8px 22px', boxShadow: 'var(--shadow-pop)' }}>{w}</span>
+          <span key={w} className="sb-display" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.4rem)', background: 'var(--sb-paper)', border: 'none', borderRadius: 16, padding: '8px 22px', boxShadow: 'var(--shadow-pop)' }}>{w}</span>
         ))}
       </div>
     );
@@ -78,7 +78,7 @@ function StarterPage({ starter }) {
     <React.Fragment>
       <SiteHeader active={null} />
       <main>
-        <section style={{ background: washGrad(starter.tint), borderBottom: '3px solid var(--sb-ink)', padding: 'clamp(40px, 7vw, 72px) 0' }}>
+        <section style={{ background: washGrad(starter.tint), borderBottom: 'none', padding: 'clamp(40px, 7vw, 72px) 0' }}>
           <div className="sb-wrap" style={{ maxWidth: 900 }}>
             <div className="sb-starter-hero" style={{ display: 'flex', alignItems: 'center', gap: 'clamp(20px, 4vw, 48px)' }}>
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -104,7 +104,7 @@ function StarterPage({ starter }) {
           </div>
         </section>
 
-        <section style={{ background: washGrad('lemon'), borderTop: '3px solid var(--sb-ink)', padding: 'clamp(36px, 6vw, 56px) 0' }}>
+        <section style={{ background: washGrad('lemon'), borderTop: 'none', padding: 'clamp(36px, 6vw, 56px) 0' }}>
           <div className="sb-wrap" style={{ maxWidth: 820, textAlign: 'center' }}>
             <h2 className="sb-display" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>77 more starters where this came from</h2>
             <p style={{ marginTop: 10, fontSize: '1.1rem', lineHeight: 1.6, maxWidth: 560, margin: '10px auto 0' }}>Every one is ready in the Story Blocks Journal - a daily writing habit that gets kids off screens and into stories.</p>

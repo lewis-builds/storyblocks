@@ -88,8 +88,8 @@ function GiftPicker() {
       style={{
         flex: '1 1 0', minWidth: 72, padding: '14px 10px', cursor: 'pointer', fontFamily: 'inherit',
         background: active ? 'var(--sb-purple)' : 'var(--sb-paper)', color: 'var(--sb-ink)',
-        border: '3px solid var(--sb-ink)', borderRadius: 16,
-        boxShadow: active ? '3px 3px 0 0 var(--sb-ink)' : '2px 2px 0 0 var(--sb-ink)',
+        border: 'none', borderRadius: 16,
+        boxShadow: active ? 'none' : 'none',
         transform: active ? 'translate(-1px,-1px)' : 'none', transition: 'transform .12s, box-shadow .12s',
       }}>
       <div className="sb-display" style={{ fontSize: '1.5rem', lineHeight: 1 }}>{n}</div>
@@ -124,13 +124,13 @@ function GiftPicker() {
 /* ---------------- Hero + give card ---------------- */
 function GiftHero() {
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('purple'), borderBottom: '3px solid var(--sb-ink)' }}>
+    <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('purple'), borderBottom: 'none' }}>
       <div className="sb-wrap" style={{ position: 'relative', zIndex: 2, maxWidth: 780, textAlign: 'center', padding: '48px 24px 56px' }}>
         <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)' }}>A small gift, a big difference</div>
         <h1 className="sb-display" style={{ fontSize: 'clamp(2.4rem, 5.6vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>
           Gift a journal to a child at school.
         </h1>
-        <div className="sb-marker" style={{ display: 'inline-block', marginTop: 14, background: 'var(--sb-yellow)', border: '3px solid var(--sb-ink)', borderRadius: 999, padding: '6px 22px', fontSize: '1.6rem', transform: 'rotate(-2deg)', boxShadow: 'var(--shadow-pop-sm)' }}>
+        <div className="sb-marker" style={{ display: 'inline-block', marginTop: 14, background: 'var(--sb-ink)', color: '#fff', border: 'none', borderRadius: 999, padding: '8px 24px', fontSize: '1.6rem', transform: 'rotate(-2deg)', boxShadow: 'none' }}>
           just {gbp(GIFT_PRICE)}
         </div>
         <p style={{ marginTop: 18, fontSize: '1.12rem', lineHeight: 1.55, maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>
@@ -138,7 +138,7 @@ function GiftHero() {
         </p>
 
         {/* the give card */}
-        <div style={{ marginTop: 32, textAlign: 'left', background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 28, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
+        <div style={{ marginTop: 32, textAlign: 'left', background: 'var(--sb-paper)', border: 'none', borderRadius: 28, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
           <ClassroomMeter />
           <hr style={{ border: 0, borderTop: '2.5px dashed rgba(35,31,32,.2)', margin: '22px 0' }} />
           <div className="sb-display" style={{ fontSize: '1.3rem', marginBottom: 12 }}>How many will you gift?</div>
@@ -168,7 +168,7 @@ function HowItWorks() {
         <div className="sb-steps" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 24, marginTop: 44 }}>
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 110}>
-              <div style={{ background: s.tint, border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: '26px 24px', height: '100%', position: 'relative' }}>
+              <div style={{ background: s.tint, border: 'none', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: '26px 24px', height: '100%', position: 'relative' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span className="sb-display" style={{ fontSize: '2rem', opacity: .35 }}>{s.n}</span>
                   <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ width: 72 }} />
@@ -192,12 +192,12 @@ function Promises() {
     { icon: 'book', tint: 'sky', b: 'We always confirm first', t: 'We match completed classrooms to schools and always confirm with the school before delivery.' },
   ];
   return (
-    <section style={{ padding: 'var(--sec-pad, 72px) 0', background: cornerGrad('--sb-green'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)' }}>
+    <section style={{ padding: 'var(--sec-pad, 72px) 0', background: cornerGrad('--sb-green'), borderTop: 'none', borderBottom: 'none' }}>
       <div className="sb-wrap" style={{ maxWidth: 760 }}>
         <div style={{ display: 'grid', gap: 14 }}>
           {items.map((it, i) => (
-            <div key={it.b} style={{ display: 'flex', gap: 16, alignItems: 'flex-start', background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 18, boxShadow: 'var(--shadow-pop)', padding: '18px 20px' }}>
-              <span style={{ flexShrink: 0, width: 46, height: 46, borderRadius: 13, background: `var(--sb-${it.tint})`, border: '3px solid var(--sb-ink)', boxShadow: '2px 2px 0 0 var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `rotate(${i % 2 ? 4 : -4}deg)` }}>
+            <div key={it.b} style={{ display: 'flex', gap: 16, alignItems: 'flex-start', background: 'var(--sb-paper)', border: 'none', borderRadius: 18, boxShadow: 'var(--shadow-pop)', padding: '18px 20px' }}>
+              <span style={{ flexShrink: 0, width: 46, height: 46, borderRadius: 13, background: `var(--sb-${it.tint})`, border: 'none', boxShadow: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `rotate(${i % 2 ? 4 : -4}deg)` }}>
                 <Icon name={it.icon} size={22} sw={2.6} />
               </span>
               <div>
@@ -229,8 +229,8 @@ function DeliveredWall() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20, marginTop: 36 }}>
             {DELIVERED_CLASSROOMS.map((c, i) => (
               <Reveal key={c.school + i}>
-                <div style={{ background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 20, boxShadow: 'var(--shadow-pop)', overflow: 'hidden', height: '100%' }}>
-                  <div style={{ aspectRatio: '4 / 3', background: 'var(--sb-wash-sky)', borderBottom: '3px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 20, boxShadow: 'var(--shadow-pop)', overflow: 'hidden', height: '100%' }}>
+                  <div style={{ aspectRatio: '4 / 3', background: 'var(--sb-wash-sky)', borderBottom: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {c.photo ? <img src={asset(c.photo)} alt={`Journals delivered to ${c.school}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       : <Icon name="book" size={40} sw={2.2} />}
                   </div>
@@ -283,7 +283,7 @@ function NominateForm() {
   };
 
   return (
-    <section id="nominate" style={{ background: washGrad('pink'), borderTop: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0 84px' }}>
+    <section id="nominate" style={{ background: washGrad('pink'), borderTop: 'none', padding: 'var(--sec-pad, 72px) 0 84px' }}>
       <div className="sb-wrap sb-nominate" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.1fr)', gap: 56, alignItems: 'center' }}>
         <div>
           <SectionHead align="left" kicker="Nominate a school" title="Know a school that should get the next classroom?" sub="" />
@@ -295,7 +295,7 @@ function NominateForm() {
           </p>
         </div>
 
-        <div style={{ background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 28 }}>
+        <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 28 }}>
           {sent ? (
             <div style={{ textAlign: 'center', padding: '26px 10px' }}>
               <img src={asset(CHAR_BASE + '/SB44.png')} alt="" style={{ width: 130 }} />
@@ -331,7 +331,7 @@ function NominateForm() {
                     <button key={r} type="button" onClick={() => setRelationship(r)} aria-pressed={relationship === r}
                       style={{ padding: '9px 14px', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700, fontSize: '.9rem',
                         background: relationship === r ? 'var(--sb-sky)' : 'var(--sb-paper)', color: 'var(--sb-ink)',
-                        border: '2.5px solid var(--sb-ink)', borderRadius: 999, boxShadow: relationship === r ? '2px 2px 0 0 var(--sb-ink)' : 'none' }}>{r}</button>
+                        border: 'none', borderRadius: 999, boxShadow: relationship === r ? 'none' : 'none' }}>{r}</button>
                   ))}
                 </div>
               </div>

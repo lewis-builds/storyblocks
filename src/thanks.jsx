@@ -30,7 +30,7 @@ function Thanks() {
   const STEPS = isGift ? GIFT_STEPS : SPONSOR_STEPS;
 
   return (
-    <div style={{ maxWidth: 580, width: '100%', background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 36px', textAlign: 'center', position: 'relative' }}>
+    <div style={{ maxWidth: 580, width: '100%', background: 'var(--sb-paper)', border: 'none', borderRadius: 30, boxShadow: 'var(--shadow-pop-lg)', padding: '44px 36px', textAlign: 'center', position: 'relative' }}>
       <img className="sb-float" src="/assets/characters/SB44.png" alt="" style={{ width: 140 }} />
       <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)', marginTop: 10 }}>Thank you!</div>
       <h1 className="sb-display" style={{ fontSize: 'clamp(2rem, 6vw, 2.6rem)', lineHeight: 1.05, marginTop: 8 }}>{isGift ? 'Your gift is in.' : 'Your sponsorship is in.'}</h1>
@@ -42,8 +42,8 @@ function Thanks() {
 
       <div style={{ display: 'grid', gap: 12, textAlign: 'left', margin: '24px auto 0', maxWidth: 440 }}>
         {STEPS.map((s) => (
-          <div key={s.n} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', background: 'var(--sb-wash-green)', border: '2.5px solid var(--sb-ink)', borderRadius: 14, padding: '14px 16px' }}>
-            <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 999, background: 'var(--sb-paper)', border: '2.5px solid var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>{s.n}</span>
+          <div key={s.n} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', background: 'var(--sb-wash-green)', border: 'none', borderRadius: 14, padding: '14px 16px' }}>
+            <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 999, background: 'var(--sb-paper)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>{s.n}</span>
             <span><strong style={{ fontWeight: 800, display: 'block' }}>{s.b}</strong><span style={{ fontWeight: 600, lineHeight: 1.4 }}>{s.t}</span></span>
           </div>
         ))}

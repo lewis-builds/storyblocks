@@ -31,7 +31,7 @@ function EmailGate({ onUnlock }) {
   };
 
   return (
-    <div style={{ background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 30 }}>
+    <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 30 }}>
       <h2 className="sb-display" style={{ fontSize: '1.7rem', lineHeight: 1.1 }}>Get the free pack</h2>
       <p style={{ marginTop: 8, lineHeight: 1.5, color: 'var(--sb-muted)', fontWeight: 600 }}>
         Pop in your email - we'll unlock the downloads here and send a copy to your inbox.
@@ -58,7 +58,7 @@ function Downloads({ onReset }) {
   return (
     <div>
       <ResBadge variant="green" tilt={false}>Unlocked</ResBadge>
-      <div style={{ background: 'var(--sb-wash-lemon)', border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 26, marginTop: 18, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ background: 'var(--sb-wash-lemon)', border: 'none', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 26, marginTop: 18, display: 'flex', flexDirection: 'column' }}>
         <img src={asset(CHAR_BASE + '/SB10.png')} alt="" style={{ width: 80 }} />
         <h3 className="sb-display" style={{ fontSize: '1.4rem', marginTop: 12 }}>Your free starter pack</h3>
         <p style={{ marginTop: 8, lineHeight: 1.55 }}>Three story starters - three words, an object and a scenario - plus the reward chart, all in one printable PDF. Print them out and give ten-minute stories a try.</p>
@@ -86,7 +86,7 @@ function ResourcesApp() {
     <React.Fragment>
       <SiteHeader active="resources" />
       <main>
-        <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('sky'), borderBottom: '3px solid var(--sb-ink)' }}>
+        <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('sky'), borderBottom: 'none' }}>
           <div className="sb-wrap sb-res-hero" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,1fr)', gap: 56, alignItems: 'center', padding: '64px 24px 72px' }}>
             <div>
               <div className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>Free resources</div>
@@ -118,7 +118,7 @@ function ResourcesApp() {
             </div>
 
             {/* pack shot */}
-            <figure style={{ margin: '44px auto 0', maxWidth: 820, background: '#fff', border: '3px solid var(--sb-ink)', borderRadius: 14, boxShadow: 'var(--shadow-pop)', padding: '12px 12px 14px', transform: 'rotate(-1deg)' }}>
+            <figure style={{ margin: '44px auto 0', maxWidth: 820, background: '#fff', border: 'none', borderRadius: 14, boxShadow: 'var(--shadow-pop)', padding: '12px 12px 14px', transform: 'rotate(-1deg)' }}>
               <img src={asset('assets/resources-free-pack.jpg')} alt="The free Story Blocks starter pack - three printable story starters and the reward chart" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8 }} />
               <figcaption className="sb-marker" style={{ fontSize: '1.15rem', textAlign: 'center', marginTop: 10 }}>The free pack - story starters & reward chart</figcaption>
             </figure>

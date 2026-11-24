@@ -33,10 +33,10 @@ html.stk-lock body { margin:0; background:#F9E25E; overflow-x:hidden; }
 .stk-days{ font-family:var(--font-display); font-weight:700; font-size:clamp(2.6rem,13vw,4rem); line-height:1; margin-top:8px; }
 .stk-share{ font-family:var(--font-display); font-weight:600; font-size:1.15rem; color:#8a7a28; margin-top:10px; }
 .stk-save{ appearance:none; margin-top:16px; cursor:pointer; font-family:var(--font-body); font-weight:800;
-  font-size:1.1rem; color:var(--sb-ink); background:#fff; border:3.5px solid var(--sb-ink); border-radius:16px;
-  box-shadow:4px 5px 0 0 var(--sb-ink); padding:14px 26px; display:inline-flex; align-items:center; gap:10px;
+  font-size:1.1rem; color:var(--sb-ink); background:#fff; border:none; border-radius:16px;
+  box-shadow:var(--shadow-soft); padding:14px 26px; display:inline-flex; align-items:center; gap:10px;
   transition:transform .14s ease, box-shadow .14s ease; }
-.stk-save:active{ transform:translate(2px,3px); box-shadow:1px 2px 0 0 var(--sb-ink); }
+.stk-save:active{ transform:translate(2px,3px); box-shadow:var(--shadow-soft); }
 .stk-save svg{ width:20px; height:20px; }
 .stk-foot{ margin-top:18px; font-weight:700; font-size:.9rem; }
 .stk-foot a{ color:var(--sb-blue); font-weight:800; }

@@ -20,15 +20,15 @@ const { Button: SBButton } = window.StoryBlocksJournalDesignSystem_239fa7;
 function TierCard({ tier, selected, onChoose }) {
   return (
     <div style={{
-      position: 'relative', background: 'var(--sb-paper)', border: selected ? '4px solid var(--sb-blue)' : '4px solid var(--sb-ink)',
+      position: 'relative', background: 'var(--sb-paper)', border: selected ? '4px solid var(--sb-blue)' : 'none',
       borderRadius: 22, boxShadow: 'var(--shadow-pop-lg)', padding: '22px 20px 20px', display: 'flex', flexDirection: 'column',
       transform: `rotate(${tier.tilt * 0.4}deg)`,
     }}>
       {tier.popular && (
-        <span className="sb-marker" style={{ position: 'absolute', top: -16, right: 16, background: 'var(--sb-blue)', color: '#fff', fontSize: '1.05rem', padding: '4px 14px', borderRadius: 999, border: '2.5px solid var(--sb-ink)', boxShadow: '2px 2px 0 0 var(--sb-ink)', transform: 'rotate(3deg)' }}>Most chosen</span>
+        <span className="sb-marker" style={{ position: 'absolute', top: -16, right: 16, background: 'var(--sb-blue)', color: '#fff', fontSize: '1.05rem', padding: '4px 14px', borderRadius: 999, border: 'none', boxShadow: 'none', transform: 'rotate(3deg)' }}>Most chosen</span>
       )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span style={{ flexShrink: 0, width: 46, height: 46, borderRadius: 12, background: `var(--sb-${tier.tint})`, border: '3px solid var(--sb-ink)', boxShadow: '2px 2px 0 0 var(--sb-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem' }}>{tier.books}</span>
+        <span style={{ flexShrink: 0, width: 46, height: 46, borderRadius: 12, background: `var(--sb-${tier.tint})`, border: 'none', boxShadow: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem' }}>{tier.books}</span>
         <div>
           <div className="sb-display" style={{ fontSize: '1.4rem', lineHeight: 1 }}>{tier.name}</div>
           <div style={{ fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.92rem' }}>{tier.books} journals</div>
@@ -40,7 +40,7 @@ function TierCard({ tier, selected, onChoose }) {
       </div>
       <p style={{ marginTop: 10, lineHeight: 1.4, fontWeight: 600, flex: 1 }}>{tier.blurb}</p>
       {tier.gold && (
-        <div style={{ display: 'flex', gap: 9, alignItems: 'flex-start', marginTop: 12, padding: '10px 12px', background: 'var(--sb-wash-lemon)', border: '2.5px solid var(--sb-ink)', borderRadius: 12 }}>
+        <div style={{ display: 'flex', gap: 9, alignItems: 'flex-start', marginTop: 12, padding: '10px 12px', background: 'var(--sb-wash-lemon)', border: 'none', borderRadius: 12 }}>
           <Icon name="award" size={18} sw={2.6} />
           <span style={{ fontWeight: 700, fontSize: '.9rem', lineHeight: 1.35 }}>Includes a <strong>Gold Edition award copy</strong> for the school to present to a child.</span>
         </div>
@@ -110,7 +110,7 @@ function SponsorFlow() {
       {/* Step rail */}
       <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 22, flexWrap: 'wrap' }}>
         {[['tier', '1 · Choose a tier'], ['nominate', '2 · Nominate a school'], ['details', '3 · Your details']].map(([k, label]) => (
-          <span key={k} style={{ fontWeight: 800, fontSize: '.86rem', padding: '6px 13px', borderRadius: 999, border: '2.5px solid var(--sb-ink)', background: step === k ? 'var(--sb-yellow)' : 'var(--sb-paper)', color: 'var(--sb-ink)', opacity: step === k ? 1 : 0.6 }}>{label}</span>
+          <span key={k} style={{ fontWeight: 800, fontSize: '.86rem', padding: '8px 15px', borderRadius: 999, border: 'none', background: step === k ? 'var(--sb-ink)' : 'rgba(59,55,52,0.06)', color: step === k ? '#fff' : 'var(--sb-ink)', opacity: step === k ? 1 : 0.65 }}>{label}</span>
         ))}
       </div>
 
@@ -123,7 +123,7 @@ function SponsorFlow() {
       )}
 
       {step === 'nominate' && tier && (
-        <div style={{ maxWidth: 620, margin: '0 auto', background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 24, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
+        <div style={{ maxWidth: 620, margin: '0 auto', background: 'var(--sb-paper)', border: 'none', borderRadius: 24, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
           <button type="button" onClick={() => toStep('tier')} style={{ background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 800, color: 'var(--sb-blue)', cursor: 'pointer', marginBottom: 14 }}>← Change tier</button>
           <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>{tier.name} · {gbp(tier.price)}</div>
           <h2 className="sb-display" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', lineHeight: 1.05, margin: '2px 0 6px' }}>Nominate a primary school</h2>
@@ -136,12 +136,12 @@ function SponsorFlow() {
           </div>
 
           <button type="button" onClick={chooseAllocate}
-            style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', background: allocate ? 'var(--sb-wash-sky)' : 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 14, boxShadow: '2px 2px 0 0 var(--sb-ink)', cursor: 'pointer', font: 'inherit' }}>
+            style={{ width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', background: allocate ? 'var(--sb-wash-sky)' : 'var(--sb-paper)', border: 'none', borderRadius: 14, boxShadow: 'none', cursor: 'pointer', font: 'inherit' }}>
             <Icon name="heart" size={20} sw={2.6} />
             <span><strong style={{ fontWeight: 800, display: 'block' }}>Choose a school for me</strong><span style={{ fontSize: '.9rem', color: 'var(--sb-muted)', fontWeight: 700 }}>We’ll allocate from schools already on our list.</span></span>
           </button>
 
-          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 18, padding: '13px 15px', background: 'var(--sb-wash-lemon)', border: '2.5px solid var(--sb-ink)', borderRadius: 12 }}>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 18, padding: '13px 15px', background: 'var(--sb-wash-lemon)', border: 'none', borderRadius: 12 }}>
             <Icon name="shield" size={18} sw={2.6} />
             <p style={{ fontWeight: 700, fontSize: '.92rem', lineHeight: 1.45, margin: 0 }}>{NOMINATION_PROMISE}</p>
           </div>
@@ -153,7 +153,7 @@ function SponsorFlow() {
       )}
 
       {step === 'details' && tier && (
-        <div style={{ maxWidth: 620, margin: '0 auto', background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 24, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
+        <div style={{ maxWidth: 620, margin: '0 auto', background: 'var(--sb-paper)', border: 'none', borderRadius: 24, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
           <button type="button" onClick={() => toStep('nominate')} style={{ background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 800, color: 'var(--sb-blue)', cursor: 'pointer', marginBottom: 14 }}>← Back to school</button>
           <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>{tier.name} · {gbp(tier.price)} · {tier.books} journals</div>
           <h2 className="sb-display" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', lineHeight: 1.05, margin: '2px 0 6px' }}>Your recognition details</h2>
@@ -162,7 +162,7 @@ function SponsorFlow() {
           <label style={{ display: 'block', fontWeight: 800, marginBottom: 7 }}>Sponsor name (as it should appear)</label>
           <input type="text" value={sponsorName} onChange={(e) => setSponsorName(e.target.value)} placeholder="e.g. Harper & Co Accountants" style={INPUT_STYLE} />
 
-          <div style={{ margin: '14px 0 20px', padding: '14px 16px', background: 'var(--sb-wash-green)', border: '2.5px solid var(--sb-ink)', borderRadius: 12 }}>
+          <div style={{ margin: '14px 0 20px', padding: '14px 16px', background: 'var(--sb-wash-green)', border: 'none', borderRadius: 12 }}>
             <div style={{ fontWeight: 800, fontSize: '.82rem', textTransform: 'uppercase', letterSpacing: '.04em', color: 'var(--sb-muted)', marginBottom: 4 }}>Bookplate preview</div>
             <div style={{ fontWeight: 700, lineHeight: 1.4 }}>Donated to <strong>{allocate ? '[your nominated school]' : (school ? school.n : '[school]')}</strong> by <strong>{sponsorName.trim() || '[sponsor]'}</strong></div>
           </div>
@@ -170,7 +170,7 @@ function SponsorFlow() {
           <label style={{ display: 'block', fontWeight: 800, marginBottom: 7 }}>Contact email (for updates + receipt)</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@business.co.uk" style={INPUT_STYLE} />
 
-          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 18, padding: '13px 15px', background: 'var(--sb-wash-lemon)', border: '2.5px solid var(--sb-ink)', borderRadius: 12 }}>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginTop: 18, padding: '13px 15px', background: 'var(--sb-wash-lemon)', border: 'none', borderRadius: 12 }}>
             <Icon name="shield" size={18} sw={2.6} />
             <p style={{ fontWeight: 700, fontSize: '.92rem', lineHeight: 1.45, margin: 0 }}>{NOMINATION_PROMISE}</p>
           </div>
@@ -194,7 +194,7 @@ function SponsorFlow() {
 /* ---------------- Hero - shows the journal, CTA scrolls to the sponsor flow ---------------- */
 function JournalHero({ onSponsor }) {
   return (
-    <section id="top" style={{ position: 'relative', overflow: 'hidden', background: washGrad('sky'), borderBottom: '3px solid var(--sb-ink)' }}>
+    <section id="top" style={{ position: 'relative', overflow: 'hidden', background: washGrad('sky'), borderBottom: 'none' }}>
       <style>{`
         @media (max-width: 820px) {
           .sb-jhero { grid-template-columns: 1fr !important; gap: 24px !important; text-align: center; }
@@ -228,7 +228,7 @@ function JournalHero({ onSponsor }) {
 /* ---------------- Sponsor section - the tier + nomination flow ---------------- */
 function SponsorSection() {
   return (
-    <section id="sponsor" style={{ scrollMarginTop: 84, background: washGrad('green'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section id="sponsor" style={{ scrollMarginTop: 84, background: washGrad('green'), borderTop: 'none', borderBottom: 'none', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Sponsor a school" title="Choose your sponsorship"
           sub="Pick a tier, nominate a UK primary school (or ask us to choose one), and you’re done. Every tier includes the full recognition pack." />
@@ -246,15 +246,15 @@ function SponsorSection() {
 /* ---------------- Recognition pack ---------------- */
 function RecognitionPack() {
   return (
-    <section style={{ padding: 'var(--sec-pad, 72px) 0', background: washGrad('peach'), borderBottom: '3px solid var(--sb-ink)' }}>
+    <section style={{ padding: 'var(--sec-pad, 72px) 0', background: washGrad('peach'), borderBottom: 'none' }}>
       <div className="sb-wrap">
         <SectionHead kicker="What every sponsor gets" title="Recognition, not just a receipt"
           sub="Every tier - Class, Year Group or Whole School - includes the full recognition pack. This is local goodwill people can see." />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 18, marginTop: 36 }}>
           {RECOGNITION_PACK.map((r, i) => (
             <Reveal key={r.b}>
-              <div style={{ background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 20, boxShadow: 'var(--shadow-pop)', padding: '22px 20px', height: '100%' }}>
-                <span style={{ display: 'inline-flex', width: 48, height: 48, borderRadius: 13, background: `var(--sb-${r.tint})`, border: '3px solid var(--sb-ink)', boxShadow: '2px 2px 0 0 var(--sb-ink)', alignItems: 'center', justifyContent: 'center', transform: `rotate(${i % 2 ? 4 : -4}deg)` }}>
+              <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 20, boxShadow: 'var(--shadow-pop)', padding: '22px 20px', height: '100%' }}>
+                <span style={{ display: 'inline-flex', width: 48, height: 48, borderRadius: 13, background: `var(--sb-${r.tint})`, border: 'none', boxShadow: 'none', alignItems: 'center', justifyContent: 'center', transform: `rotate(${i % 2 ? 4 : -4}deg)` }}>
                   <Icon name={r.icon} size={22} sw={2.6} />
                 </span>
                 <div style={{ fontWeight: 800, fontSize: '1.1rem', marginTop: 14, lineHeight: 1.3 }}>{r.b}</div>

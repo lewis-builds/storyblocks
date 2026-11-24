@@ -21,7 +21,7 @@ function About() {
         with the Story Blocks Journal, and the cast of block-character friends who live across
         everything we make.</p>
 
-      <figure style={{ margin: '28px 0', background: '#fff', border: '3px solid var(--sb-ink)', borderRadius: 16, boxShadow: 'var(--shadow-pop)', padding: 14 }}>
+      <figure style={{ margin: '28px 0', background: '#fff', border: 'none', borderRadius: 16, boxShadow: 'var(--shadow-pop)', padding: 14 }}>
         <img src={asset('assets/why-blocks-scene.png')} alt="The Blocks characters reading, camping, singing and playing together"
           style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 8 }} />
       </figure>

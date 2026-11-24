@@ -16,7 +16,7 @@ const { Button: SchButton, Select: SchSelect } = SchoolsDS;
 /* ---------------- Hero ---------------- */
 function SchoolsHero() {
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('green'), borderBottom: '3px solid var(--sb-ink)' }}>
+    <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('green'), borderBottom: 'none' }}>
       <div className="sb-wrap" style={{ maxWidth: 760, textAlign: 'center', padding: '60px 24px 68px' }}>
         <div className="sb-marker" style={{ fontSize: '1.5rem', color: 'var(--sb-blue)' }}>For teachers &amp; schools</div>
         <h1 className="sb-display" style={{ fontSize: 'clamp(2.3rem, 5vw, 3.5rem)', lineHeight: 1.04, marginTop: 8 }}>Register your school for sponsored journals.</h1>
@@ -42,15 +42,15 @@ function BoxContents() {
     { img: 'assets/wall-charts.jpg', tint: 'var(--sb-wash-purple)', tilt: -1, title: 'Wall reward charts', body: 'A big classroom wall chart to tick off reading and writing days the whole class can cheer on.' },
   ];
   return (
-    <section style={{ background: washGrad('sky'), borderTop: '3px solid var(--sb-ink)', borderBottom: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0' }}>
+    <section style={{ background: washGrad('sky'), borderTop: 'none', borderBottom: 'none', padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <SectionHead kicker="What arrives" title="What’s in every box"
           sub="Enough real journals, stickers and reward charts for a whole class to get scribbling. Bigger sponsorships cover a year group or the whole school." />
         <div className="sb-snaps" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 28, marginTop: 44 }}>
           {items.map((it) => (
             <Reveal key={it.title}>
-              <div style={{ background: it.tint, border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 22, height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ height: 190, background: 'var(--sb-paper)', border: '2.5px solid var(--sb-ink)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <div style={{ background: it.tint, border: 'none', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 22, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ height: 190, background: 'var(--sb-paper)', border: 'none', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src={asset(it.img)} alt={it.title} style={{ maxWidth: '82%', maxHeight: '84%', objectFit: 'contain', transform: `rotate(${it.tilt}deg)` }} />
                 </div>
                 <h3 className="sb-display" style={{ fontSize: '1.3rem', marginTop: 16 }}>{it.title}</h3>
@@ -79,7 +79,7 @@ function HowItWorks() {
         <div className="sb-steps" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 24, marginTop: 44 }}>
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 120}>
-              <div style={{ background: s.tint, border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: '26px 24px', height: '100%', position: 'relative' }}>
+              <div style={{ background: s.tint, border: 'none', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: '26px 24px', height: '100%', position: 'relative' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span className="sb-display" style={{ fontSize: '2rem', opacity: .35 }}>{s.n}</span>
                   <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ width: 72 }} />
@@ -129,7 +129,7 @@ function RegisterForm() {
   };
 
   return (
-    <section id="register" style={{ background: washGrad('lemon'), borderTop: '3px solid var(--sb-ink)', padding: 'var(--sec-pad, 72px) 0 84px' }}>
+    <section id="register" style={{ background: washGrad('lemon'), borderTop: 'none', padding: 'var(--sec-pad, 72px) 0 84px' }}>
       <div className="sb-wrap sb-nominate" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.1fr)', gap: 56, alignItems: 'center' }}>
         <div>
           <SectionHead align="left" kicker="Join the list" title="Register your school" sub="" />
@@ -139,11 +139,11 @@ function RegisterForm() {
           </p>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 0, marginTop: 26 }}>
             <img className="sb-float" src={asset(CHAR_BASE + '/SB50.png')} alt="" style={{ width: 130, ['--r']: '-3deg' }} />
-            <span className="sb-marker" style={{ background: 'var(--sb-paper)', border: '3px solid var(--sb-ink)', borderRadius: 999, padding: '8px 18px', fontSize: '1.15rem', transform: 'rotate(-2deg)', boxShadow: 'var(--shadow-pop-sm)', marginBottom: 26 }}>Free - and no catch!</span>
+            <span className="sb-marker" style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 999, padding: '8px 18px', fontSize: '1.15rem', transform: 'rotate(-2deg)', boxShadow: 'var(--shadow-pop-sm)', marginBottom: 26 }}>Free - and no catch!</span>
           </div>
         </div>
 
-        <div style={{ background: 'var(--sb-paper)', border: '4px solid var(--sb-ink)', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 28 }}>
+        <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: 28 }}>
           {sent ? (
             <div style={{ textAlign: 'center', padding: '26px 10px' }}>
               <img src={asset(CHAR_BASE + '/SB44.png')} alt="" style={{ width: 130 }} />

@@ -39,7 +39,7 @@ function Library() {
       <h2>Your printables &amp; guides</h2>
       <div className="parents-grid">
         {RESOURCES.map((r) => (
-          <div key={r.title} style={{ background: r.tint, border: '3px solid var(--sb-ink)', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, display: 'flex', flexDirection: 'column' }}>
+          <div key={r.title} style={{ background: r.tint, border: 'none', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, display: 'flex', flexDirection: 'column' }}>
             <img src={asset(CHAR_BASE + '/' + r.char + '.png')} alt="" style={{ width: 72 }} />
             <h3 style={{ marginTop: 10 }}>{r.title}</h3>
             <p style={{ marginTop: 8, flex: 1 }}>{r.body}</p>
@@ -83,7 +83,7 @@ function Parents() {
       <h2>Ways to use it</h2>
       <div className="parents-steps">
         {uses.map((s) => (
-          <div key={s.title} style={{ background: s.tint, border: '3px solid var(--sb-ink)', borderRadius: 20, boxShadow: 'var(--shadow-pop)', padding: '22px 20px' }}>
+          <div key={s.title} style={{ background: s.tint, border: 'none', borderRadius: 20, boxShadow: 'var(--shadow-pop)', padding: '22px 20px' }}>
             <img src={asset(CHAR_BASE + '/' + s.char + '.png')} alt="" style={{ width: 56 }} />
             <h3 style={{ marginTop: 10 }}>{s.title}</h3>
             <p style={{ marginBottom: 0 }}>{s.body}</p>
