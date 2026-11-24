@@ -17,16 +17,15 @@ import { GIFT_PRICE, CLASSROOM_SIZE, GIFT_PROGRESS, DELIVERED_CLASSROOMS } from 
 const { Button: SBButton } = window.StoryBlocksJournalDesignSystem_239fa7;
 
 /* ---------------- Classroom meter - the signature visual ---------------- */
-/* Book glyph with the spine line drawn ON TOP of the fill, so a filled (gifted)
-   journal still reads as a book. */
+/* Calm, solid journal silhouette (a cover + a spine stripe) - no fiddly
+   outlines, so a grid of 30 reads quietly. Filled = yellow, empty = faint. */
 function BookGlyph({ filled, size = 26 }) {
-  const stroke = filled ? 'var(--sb-ink)' : 'rgba(59,55,52,0.26)';
+  const cover = filled ? 'var(--sb-yellow)' : 'rgba(59,55,52,0.09)';
+  const spine = filled ? 'rgba(59,55,52,0.38)' : 'rgba(59,55,52,0.16)';
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth={2}
-      strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }} aria-hidden="true">
-      <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"
-        fill={filled ? 'var(--sb-yellow)' : 'none'} />
-      <path d="M12 7v14" />
+    <svg width={size} height={size} viewBox="0 0 24 24" style={{ display: 'block' }} aria-hidden="true">
+      <rect x="5.5" y="4" width="13" height="16" rx="2.4" fill={cover} />
+      <rect x="8.4" y="4" width="1.2" height="16" rx="0.6" fill={spine} />
     </svg>
   );
 }
