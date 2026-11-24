@@ -15,6 +15,7 @@ h1, h2, h3, h4 { margin: 0; }
 p { margin: 0; }
 a { color: inherit; }
 
+:root { --sec-pad: 196px; }
 .sb-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
 /* No-JS / pre-hydration fallback content inside #root (React replaces it on
@@ -96,6 +97,7 @@ a[href^="#"] { text-decoration: none; }
   .gift-steps, .wholesale-steps { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 620px) {
+  :root { --sec-pad: 120px; }
   .sb-nav { display: none !important; }
   .page-hero .sb-wrap { padding: 40px 24px 44px; }
   footer .sb-wrap { grid-template-columns: 1fr !important; }
