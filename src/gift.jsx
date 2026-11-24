@@ -32,24 +32,55 @@ function BookGlyph({ filled }) {
 }
 
 function ClassroomMeter() {
-  const { current, target, startedNote } = GIFT_PROGRESS;
-  const segs = [];
+  const { current, target, gifters = [], defaultGifter = 'Blocks Publishing' } = GIFT_PROGRESS;
+  const [sel, setSel] = React.useState(null);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setSel(null); };
+    document.addEventListener('mousedown', onDoc);
+    return () => document.removeEventListener('mousedown', onDoc);
+  }, []);
+
+  const gifterFor = (i) => gifters[i] || defaultGifter;
+
+  const books = [];
   for (let i = 0; i < target; i++) {
-    segs.push(<BookGlyph key={i} filled={i < current} />);
+    const filled = i < current;
+    const open = sel === i;
+    books.push(
+      <button key={i} type="button" onClick={() => setSel(open ? null : i)}
+        aria-label={filled ? `Journal ${i + 1}, gifted by ${gifterFor(i)}` : `Journal ${i + 1}, not gifted yet`}
+        style={{ padding: 3, margin: -1, border: 'none', background: open ? 'rgba(67,104,176,0.14)' : 'none',
+          borderRadius: 8, lineHeight: 0, cursor: 'pointer' }}>
+        <BookGlyph filled={filled} />
+      </button>
+    );
   }
+
+  let caption;
+  if (current >= target) {
+    caption = 'This classroom is full - we’re matching it to a school now.';
+  } else if (sel !== null && sel < current) {
+    caption = `Journal ${sel + 1} - gifted by ${gifterFor(sel)}.`;
+  } else if (sel !== null) {
+    caption = `Journal ${sel + 1} isn’t gifted yet - it could be you.`;
+  } else {
+    caption = `${target - current} to go. Click a book to see who gifted it.`;
+  }
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
         <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>The next classroom</div>
         <div style={{ fontWeight: 800, fontSize: '1.05rem' }}><strong className="sb-display" style={{ fontSize: '1.6rem' }}>{current}</strong> of {target} journals gifted</div>
       </div>
-      <div role="progressbar" aria-valuenow={current} aria-valuemin={0} aria-valuemax={target}
-        aria-label={`${current} of ${target} journals gifted toward the next classroom`}
-        style={{ display: 'flex', flexWrap: 'wrap', gap: 9, marginTop: 16 }}>
-        {segs}
+      <div ref={ref} role="group" aria-label={`${current} of ${target} journals gifted toward the next classroom`}
+        style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginTop: 16 }}>
+        {books}
       </div>
-      <p style={{ marginTop: 12, fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.92rem' }}>
-        {current >= target ? 'This classroom is full - we’re matching it to a school now.' : `${target - current} to go. ${startedNote}.`}
+      <p aria-live="polite" style={{ marginTop: 12, fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.92rem' }}>
+        {caption}
       </p>
     </div>
   );

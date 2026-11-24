@@ -10,7 +10,11 @@ export const CLASSROOM_SIZE = 30;       // journals per classroom
 export const GIFT_PROGRESS = {
   current: 4,                           // journals gifted so far toward the next classroom
   target: CLASSROOM_SIZE,
-  startedNote: 'Blocks Publishing started this classroom off',
+  // First name shown when a gifted journal is tapped (index 0 = the first book).
+  // Keep this in step with `current`; any missing entry falls back to the name
+  // below. Add a new name here each time you bump `current` for a real gift.
+  gifters: ['Blocks Publishing', 'Blocks Publishing', 'Blocks Publishing', 'Blocks Publishing'],
+  defaultGifter: 'Blocks Publishing',
 };
 
 /* Completed classrooms, delivered to a confirmed school. Newest first.
