@@ -63,19 +63,22 @@ export default async function handler(req, res) {
     }
 
     const m = session.metadata || {};
+    const wallField = (session.custom_fields || []).find((f) => f.key === 'wall_name');
     const details = {
+      kind: m.kind === 'gift' ? 'gift' : 'sponsorship',
       email: session.customer_details?.email || '(none)',
       amount: session.amount_total != null ? `£${(session.amount_total / 100).toFixed(2)}` : '(unknown)',
       tier: m.tier_label || m.tier || '(unknown tier)',
       sponsor: m.sponsor_name || '(not given)',
       school: m.school_name || '(not given)',
       urn: m.school_urn || '(none)',
+      quantity: m.quantity || '',
+      wallName: (wallField && wallField.text && wallField.text.value) || '',
       sessionId: session.id,
     };
 
-    // Email ourselves so we can confirm with the school. Best-effort: if email
-    // isn't configured we still 200 so Stripe doesn't retry (the order is in
-    // the Stripe dashboard regardless).
+    // Email ourselves. Best-effort: if email isn't configured we still 200 so
+    // Stripe doesn't retry (the order is in the Stripe dashboard regardless).
     try {
       await notifyTeam(details);
     } catch (err) {
@@ -87,29 +90,42 @@ export default async function handler(req, res) {
 }
 
 async function notifyTeam(d) {
+  const isGift = d.kind === 'gift';
+
   if (!process.env.RESEND_API_KEY) {
-    console.log('stripe-webhook: new sponsorship', d);
+    console.log(`stripe-webhook: new ${d.kind}`, d);
     return;
   }
   const resend = new Resend(process.env.RESEND_API_KEY);
   const to = process.env.CONTACT_TO_EMAIL || 'hello@blockspublishing.com';
   const from = process.env.PARENTS_FROM_EMAIL || 'Story Blocks <hello@blockspublishing.com>';
 
-  const rows = [
-    ['Tier', d.tier], ['Amount', d.amount], ['Sponsor (bookplate)', d.sponsor],
-    ['Nominated school', d.school], ['URN', d.urn], ['Buyer email', d.email],
-    ['Stripe session', d.sessionId],
-  ];
-  const subject = `New sponsorship - ${d.sponsor} -> ${d.school}`;
-  const text = ['New sponsorship received', '', ...rows.map(([k, v]) => `${k}: ${v}`),
-    '', 'Next step: confirm with the school before dispatch.'].join('\n');
+  const heading = isGift ? 'New gift received' : 'New sponsorship received';
+  const rows = isGift
+    ? [
+        ['Gift', `${d.quantity || '?'} journal(s)`], ['Amount', d.amount],
+        ['Classroom wall name', d.wallName || '(none given)'],
+        ['Buyer email', d.email], ['Stripe session', d.sessionId],
+      ]
+    : [
+        ['Tier', d.tier], ['Amount', d.amount], ['Sponsor (bookplate)', d.sponsor],
+        ['Nominated school', d.school], ['URN', d.urn], ['Buyer email', d.email],
+        ['Stripe session', d.sessionId],
+      ];
+  const nextStep = isGift
+    ? 'It will appear on the live tracker automatically. Hide the name in lib/gift-config.js only if it needs removing.'
+    : 'Next step: confirm with the school before dispatch.';
+  const subject = isGift
+    ? `New gift - ${d.quantity || '?'} journal(s)${d.wallName ? ' from ' + d.wallName : ''}`
+    : `New sponsorship - ${d.sponsor} -> ${d.school}`;
+  const text = [heading, '', ...rows.map(([k, v]) => `${k}: ${v}`), '', nextStep].join('\n');
   const html = `
   <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:560px;color:#231f20;line-height:1.55">
-    <h2 style="margin:0 0 14px;font-size:18px">New sponsorship received</h2>
+    <h2 style="margin:0 0 14px;font-size:18px">${esc(heading)}</h2>
     <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse">
       ${rows.map(([k, v]) => `<tr><td style="padding:8px 12px 8px 0;font-weight:700;white-space:nowrap;border-bottom:1px solid #eee">${esc(k)}</td><td style="padding:8px 0;border-bottom:1px solid #eee">${esc(v)}</td></tr>`).join('')}
     </table>
-    <p style="margin-top:16px;font-weight:700">Next step: confirm with the school before dispatch.</p>
+    <p style="margin-top:16px;font-weight:700">${esc(nextStep)}</p>
   </div>`;
 
   const { error } = await resend.emails.send({ from, to, subject, text, html });

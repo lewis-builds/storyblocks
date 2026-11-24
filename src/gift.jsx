@@ -32,9 +32,27 @@ function BookGlyph({ filled, size = 26 }) {
 }
 
 function ClassroomMeter() {
-  const { current, target, gifters = [], defaultGifter = 'Blocks Publishing' } = GIFT_PROGRESS;
+  // Live from real Stripe sales ( /api/gift-progress ); starts on the seed
+  // values so the page always renders, then updates when the count loads.
+  const [data, setData] = React.useState(() => ({
+    current: GIFT_PROGRESS.current, target: GIFT_PROGRESS.target,
+    gifters: GIFT_PROGRESS.gifters || [], delivered: 0,
+  }));
   const [sel, setSel] = React.useState(null);
   const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    let live = true;
+    fetch('/api/gift-progress')
+      .then((r) => r.json())
+      .then((d) => {
+        if (live && d && typeof d.current === 'number' && Array.isArray(d.gifters)) {
+          setData({ current: d.current, target: d.target || GIFT_PROGRESS.target, gifters: d.gifters, delivered: d.delivered || 0 });
+        }
+      })
+      .catch(() => {});
+    return () => { live = false; };
+  }, []);
 
   React.useEffect(() => {
     const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setSel(null); };
@@ -42,7 +60,8 @@ function ClassroomMeter() {
     return () => document.removeEventListener('mousedown', onDoc);
   }, []);
 
-  const gifterFor = (i) => gifters[i] || defaultGifter;
+  const { current, target, gifters, delivered } = data;
+  const nameFor = (i) => gifters[i] || null; // null = gifted without a name
 
   const books = [];
   for (let i = 0; i < target; i++) {
@@ -50,7 +69,7 @@ function ClassroomMeter() {
     const open = sel === i;
     books.push(
       <button key={i} type="button" onClick={() => setSel(open ? null : i)}
-        aria-label={filled ? `#${i + 1}, gifted by ${gifterFor(i)}` : `#${i + 1}, not gifted yet`}
+        aria-label={filled ? `#${i + 1}, ${nameFor(i) ? 'gifted by ' + nameFor(i) : 'gifted anonymously'}` : `#${i + 1}, not gifted yet`}
         style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44,
           padding: 0, border: 'none', background: open ? 'rgba(67,104,176,0.14)' : 'none',
           borderRadius: 12, lineHeight: 0, cursor: 'pointer' }}>
@@ -63,11 +82,12 @@ function ClassroomMeter() {
   if (current >= target) {
     caption = 'This classroom is full - we’re matching it to a school now.';
   } else if (sel !== null && sel < current) {
-    caption = `#${sel + 1} - gifted by ${gifterFor(sel)}.`;
+    caption = nameFor(sel) ? `#${sel + 1} - gifted by ${nameFor(sel)}.` : `#${sel + 1} - gifted anonymously.`;
   } else if (sel !== null) {
     caption = `#${sel + 1} isn’t gifted yet - it could be you.`;
   } else {
-    caption = `${target - current} to go. Click a book to see who gifted it.`;
+    caption = `${target - current} to go. Click a book to see who gifted it.`
+      + (delivered > 0 ? ` ${delivered} classroom${delivered === 1 ? '' : 's'} delivered so far.` : '');
   }
 
   return (
