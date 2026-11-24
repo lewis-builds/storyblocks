@@ -649,6 +649,17 @@ const HEADER_CSS = `
   text-decoration: none; border-bottom: 2px solid rgba(35,31,32,.08); }
 .sb-mobile-menu a:last-child { border-bottom: 0; }
 .sb-mobile-menu a.is-active { color: var(--sb-blue); }
+
+/* mobile audience quick-switch (business / individuals) */
+.sb-audience-toggle { display: none; }
+@media (max-width: 900px) {
+  .sb-audience-toggle { display: flex; gap: 4px; margin: 0 16px 12px; padding: 4px;
+    background: rgba(59,55,52,0.06); border-radius: 999px; }
+}
+.sb-audience-toggle a { flex: 1; text-align: center; padding: 11px 8px; border-radius: 999px;
+  font-weight: 700; font-size: 0.98rem; text-decoration: none; color: var(--sb-ink);
+  transition: background .15s ease, color .15s ease; }
+.sb-audience-toggle a.is-on { background: var(--sb-ink); color: #fff; }
 `;
 
 const NAV_LINKS = [
@@ -697,6 +708,13 @@ function SiteHeader({ active, onCta }) {
             </svg>
           </button>
         </div>
+      </div>
+
+      {/* mobile-only audience quick-switch, so you can jump between the two
+         primary paths without opening the menu */}
+      <div className="sb-audience-toggle" role="group" aria-label="Choose audience">
+        <a href="/" className={active === 'sponsor' ? 'is-on' : ''} aria-current={active === 'sponsor' ? 'page' : undefined}>For business</a>
+        <a href="/gift" className={active === 'gift' ? 'is-on' : ''} aria-current={active === 'gift' ? 'page' : undefined}>For individuals</a>
       </div>
 
       {/* mobile dropdown menu */}

@@ -17,17 +17,25 @@ import { GIFT_PRICE, CLASSROOM_SIZE, GIFT_PROGRESS, DELIVERED_CLASSROOMS } from 
 const { Button: SBButton } = window.StoryBlocksJournalDesignSystem_239fa7;
 
 /* ---------------- Classroom meter - the signature visual ---------------- */
+/* Book glyph with the spine line drawn ON TOP of the fill, so a filled (gifted)
+   journal still reads as a book. */
+function BookGlyph({ filled }) {
+  const stroke = filled ? 'var(--sb-ink)' : 'rgba(59,55,52,0.26)';
+  return (
+    <svg width={23} height={23} viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth={2}
+      strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }} aria-hidden="true">
+      <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"
+        fill={filled ? 'var(--sb-yellow)' : 'none'} />
+      <path d="M12 7v14" />
+    </svg>
+  );
+}
+
 function ClassroomMeter() {
   const { current, target, startedNote } = GIFT_PROGRESS;
   const segs = [];
   for (let i = 0; i < target; i++) {
-    const filled = i < current;
-    segs.push(
-      <span key={i} aria-hidden="true" style={{
-        flex: '1 1 14px', height: 28, borderRadius: 6,
-        background: filled ? 'var(--sb-yellow)' : 'rgba(35,31,32,0.1)',
-      }} />
-    );
+    segs.push(<BookGlyph key={i} filled={i < current} />);
   }
   return (
     <div>
@@ -37,7 +45,7 @@ function ClassroomMeter() {
       </div>
       <div role="progressbar" aria-valuenow={current} aria-valuemin={0} aria-valuemax={target}
         aria-label={`${current} of ${target} journals gifted toward the next classroom`}
-        style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 14 }}>
+        style={{ display: 'flex', flexWrap: 'wrap', gap: 9, marginTop: 16 }}>
         {segs}
       </div>
       <p style={{ marginTop: 12, fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.92rem' }}>
