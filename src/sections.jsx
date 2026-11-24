@@ -59,9 +59,9 @@ function Reveal({ children, delay = 0, style = {}, className = '', as = 'div' })
 function SectionHead({ kicker, title, sub, align = 'center', max = 640 }) {
   return (
     <div style={{ textAlign: align, maxWidth: max, margin: align === 'center' ? '0 auto' : undefined }}>
-      {kicker && <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)', marginBottom: 6 }}>{kicker}</div>}
+      {kicker && <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)', marginBottom: 10 }}>{kicker}</div>}
       <h2 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 4vw, 2.75rem)', lineHeight: 1.05 }}>{title}</h2>
-      {sub && <p style={{ marginTop: 14, fontSize: '1.15rem', lineHeight: 1.55, color: 'var(--sb-ink)' }}>{sub}</p>}
+      {sub && <p style={{ marginTop: 16, fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--sb-ink)', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>{sub}</p>}
     </div>
   );
 }
@@ -123,7 +123,7 @@ function SponsorSteps() {
     <section id="how" style={{ padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Two minutes, genuinely" title="How sponsoring a school works" sub="You’re doing a good local thing - we make it effortless and make sure you’re seen doing it." />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, marginTop: 46 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 30, marginTop: 66 }}>
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
               <div style={{ position: 'relative', background: `var(--sb-wash-${s.tint})`, border: 'none', borderRadius: 24, boxShadow: 'var(--shadow-pop)', padding: '28px 22px 22px', height: '100%' }}>
@@ -355,7 +355,7 @@ function HowItWorks() {
     <section id="how" style={{ padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
         <SectionHead kicker="Ten minutes a day" title="How the habit sticks" sub="No screens, no pressure, no blank page. Just a small daily ritual that kids actually look forward to." />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24, marginTop: 46 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 30, marginTop: 66 }}>
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 110}>
               <div style={{ position: 'relative', background: `var(--sb-wash-${s.tint === 'sky' ? 'sky' : s.tint === 'peach' ? 'peach' : 'pink'})`, border: 'none', borderRadius: 24, boxShadow: 'var(--shadow-pop)', padding: '28px 24px 24px', height: '100%' }}>
@@ -372,7 +372,7 @@ function HowItWorks() {
 
         {/* Scan for a spark - the free companion app, as a proper feature */}
         <Reveal delay={120}>
-          <div className="sb-scan" style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,320px)', gap: 40, alignItems: 'center', background: 'var(--sb-wash-sky)', border: 'none', borderRadius: 40, boxShadow: 'none', padding: '44px 48px' }}>
+          <div className="sb-scan" style={{ marginTop: 72, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,320px)', gap: 40, alignItems: 'center', background: 'var(--sb-wash-sky)', border: 'none', borderRadius: 40, boxShadow: 'none', padding: '44px 48px' }}>
             <div>
               <div className="sb-marker" style={{ fontSize: '1.25rem', color: 'var(--sb-blue)' }}>The free companion app</div>
               <h3 className="sb-display" style={{ fontSize: 'clamp(1.9rem, 3.6vw, 2.7rem)', lineHeight: 1.04, marginTop: 6 }}>Stuck? Scan for a spark.</h3>
@@ -482,7 +482,7 @@ function Reviews() {
           </div>
         </div>
 
-        <div className="sb-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 22, marginTop: 40 }}>
+        <div className="sb-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 26, marginTop: 60 }}>
           {quotes.map((q, i) => (
             <Reveal key={q.name} delay={i * 100}>
               <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 22, boxShadow: 'var(--shadow-pop)', padding: 24, height: '100%', transform: `rotate(${q.tilt}deg)` }}>

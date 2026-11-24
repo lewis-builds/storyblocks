@@ -204,7 +204,7 @@ function JournalHero({ onSponsor }) {
           .sb-hero-ctas { justify-content: center; }
         }
       `}</style>
-      <div className="sb-wrap sb-jhero" style={{ position: 'relative', zIndex: 2, padding: '56px 24px 64px', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 56, alignItems: 'center' }}>
+      <div className="sb-wrap sb-jhero" style={{ position: 'relative', zIndex: 2, padding: '88px 24px 100px', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 72, alignItems: 'center' }}>
         <div className="sb-jhero__copy">
           <div className="sb-marker" style={{ fontSize: '1.35rem', color: 'var(--sb-blue)' }}>For local businesses</div>
           <h1 className="sb-display" style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>Sponsor the journal kids love to write in.</h1>
@@ -235,7 +235,7 @@ function SponsorSection() {
         <p style={{ textAlign: 'center', marginTop: 10, fontWeight: 700 }}>
           Gifting just a few? <a href="/gift" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>Gift single journals from £8.50 →</a>
         </p>
-        <div style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 56 }}>
           <SponsorFlow />
         </div>
       </div>
@@ -250,7 +250,7 @@ function RecognitionPack() {
       <div className="sb-wrap">
         <SectionHead kicker="What every sponsor gets" title="Recognition, not just a receipt"
           sub="Every tier - Class, Year Group or Whole School - includes the full recognition pack. This is local goodwill people can see." />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 18, marginTop: 36 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 22, marginTop: 56 }}>
           {RECOGNITION_PACK.map((r, i) => (
             <Reveal key={r.b}>
               <div style={{ background: 'var(--sb-paper)', border: 'none', borderRadius: 20, boxShadow: 'var(--shadow-pop)', padding: '22px 20px', height: '100%' }}>
