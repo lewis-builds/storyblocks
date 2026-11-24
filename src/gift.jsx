@@ -19,10 +19,10 @@ const { Button: SBButton } = window.StoryBlocksJournalDesignSystem_239fa7;
 /* ---------------- Classroom meter - the signature visual ---------------- */
 /* Book glyph with the spine line drawn ON TOP of the fill, so a filled (gifted)
    journal still reads as a book. */
-function BookGlyph({ filled }) {
+function BookGlyph({ filled, size = 26 }) {
   const stroke = filled ? 'var(--sb-ink)' : 'rgba(59,55,52,0.26)';
   return (
-    <svg width={23} height={23} viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth={2}
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth={2}
       strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }} aria-hidden="true">
       <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"
         fill={filled ? 'var(--sb-yellow)' : 'none'} />
@@ -50,9 +50,10 @@ function ClassroomMeter() {
     const open = sel === i;
     books.push(
       <button key={i} type="button" onClick={() => setSel(open ? null : i)}
-        aria-label={filled ? `Journal ${i + 1}, gifted by ${gifterFor(i)}` : `Journal ${i + 1}, not gifted yet`}
-        style={{ padding: 3, margin: -1, border: 'none', background: open ? 'rgba(67,104,176,0.14)' : 'none',
-          borderRadius: 8, lineHeight: 0, cursor: 'pointer' }}>
+        aria-label={filled ? `#${i + 1}, gifted by ${gifterFor(i)}` : `#${i + 1}, not gifted yet`}
+        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44,
+          padding: 0, border: 'none', background: open ? 'rgba(67,104,176,0.14)' : 'none',
+          borderRadius: 12, lineHeight: 0, cursor: 'pointer' }}>
         <BookGlyph filled={filled} />
       </button>
     );
@@ -62,9 +63,9 @@ function ClassroomMeter() {
   if (current >= target) {
     caption = 'This classroom is full - we’re matching it to a school now.';
   } else if (sel !== null && sel < current) {
-    caption = `Journal ${sel + 1} - gifted by ${gifterFor(sel)}.`;
+    caption = `#${sel + 1} - gifted by ${gifterFor(sel)}.`;
   } else if (sel !== null) {
-    caption = `Journal ${sel + 1} isn’t gifted yet - it could be you.`;
+    caption = `#${sel + 1} isn’t gifted yet - it could be you.`;
   } else {
     caption = `${target - current} to go. Click a book to see who gifted it.`;
   }
@@ -76,7 +77,7 @@ function ClassroomMeter() {
         <div style={{ fontWeight: 800, fontSize: '1.05rem' }}><strong className="sb-display" style={{ fontSize: '1.6rem' }}>{current}</strong> of {target} journals gifted</div>
       </div>
       <div ref={ref} role="group" aria-label={`${current} of ${target} journals gifted toward the next classroom`}
-        style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginTop: 16 }}>
+        style={{ display: 'flex', flexWrap: 'wrap', gap: 2, marginTop: 14 }}>
         {books}
       </div>
       <p aria-live="polite" style={{ marginTop: 12, fontWeight: 700, color: 'var(--sb-muted)', fontSize: '.92rem' }}>
