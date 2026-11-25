@@ -358,6 +358,10 @@ function Button({
       fg: '#fff'
     },
     white: {
+      bg: 'var(--sb-paper)',
+      fg: 'var(--sb-ink)'
+    },
+    cream: {
       bg: '#F1EFE9',
       fg: 'var(--sb-ink)'
     },

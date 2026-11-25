@@ -57,7 +57,7 @@ function Thanks() {
 
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginTop: 24 }}>
         <Button as="a" href={isGift ? '/gift' : '/'} variant="primary">{isGift ? 'Gift more journals' : 'Back to the site'}</Button>
-        <Button as="a" href="/resources" variant="white">See the free pack</Button>
+        <Button as="a" href="/resources" variant="cream">See the free pack</Button>
       </div>
     </div>
   );

@@ -360,7 +360,7 @@ function NominateForm() {
                 Thank you - we’ll reach out to <strong>{school && school.n}</strong>. If they say yes, we’ll email you.
               </p>
               <div style={{ marginTop: 20 }}>
-                <SBButton variant="white" size="sm" onClick={() => { setSent(false); setSchool(null); setName(''); setEmail(''); setConsent(false); }}>Nominate another school</SBButton>
+                <SBButton variant="cream" size="sm" onClick={() => { setSent(false); setSchool(null); setName(''); setEmail(''); setConsent(false); }}>Nominate another school</SBButton>
               </div>
             </div>
           ) : (

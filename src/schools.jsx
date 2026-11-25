@@ -152,7 +152,7 @@ function RegisterForm() {
                 Thank you - <strong>{school && school.n}</strong> is registered. We’ll be in touch if we can match you with a sponsor.
               </p>
               <div style={{ marginTop: 20 }}>
-                <SchButton variant="white" size="sm" onClick={() => { setSent(false); setSchool(null); setName(''); setEmail(''); }}>Register another school</SchButton>
+                <SchButton variant="cream" size="sm" onClick={() => { setSent(false); setSchool(null); setName(''); setEmail(''); }}>Register another school</SchButton>
               </div>
             </div>
           ) : (
