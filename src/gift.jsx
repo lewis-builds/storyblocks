@@ -245,7 +245,7 @@ function HowItWorks() {
 /* ---------------- The promises (required copy) ---------------- */
 function Promises() {
   const items = [
-    { icon: 'heart', tint: 'pink', b: 'A gift, not a donation', t: `Your ${gbp(GIFT_PRICE)} covers the journal, delivery to the school, and keeps us making them.` },
+    { icon: 'heart', tint: 'pink', b: 'Where every penny goes', t: `Your ${gbp(GIFT_PRICE)} covers the journal, delivery to the school, and keeps us making them.` },
     { icon: 'shield', tint: 'green', b: 'Every journal reaches a school - guaranteed', t: 'If a classroom hasn’t completed within 3 months, we complete it ourselves.' },
     { icon: 'book', tint: 'sky', b: 'We always confirm first', t: 'We match completed classrooms to schools and always confirm with the school before delivery.' },
     { icon: 'sparkles', tint: 'purple', b: 'You hear where it lands', t: 'When your classroom completes, we email you the school it was matched to - so you know exactly where your journals went.' },
