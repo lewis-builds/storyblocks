@@ -9,7 +9,7 @@ import './lib/image-slot.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { asset, CHAR_BASE, washGrad, cornerGrad, gbp } from './lib/core.js';
-import { SiteHeader, SiteFooter, SectionHead, Reveal, Icon } from './sections.jsx';
+import { SiteHeader, SiteFooter, SectionHead, Reveal, Icon, WhatsInside, Reviews, WhyBlocks } from './sections.jsx';
 import { SchoolSearch, INPUT_STYLE } from './lib/school-search.jsx';
 import { sendForm, Honeypot, FormError } from './lib/form-submit.jsx';
 import { GIFT_PRICE, CLASSROOM_SIZE, GIFT_PROGRESS, DELIVERED_CLASSROOMS } from './lib/gift-data.js';
@@ -92,9 +92,9 @@ function ClassroomMeter() {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+      <div>
         <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>The next classroom</div>
-        <div style={{ fontWeight: 800, fontSize: '1.05rem' }}><strong className="sb-display" style={{ fontSize: '1.6rem' }}>{current}</strong> of {target} journals gifted</div>
+        <div className="sb-display" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', lineHeight: 1.05, marginTop: 2 }}>{current} of {target} journals gifted</div>
       </div>
       <div ref={ref} role="group" aria-label={`${current} of ${target} journals gifted toward the next classroom`}
         style={{ display: 'flex', flexWrap: 'wrap', gap: 2, marginTop: 14 }}>
@@ -277,10 +277,12 @@ function DeliveredWall() {
         <SectionHead kicker="Delivered classrooms" title="Where the journals have landed"
           sub="Every completed classroom, delivered to a confirmed UK primary school." />
         {DELIVERED_CLASSROOMS.length === 0 ? (
-          <div style={{ marginTop: 32, textAlign: 'center', background: 'var(--sb-wash-lemon)', border: '3px dashed var(--sb-ink)', borderRadius: 24, padding: '40px 24px', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>
-            <img src={asset(CHAR_BASE + '/SB50.png')} alt="" style={{ width: 96 }} />
-            <p className="sb-display" style={{ fontSize: '1.4rem', marginTop: 10 }}>The first classroom is filling now.</p>
-            <p style={{ marginTop: 8, fontWeight: 600, color: 'var(--sb-muted)' }}>Be one of the people who starts it off.</p>
+          <div style={{ marginTop: 32 }}>
+            <div style={{ borderRadius: 24, overflow: 'hidden' }}>
+              <img src={asset('assets/kids-strip.png')} alt="Children writing in their Story Blocks journals" style={{ width: '100%', height: 'auto', display: 'block' }} />
+            </div>
+            <p className="sb-display" style={{ fontSize: '1.4rem', marginTop: 22, textAlign: 'center' }}>The first classroom is filling now.</p>
+            <p style={{ marginTop: 8, fontWeight: 600, color: 'var(--sb-muted)', textAlign: 'center' }}>Be one of the people who starts it off — this is the joy your gift brings.</p>
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20, marginTop: 36 }}>
@@ -420,6 +422,9 @@ function GiftApp() {
         <GiftHero />
         <HowItWorks />
         <Promises />
+        <WhatsInside />
+        <Reviews />
+        <WhyBlocks />
         <DeliveredWall />
         <NominateForm />
         <div className="sb-wrap" style={{ padding: '22px 24px' }}>
