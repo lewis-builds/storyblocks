@@ -10,7 +10,12 @@ export async function sendForm(type, fields) {
       body: JSON.stringify({ type, ...fields }),
     });
     const data = await res.json().catch(() => ({}));
-    if (res.ok && data.ok) return { ok: true };
+    if (res.ok && data.ok) {
+      // GA4 lead conversion (respects Consent Mode). `type` = contact |
+      // nominate | register | schools | wholesale, so you can segment by form.
+      try { if (window.gtag) window.gtag('event', 'generate_lead', { form: type }); } catch (e) { /* no-op */ }
+      return { ok: true };
+    }
     return { ok: false, error: data.error || 'Something went wrong. Please try again.' };
   } catch (err) {
     return { ok: false, error: 'We couldn’t reach the server. Please check your connection and try again.' };

@@ -21,10 +21,30 @@ const GIFT_STEPS = [
 
 function Thanks() {
   React.useEffect(() => {
-    if (window.gtag) {
-      const sid = new URLSearchParams(window.location.search).get('session_id');
-      window.gtag('event', 'purchase_confirmed', { transaction_id: sid || undefined, kind: isGift ? 'gift' : 'sponsorship' });
-    }
+    // Fire GA4's standard `purchase` event with real revenue, looked up from
+    // Stripe (no amount is in the URL). Respects Consent Mode automatically.
+    const sid = new URLSearchParams(window.location.search).get('session_id');
+    if (!sid) return;
+    fetch('/api/session-summary?session_id=' + encodeURIComponent(sid))
+      .then((r) => r.json())
+      .then((d) => {
+        if (!window.gtag || !d || d.paid === false) return;
+        const qty = isGift && d.quantity ? Math.max(1, Number(d.quantity)) : 1;
+        const unit = typeof d.amount === 'number' ? d.amount / qty : undefined;
+        window.gtag('event', 'purchase', {
+          transaction_id: sid,
+          value: typeof d.amount === 'number' ? d.amount : undefined,
+          currency: d.currency || 'GBP',
+          items: [{
+            item_id: isGift ? 'gift-journal' : (d.tier ? 'sponsor-' + d.tier : 'sponsorship'),
+            item_name: isGift ? 'Gift a journal' : 'School sponsorship',
+            item_category: isGift ? 'gift' : 'sponsorship',
+            quantity: qty,
+            price: unit,
+          }],
+        });
+      })
+      .catch(() => {});
   }, []);
 
   const STEPS = isGift ? GIFT_STEPS : SPONSOR_STEPS;
