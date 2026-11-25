@@ -276,8 +276,13 @@ function DeliveredWall() {
   return (
     <section style={{ padding: 'var(--sec-pad, 72px) 0' }}>
       <div className="sb-wrap">
-        <SectionHead kicker="Delivered classrooms" title="Where the journals have landed"
-          sub="Every completed classroom, delivered to a confirmed UK primary school." />
+        {DELIVERED_CLASSROOMS.length === 0 ? (
+          <SectionHead kicker="Where they land" title="Where your journals will land"
+            sub="Each completed classroom is matched to a UK primary school — and we always confirm with the school before any journals are sent." />
+        ) : (
+          <SectionHead kicker="Delivered classrooms" title="Where the journals have landed"
+            sub="Every completed classroom, delivered to a confirmed UK primary school." />
+        )}
         {DELIVERED_CLASSROOMS.length === 0 ? (
           <div style={{ marginTop: 32 }}>
             <div style={{ borderRadius: 24, overflow: 'hidden' }}>
