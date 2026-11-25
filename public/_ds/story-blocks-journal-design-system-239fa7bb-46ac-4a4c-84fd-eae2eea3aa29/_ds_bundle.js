@@ -358,7 +358,7 @@ function Button({
       fg: '#fff'
     },
     white: {
-      bg: 'var(--sb-paper)',
+      bg: '#F1EFE9',
       fg: 'var(--sb-ink)'
     },
     ghost: {
