@@ -193,6 +193,8 @@ function JournalHero({ onSponsor }) {
   return (
     <section id="top" style={{ position: 'relative', overflow: 'hidden', background: washGrad('sky'), borderBottom: 'none' }}>
       <style>{`
+        @keyframes sbBookBob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(-3deg); } }
+        @media (prefers-reduced-motion: no-preference) { .sb-jhero__art img { animation: sbBookBob 4s ease-in-out infinite; } }
         @media (max-width: 820px) {
           .sb-jhero { grid-template-columns: 1fr !important; gap: 24px !important; text-align: center; }
           .sb-jhero__art { order: -1; }
