@@ -21,12 +21,9 @@ function TierCard({ tier, selected, onChoose }) {
   return (
     <div style={{
       position: 'relative', background: 'var(--sb-paper)', border: selected ? '4px solid var(--sb-blue)' : 'none',
-      borderRadius: 22, boxShadow: 'var(--shadow-pop-lg)', padding: '22px 20px 20px', display: 'flex', flexDirection: 'column',
+      borderRadius: 26, boxShadow: 'var(--shadow-pop-lg)', padding: '28px 24px 26px', display: 'flex', flexDirection: 'column',
       transform: `rotate(${tier.tilt * 0.4}deg)`,
     }}>
-      {tier.popular && (
-        <span className="sb-marker" style={{ position: 'absolute', top: -16, right: 16, background: 'var(--sb-blue)', color: '#fff', fontSize: '1.05rem', padding: '4px 14px', borderRadius: 999, border: 'none', boxShadow: 'none', transform: 'rotate(3deg)' }}>Most chosen</span>
-      )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <span style={{ flexShrink: 0, width: 46, height: 46, borderRadius: 12, background: `var(--sb-${tier.tint})`, border: 'none', boxShadow: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem' }}>{tier.books}</span>
         <div>
@@ -40,8 +37,8 @@ function TierCard({ tier, selected, onChoose }) {
       </div>
       <p style={{ marginTop: 10, lineHeight: 1.4, fontWeight: 600, flex: 1 }}>{tier.blurb}</p>
       {tier.gold && (
-        <div style={{ display: 'flex', gap: 9, alignItems: 'flex-start', marginTop: 12, padding: '10px 12px', background: 'var(--sb-wash-lemon)', border: 'none', borderRadius: 12 }}>
-          <Icon name="award" size={18} sw={2.6} />
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 12, padding: '10px 12px', background: 'var(--sb-wash-lemon)', border: 'none', borderRadius: 12 }}>
+          <img src={asset('assets/storyblocks-gold-book.png')} alt="Gold Edition journal" style={{ height: 52, width: 'auto', flexShrink: 0, display: 'block' }} />
           <span style={{ fontWeight: 700, fontSize: '.9rem', lineHeight: 1.35 }}>Includes a <strong>Gold Edition award copy</strong> for the school to present to a child.</span>
         </div>
       )}
@@ -115,7 +112,7 @@ function SponsorFlow() {
       </div>
 
       {step === 'tier' && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20, alignItems: 'stretch' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 30, alignItems: 'stretch' }}>
           {SPONSOR_TIERS.map((t) => (
             <TierCard key={t.key} tier={t} selected={tierKey === t.key} onChoose={chooseTier} />
           ))}

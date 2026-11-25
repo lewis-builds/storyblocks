@@ -16,7 +16,7 @@ export const SPONSOR_TIERS = [
     price: 249,
     tint: 'sky',
     tilt: -2,
-    blurb: 'Enough for a whole class to each get their own journal.',
+    blurb: 'Enough for a typical UK primary class to each get their own journal.',
     gold: false,
   },
   {
@@ -26,9 +26,8 @@ export const SPONSOR_TIERS = [
     price: 475,
     tint: 'green',
     tilt: 1.5,
-    blurb: 'Covers a full year group - the most popular choice for local businesses.',
+    blurb: 'Enough for two classes to each get their own journal.',
     gold: true,
-    popular: true,
   },
   {
     key: 'wholeschool',
@@ -37,7 +36,7 @@ export const SPONSOR_TIERS = [
     price: 675,
     tint: 'pink',
     tilt: -1.5,
-    blurb: 'A journal in every child’s hands, and your name across the whole school.',
+    blurb: 'Enough for three classes, with your name seen right across the school.',
     gold: true,
   },
 ];
