@@ -67,12 +67,14 @@ function ClassroomMeter() {
   for (let i = 0; i < target; i++) {
     const filled = i < current;
     const open = sel === i;
+    // Accelerating sweep: slower at the start, quicker across (exponent < 1).
+    const delay = Math.round(1200 * Math.pow(target > 1 ? i / (target - 1) : 0, 0.6));
     books.push(
-      <button key={i} type="button" onClick={() => setSel(open ? null : i)}
+      <button key={i} type="button" className="sb-book-in" onClick={() => setSel(open ? null : i)}
         aria-label={filled ? `#${i + 1}, ${nameFor(i) ? 'gifted by ' + nameFor(i) : 'gifted anonymously'}` : `#${i + 1}, not gifted yet`}
         style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44,
           padding: 0, border: 'none', background: open ? 'rgba(67,104,176,0.14)' : 'none',
-          borderRadius: 12, lineHeight: 0, cursor: 'pointer' }}>
+          borderRadius: 12, lineHeight: 0, cursor: 'pointer', animationDelay: `${delay}ms` }}>
         <BookGlyph filled={filled} />
       </button>
     );

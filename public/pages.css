@@ -159,6 +159,12 @@ a[href^="#"] { text-decoration: none; }
 .sb-spread--alt .sb-spread__note--q { left: auto; right: -30px; transform: rotate(2deg); }
 .sb-spread__note--a { bottom: 0; right: -30px; transform: rotate(1.5deg); max-width: 460px; background: var(--sb-wash-lemon); }
 .sb-spread--alt .sb-spread__note--a { right: auto; left: -30px; transform: rotate(-1.5deg); }
+/* Gift tracker: journals pop/light up one by one on load (delay set inline per book). */
+@keyframes sbBookPop { 0% { opacity: 0; transform: scale(0.4); } 60% { opacity: 1; transform: scale(1.12); } 100% { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: no-preference) {
+  .sb-book-in { animation: sbBookPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+}
+
 .sb-kids-strip { display: flex; justify-content: center; margin-top: 44px; }
 .sb-kids-strip img { width: 100%; max-width: 1080px; height: auto; }
 @media (max-width: 1024px) {
