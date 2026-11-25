@@ -111,7 +111,7 @@ function ClassroomMeter() {
 const PRESETS = [1, 5, 10];
 
 function GiftPicker() {
-  const [qty, setQty] = React.useState(5);
+  const [qty, setQty] = React.useState(1);
   const [customOn, setCustomOn] = React.useState(false);
   const [custom, setCustom] = React.useState('');
   const [busy, setBusy] = React.useState(false);
@@ -347,10 +347,7 @@ function NominateForm() {
         <div>
           <SectionHead align="left" kicker="Nominate a school" title="Know a school that should get the next classroom?" sub="" />
           <p style={{ marginTop: 16, fontSize: '1.1rem', lineHeight: 1.6, maxWidth: 460 }}>
-            Anyone can nominate a UK primary school - a parent, a teacher, a PTA. <strong>Confirmed schools go to the front of the queue</strong> for the next completed classroom.
-          </p>
-          <p style={{ marginTop: 12, fontSize: '.95rem', lineHeight: 1.55, color: 'var(--sb-muted)', fontWeight: 600, maxWidth: 460 }}>
-            Nominating doesn’t sign the school up to anything - it just tells us to reach out and ask. Only schools that say yes are ever matched.
+            Anyone can nominate a UK state primary — a parent, teacher or PTA. We just reach out and ask; only schools that say yes are matched, and <strong>confirmed schools jump the queue</strong> for the next completed classroom.
           </p>
         </div>
 
@@ -422,10 +419,10 @@ function GiftApp() {
         <GiftHero />
         <HowItWorks />
         <Promises />
+        <DeliveredWall />
         <WhatsInside />
         <Reviews />
         <WhyBlocks />
-        <DeliveredWall />
         <NominateForm />
         <div className="sb-wrap" style={{ padding: '22px 24px' }}>
           <p style={{ color: 'var(--sb-muted)', fontWeight: 600, fontSize: '.84rem', lineHeight: 1.5, margin: 0, maxWidth: 680 }}>

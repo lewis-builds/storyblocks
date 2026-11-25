@@ -60,6 +60,7 @@ const iPhase = col('PhaseOfEducation (name)');
 const iType = col('TypeOfEstablishment (name)');
 const iTown = col('Town');
 const iPostcode = col('Postcode');
+const iGroup = col('EstablishmentTypeGroup (name)');
 
 if ([iURN, iName, iStatus].some((n) => n < 0)) {
   console.error('Could not find expected GIAS columns (URN / EstablishmentName / EstablishmentStatus). Headers seen:', header.slice(0, 10));
@@ -75,6 +76,9 @@ for (let r = 1; r < rows.length; r++) {
   const phase = (iPhase >= 0 ? row[iPhase] : '') || '';
   const type = (iType >= 0 ? row[iType] : '') || '';
   if (!PRIMARY.test(phase) && !PRIMARY.test(type)) continue;
+  // State-funded only — drop independent/private schools.
+  const group = (iGroup >= 0 ? row[iGroup] : '') || '';
+  if (/independent/i.test(type) || /independent/i.test(group)) continue;
   out.push({
     u: row[iURN].trim(),
     n: (row[iName] || '').trim(),
