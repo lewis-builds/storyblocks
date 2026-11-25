@@ -93,8 +93,7 @@ function ClassroomMeter() {
   return (
     <div>
       <div>
-        <div className="sb-marker" style={{ fontSize: '1.3rem', color: 'var(--sb-blue)' }}>The next classroom</div>
-        <div className="sb-display" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', lineHeight: 1.05, marginTop: 2 }}>{current} of {target} journals gifted</div>
+        <div className="sb-display" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', lineHeight: 1.05 }}>{current} of {target} journals gifted so far</div>
       </div>
       <div ref={ref} role="group" aria-label={`${current} of ${target} journals gifted toward the next classroom`}
         style={{ display: 'flex', flexWrap: 'wrap', gap: 2, marginTop: 14 }}>
@@ -244,9 +243,10 @@ function HowItWorks() {
 /* ---------------- The promises (required copy) ---------------- */
 function Promises() {
   const items = [
-    { icon: 'heart', tint: 'pink', b: 'A small business, not a charity', t: `Your ${gbp(GIFT_PRICE)} covers the journal, delivery to the school, and keeps us making them.` },
+    { icon: 'heart', tint: 'pink', b: 'A gift, not a donation', t: `Your ${gbp(GIFT_PRICE)} covers the journal, delivery to the school, and keeps us making them.` },
     { icon: 'shield', tint: 'green', b: 'Every journal reaches a school - guaranteed', t: 'If a classroom hasn’t completed within 3 months, we complete it ourselves.' },
     { icon: 'book', tint: 'sky', b: 'We always confirm first', t: 'We match completed classrooms to schools and always confirm with the school before delivery.' },
+    { icon: 'sparkles', tint: 'purple', b: 'You hear where it lands', t: 'When your classroom completes, we email you the school it was matched to - so you know exactly where your journals went.' },
   ];
   return (
     <section style={{ padding: 'var(--sec-pad, 72px) 0', background: cornerGrad('--sb-green'), borderTop: 'none', borderBottom: 'none' }}>
