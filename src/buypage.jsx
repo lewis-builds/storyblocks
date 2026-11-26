@@ -11,7 +11,7 @@ import { SPONSOR_TIERS, TIER_BY_KEY, perBook, gbp, RECOGNITION_PACK, NOMINATION_
 import { SchoolSearch, INPUT_STYLE } from './lib/school-search.jsx';
 import {
   SiteHeader, TrustStrip, KidsWritingStrip, WhatsInside, SponsorSteps, ProblemSection, Reviews,
-  WhyBlocks, SiteFooter, Icon, SectionHead, Reveal, RegisterBand,
+  WhyBlocks, SiteFooter, Icon, SectionHead, Reveal, RegisterBand, AudienceToggle,
 } from './sections.jsx';
 
 const { Button: SBButton } = window.StoryBlocksJournalDesignSystem_239fa7;
@@ -205,7 +205,7 @@ function JournalHero({ onSponsor }) {
       `}</style>
       <div className="sb-wrap sb-jhero" style={{ position: 'relative', zIndex: 2, padding: '88px 24px 100px', display: 'grid', gridTemplateColumns: 'minmax(0,1.05fr) minmax(0,.95fr)', gap: 72, alignItems: 'center' }}>
         <div className="sb-jhero__copy">
-          <div className="sb-marker" style={{ fontSize: '1.35rem', color: 'var(--sb-blue)' }}>For local businesses</div>
+          <AudienceToggle active="business" />
           <h1 className="sb-display" style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>Sponsor the journal kids love to write in.</h1>
           <p style={{ marginTop: 18, fontSize: '1.18rem', lineHeight: 1.55, maxWidth: 480 }}>
             Give a batch of journals to a classroom at a UK state primary school you nominate. <strong>Under £8.50 a journal.</strong>

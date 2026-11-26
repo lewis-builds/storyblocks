@@ -9,7 +9,7 @@ import './lib/image-slot.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { asset, CHAR_BASE, washGrad, cornerGrad, gbp } from './lib/core.js';
-import { SiteHeader, SiteFooter, SectionHead, Reveal, Icon, WhatsInside, Reviews, WhyBlocks } from './sections.jsx';
+import { SiteHeader, SiteFooter, SectionHead, Reveal, Icon, WhatsInside, Reviews, WhyBlocks, AudienceToggle } from './sections.jsx';
 import { SchoolSearch, INPUT_STYLE } from './lib/school-search.jsx';
 import { sendForm, Honeypot, FormError } from './lib/form-submit.jsx';
 import { GIFT_PRICE, CLASSROOM_SIZE, GIFT_PROGRESS, DELIVERED_CLASSROOMS } from './lib/gift-data.js';
@@ -187,7 +187,7 @@ function GiftHero() {
   return (
     <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('purple'), borderBottom: 'none' }}>
       <div className="sb-wrap" style={{ position: 'relative', zIndex: 2, maxWidth: 780, textAlign: 'center', padding: '48px 24px 56px' }}>
-        <div className="sb-marker" style={{ fontSize: '1.4rem', color: 'var(--sb-blue)' }}>A small gift, a big difference</div>
+        <AudienceToggle active="individuals" />
         <h1 className="sb-display" style={{ fontSize: 'clamp(2.4rem, 5.6vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>
           Gift a journal to a child at school.
         </h1>

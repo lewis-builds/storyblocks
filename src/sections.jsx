@@ -665,14 +665,46 @@ const HEADER_CSS = `
 const WATERSTONES_URL = 'https://www.waterstones.com/book/story-blocks-journal/blocks-publishing-ltd/9781036917654';
 
 // 4th item flags an external link (opens in a new tab, no active state).
+// 5th item keeps the link in the mobile menu only — the business/individuals
+// choice now lives as a segmented toggle in the home & gift heroes, so it's
+// dropped from the roomier desktop nav but still reachable on mobile.
 const NAV_LINKS = [
-  ['For business', '/', 'sponsor'],
-  ['For individuals', '/gift', 'gift'],
+  ['For business', '/', 'sponsor', false, true],
+  ['For individuals', '/gift', 'gift', false, true],
   ['Our mission', '/why', 'why'],
   ['For schools', '/schools', 'schools'],
   ['Parents', '/parents', 'parents'],
   ['Buy the book', WATERSTONES_URL, 'buy', true],
 ];
+
+/* Segmented business/individuals switch for the top of the home & gift heroes.
+   `active` is 'business' or 'individuals'. Inline-flex, so it follows the
+   hero's own text alignment (left on the home hero, centred on the gift hero
+   and on mobile). */
+const AUDIENCE_TOGGLE_CSS = `
+.sb-aud-seg { display: inline-flex; gap: 4px; padding: 5px; margin-bottom: 16px;
+  background: rgba(59,55,52,0.08); border-radius: 999px; }
+.sb-aud-seg a { padding: 9px 18px; border-radius: 999px; font-weight: 700;
+  font-size: 1rem; line-height: 1; text-decoration: none; color: var(--sb-ink);
+  white-space: nowrap; transition: background .15s ease, color .15s ease; }
+.sb-aud-seg a.is-on { background: var(--sb-ink); color: #fff; }
+.sb-aud-seg a:not(.is-on):hover { background: rgba(59,55,52,0.07); }
+/* On mobile the sticky header already carries its own business/individuals
+   pill, so the hero toggle is hidden to avoid two stacked switches. */
+@media (max-width: 900px) { .sb-aud-seg { display: none !important; } }
+`;
+
+function AudienceToggle({ active }) {
+  return (
+    <React.Fragment>
+      <style>{AUDIENCE_TOGGLE_CSS}</style>
+      <div className="sb-aud-seg" role="group" aria-label="Who are you buying for?">
+        <a href="/" className={active === 'business' ? 'is-on' : ''} aria-current={active === 'business' ? 'page' : undefined}>For businesses</a>
+        <a href="/gift" className={active === 'individuals' ? 'is-on' : ''} aria-current={active === 'individuals' ? 'page' : undefined}>For individuals</a>
+      </div>
+    </React.Fragment>
+  );
+}
 
 function SiteHeader({ active, onCta }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -690,7 +722,7 @@ function SiteHeader({ active, onCta }) {
 
         {/* nav — absolutely centered so it never shifts the logo or cart */}
         <nav className="sb-nav" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: 26 }}>
-          {NAV_LINKS.map(([l, h, key, ext]) => (
+          {NAV_LINKS.filter(([, , , , mobileOnly]) => !mobileOnly).map(([l, h, key, ext]) => (
             <a key={key} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ textDecoration: 'none', fontWeight: 700, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-blue)' : '3px solid transparent' }}>{l}</a>
           ))}
         </nav>
@@ -731,4 +763,4 @@ function SiteHeader({ active, onCta }) {
   );
 }
 
-export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, SponsorSteps, RegisterBand, ProblemSection, Reviews, ParentsCorner, WhyBlocks, SiteFooter, SiteHeader, Stars };
+export { Icon, Reveal, SectionHead, TrustStrip, WhatsInside, HowItWorks, SponsorSteps, RegisterBand, ProblemSection, Reviews, ParentsCorner, WhyBlocks, SiteFooter, SiteHeader, Stars, AudienceToggle };
