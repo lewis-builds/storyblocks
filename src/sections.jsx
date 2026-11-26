@@ -662,12 +662,16 @@ const HEADER_CSS = `
 .sb-audience-toggle a.is-on { background: var(--sb-ink); color: #fff; }
 `;
 
+const WATERSTONES_URL = 'https://www.waterstones.com/book/story-blocks-journal/blocks-publishing-ltd/9781036917654';
+
+// 4th item flags an external link (opens in a new tab, no active state).
 const NAV_LINKS = [
   ['For business', '/', 'sponsor'],
   ['For individuals', '/gift', 'gift'],
   ['Our mission', '/why', 'why'],
   ['For schools', '/schools', 'schools'],
   ['Parents', '/parents', 'parents'],
+  ['Buy the book', WATERSTONES_URL, 'buy', true],
 ];
 
 function SiteHeader({ active, onCta }) {
@@ -686,8 +690,8 @@ function SiteHeader({ active, onCta }) {
 
         {/* nav — absolutely centered so it never shifts the logo or cart */}
         <nav className="sb-nav" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', gap: 26 }}>
-          {NAV_LINKS.map(([l, h, key]) => (
-            <a key={key} href={h} style={{ textDecoration: 'none', fontWeight: 700, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-blue)' : '3px solid transparent' }}>{l}</a>
+          {NAV_LINKS.map(([l, h, key, ext]) => (
+            <a key={key} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ textDecoration: 'none', fontWeight: 700, fontSize: '1rem', color: 'var(--sb-ink)', borderBottom: key === active ? '3px solid var(--sb-blue)' : '3px solid transparent' }}>{l}</a>
           ))}
         </nav>
 
@@ -719,8 +723,8 @@ function SiteHeader({ active, onCta }) {
 
       {/* mobile dropdown menu */}
       <nav className={'sb-mobile-menu' + (menuOpen ? ' is-open' : '')} aria-label="Site menu">
-        {NAV_LINKS.map(([l, h, key]) => (
-          <a key={key} href={h} className={key === active ? 'is-active' : ''}>{l}</a>
+        {NAV_LINKS.map(([l, h, key, ext]) => (
+          <a key={key} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className={key === active ? 'is-active' : ''}>{l}</a>
         ))}
       </nav>
     </header>
