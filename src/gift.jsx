@@ -186,26 +186,31 @@ function GiftPicker() {
 function GiftHero() {
   return (
     <section style={{ position: 'relative', overflow: 'hidden', background: washGrad('purple'), borderBottom: 'none' }}>
-      <div className="sb-wrap" style={{ position: 'relative', zIndex: 2, maxWidth: 780, textAlign: 'center', padding: '48px 24px 56px' }}>
+      <div className="sb-wrap" style={{ position: 'relative', zIndex: 2, padding: '48px 24px 56px' }}>
+        {/* Toggle pinned top-left in the full-width wrap, so it sits in the
+           exact same place as the business page; the hero content below stays
+           centred in its own narrower column. */}
         <AudienceToggle active="individuals" />
-        <h1 className="sb-display" style={{ fontSize: 'clamp(2.4rem, 5.6vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>
-          Gift a journal to a child at school.
-        </h1>
-        <p style={{ marginTop: 18, fontSize: '1.12rem', lineHeight: 1.55, maxWidth: 520, marginLeft: 'auto', marginRight: 'auto' }}>
-          Just <strong>1 in 4 children*</strong> now write for the joy of it. For <strong>{gbp(GIFT_PRICE)}</strong> you can put a journal of their own in a child’s hands.
-        </p>
+        <div style={{ maxWidth: 780, margin: '0 auto', textAlign: 'center' }}>
+          <h1 className="sb-display" style={{ fontSize: 'clamp(2.4rem, 5.6vw, 4rem)', lineHeight: 1.0, marginTop: 6 }}>
+            Gift a journal to a child at school.
+          </h1>
+          <p style={{ marginTop: 18, fontSize: '1.12rem', lineHeight: 1.55, maxWidth: 520, marginLeft: 'auto', marginRight: 'auto' }}>
+            Just <strong>1 in 4 children*</strong> now write for the joy of it. For <strong>{gbp(GIFT_PRICE)}</strong> you can put a journal of their own in a child’s hands.
+          </p>
 
-        {/* the give card */}
-        <div style={{ marginTop: 32, textAlign: 'left', background: 'var(--sb-paper)', border: 'none', borderRadius: 28, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
-          <ClassroomMeter />
-          <hr style={{ border: 0, borderTop: '2.5px dashed rgba(35,31,32,.2)', margin: '22px 0' }} />
-          <div className="sb-display" style={{ fontSize: '1.3rem', marginBottom: 12 }}>How many will you gift?</div>
-          <GiftPicker />
+          {/* the give card */}
+          <div style={{ marginTop: 32, textAlign: 'left', background: 'var(--sb-paper)', border: 'none', borderRadius: 28, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
+            <ClassroomMeter />
+            <hr style={{ border: 0, borderTop: '2.5px dashed rgba(35,31,32,.2)', margin: '22px 0' }} />
+            <div className="sb-display" style={{ fontSize: '1.3rem', marginBottom: 12 }}>How many will you gift?</div>
+            <GiftPicker />
+          </div>
+
+          <p style={{ marginTop: 18, fontWeight: 700, fontSize: '.95rem' }}>
+            Want to gift a whole classroom at once? <a href="/#sponsor" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>Sponsor as a business →</a>
+          </p>
         </div>
-
-        <p style={{ marginTop: 18, fontWeight: 700, fontSize: '.95rem' }}>
-          Want to gift a whole classroom at once? <a href="/#sponsor" style={{ color: 'var(--sb-blue)', fontWeight: 800 }}>Sponsor as a business →</a>
-        </p>
       </div>
     </section>
   );
