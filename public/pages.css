@@ -164,6 +164,13 @@ a[href^="#"] { text-decoration: none; }
 @media (prefers-reduced-motion: no-preference) {
   .sb-book-in { animation: sbBookPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 }
+/* Gift card: on phones, lead with the "how many will you gift?" chooser so the
+   quantity options sit above the fold; the progress tracker drops below it. */
+@media (max-width: 640px) {
+  .sb-give-card .sb-give-chooser { order: -1; }
+  .sb-give-card .sb-give-rule { order: 0; }
+  .sb-give-card .sb-give-tracker { order: 1; }
+}
 
 .sb-kids-strip { display: flex; justify-content: center; margin-top: 44px; }
 .sb-kids-strip img { width: 100%; max-width: 1080px; height: auto; }

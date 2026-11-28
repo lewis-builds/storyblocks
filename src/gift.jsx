@@ -199,12 +199,16 @@ function GiftHero() {
             Just <strong>1 in 4 children*</strong> now write for the joy of it. For <strong>{gbp(GIFT_PRICE)}</strong> you can put a journal of their own in a child’s hands.
           </p>
 
-          {/* the give card */}
-          <div style={{ marginTop: 32, textAlign: 'left', background: 'var(--sb-paper)', border: 'none', borderRadius: 28, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)' }}>
-            <ClassroomMeter />
-            <hr style={{ border: 0, borderTop: '2.5px dashed rgba(35,31,32,.2)', margin: '22px 0' }} />
-            <div className="sb-display" style={{ fontSize: '1.3rem', marginBottom: 12 }}>How many will you gift?</div>
-            <GiftPicker />
+          {/* the give card. On mobile the chooser is reordered above the
+             progress tracker (see .sb-give-card in pages.css) so the journal
+             quantity options sit above the fold; desktop keeps progress first. */}
+          <div className="sb-give-card" style={{ marginTop: 32, textAlign: 'left', background: 'var(--sb-paper)', border: 'none', borderRadius: 28, boxShadow: 'var(--shadow-pop-lg)', padding: 'clamp(22px, 4vw, 32px)', display: 'flex', flexDirection: 'column' }}>
+            <div className="sb-give-tracker"><ClassroomMeter /></div>
+            <hr className="sb-give-rule" style={{ border: 0, borderTop: '2.5px dashed rgba(35,31,32,.2)', margin: '22px 0', width: '100%' }} />
+            <div className="sb-give-chooser">
+              <div className="sb-display" style={{ fontSize: '1.3rem', marginBottom: 12 }}>How many will you gift?</div>
+              <GiftPicker />
+            </div>
           </div>
 
           <p style={{ marginTop: 18, fontWeight: 700, fontSize: '.95rem' }}>
